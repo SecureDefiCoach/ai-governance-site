@@ -1,0 +1,12 @@
+{
+  "id": "session-1781965127184",
+  "startedAt": "2026-06-20T14:18:47.184Z",
+  "cwd": "/Users/tristanmarvin/AI/Claude/Projects/ai-governance-site",
+  "context": {},
+  "metrics": {
+    "edits": 5,
+    "commands": 0,
+    "tasks": 0,
+    "errors": 0
+  }
+}
