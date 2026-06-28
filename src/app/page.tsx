@@ -135,9 +135,11 @@ export default function Home() {
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <Button size="lg">View Portfolio</Button>
-                <Button size="lg" variant="outline">
-                  Read Methodology
-                </Button>
+                <a href="/lab">
+                  <Button size="lg" variant="outline">
+                    Explore the Lab
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
@@ -259,24 +261,29 @@ export default function Home() {
           </p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { name: "NIST AI RMF", category: "AI Risk" },
-              { name: "ISO 42001", category: "AI Management" },
-              { name: "MITRE ATT&CK", category: "Threat Intelligence" },
-              { name: "CRI Profile", category: "Financial Services" },
-              { name: "EU AI Act", category: "Regulation" },
-              { name: "OWASP LLM Top 10", category: "AI Security" },
-              { name: "CIS Benchmarks", category: "Hardening Standards" },
-              { name: "COBIT 2019", category: "IT Governance" },
+              { name: "NIST AI RMF", category: "AI Risk", href: "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" },
+              { name: "ISO 42001", category: "AI Management", href: "https://www.iso.org/standard/81230.html" },
+              { name: "MITRE ATT&CK", category: "Threat Intelligence", href: "https://attack.mitre.org/" },
+              { name: "CRI Profile", category: "Financial Services", href: "https://cyberriskinstitute.org/the-profile/" },
+              { name: "EU AI Act", category: "Regulation", href: "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32024R1689" },
+              { name: "OWASP LLM Top 10", category: "AI Security", href: "https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/" },
+              { name: "CIS Benchmarks", category: "Hardening Standards", href: "https://www.cisecurity.org/cis-benchmarks" },
+              { name: "COBIT 2019", category: "IT Governance", href: "https://www.isaca.org/resources/cobit" },
             ].map((fw) => (
-              <div
+              <a
                 key={fw.name}
-                className="rounded-lg border p-4 transition-colors hover:border-foreground/20"
+                href={fw.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group rounded-lg border p-4 transition-colors hover:border-foreground/20 hover:bg-muted/40"
               >
-                <p className="font-medium">{fw.name}</p>
+                <p className="font-medium group-hover:text-foreground">
+                  {fw.name}
+                </p>
                 <p className="mt-1 text-xs text-muted-foreground">
                   {fw.category}
                 </p>
-              </div>
+              </a>
             ))}
           </div>
         </section>
