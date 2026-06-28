@@ -6,6 +6,29 @@ import { Separator } from "@/components/ui/separator";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
+const frameworkUrls: Record<string, string> = {
+  "NIST CSF 2.0": "https://www.nist.gov/cyberframework",
+  "NIST CSF 2.0 GV": "https://www.nist.gov/cyberframework",
+  "NIST SP 800-30": "https://csrc.nist.gov/pubs/sp/800/30/r1/final",
+  "NIST SP 800-53": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+  "NIST AI RMF": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+  "MITRE ATT&CK": "https://attack.mitre.org/",
+  "MITRE ATT&CK Mitigations": "https://attack.mitre.org/mitigations/enterprise/",
+  "MITRE Navigator": "https://mitre-attack.github.io/attack-navigator/",
+  "CRI Profile": "https://cyberriskinstitute.org/the-profile/",
+  "CRI Profile Response Guidance": "https://cyberriskinstitute.org/the-profile/",
+  "CRI Response Guidance": "https://cyberriskinstitute.org/the-profile/",
+  "SCF": "https://www.securecontrolsframework.com/",
+  "COBIT 2019": "https://www.isaca.org/resources/cobit",
+  "ISO 42001": "https://www.iso.org/standard/81230.html",
+  "ISO 27001": "https://www.iso.org/standard/27001",
+  "ISO 27005": "https://www.iso.org/standard/80585.html",
+  "CIS Benchmarks": "https://www.cisecurity.org/cis-benchmarks",
+  "FAIR": "https://www.fairinstitute.org/what-is-fair",
+  "EU AI Act": "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32024R1689",
+  "OWASP LLM Top 10": "https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/",
+};
+
 const nistFunctions = [
   { fn: "Govern", color: "bg-violet-500/10 text-violet-600", stages: [1] },
   { fn: "Identify", color: "bg-blue-500/10 text-blue-600", stages: [2, 3, 4] },
@@ -323,15 +346,32 @@ export default function Methodology() {
                           Frameworks
                         </p>
                         <div className="flex flex-wrap gap-1.5">
-                          {stage.frameworks.map((f) => (
-                            <Badge
-                              key={f}
-                              variant="secondary"
-                              className="text-xs"
-                            >
-                              {f}
-                            </Badge>
-                          ))}
+                          {stage.frameworks.map((f) => {
+                            const url = frameworkUrls[f];
+                            return url ? (
+                              <a
+                                key={f}
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <Badge
+                                  variant="secondary"
+                                  className="text-xs cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+                                >
+                                  {f}
+                                </Badge>
+                              </a>
+                            ) : (
+                              <Badge
+                                key={f}
+                                variant="secondary"
+                                className="text-xs"
+                              >
+                                {f}
+                              </Badge>
+                            );
+                          })}
                         </div>
                       </div>
                       <div>

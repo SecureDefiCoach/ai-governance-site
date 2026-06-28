@@ -205,14 +205,18 @@ export default function Home() {
           </p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
+              { name: "NIST CSF 2.0", category: "Cybersecurity Framework", href: "https://www.nist.gov/cyberframework" },
               { name: "NIST AI RMF", category: "AI Risk", href: "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" },
-              { name: "ISO 42001", category: "AI Management", href: "https://www.iso.org/standard/81230.html" },
               { name: "MITRE ATT&CK", category: "Threat Intelligence", href: "https://attack.mitre.org/" },
               { name: "CRI Profile", category: "Financial Services", href: "https://cyberriskinstitute.org/the-profile/" },
+              { name: "SCF", category: "Secure Controls", href: "https://www.securecontrolsframework.com/" },
+              { name: "ISO 42001", category: "AI Management", href: "https://www.iso.org/standard/81230.html" },
               { name: "EU AI Act", category: "Regulation", href: "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32024R1689" },
               { name: "OWASP LLM Top 10", category: "AI Security", href: "https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/" },
               { name: "CIS Benchmarks", category: "Hardening Standards", href: "https://www.cisecurity.org/cis-benchmarks" },
               { name: "COBIT 2019", category: "IT Governance", href: "https://www.isaca.org/resources/cobit" },
+              { name: "NIST SP 800-53", category: "Security Controls", href: "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" },
+              { name: "FAIR", category: "Risk Quantification", href: "https://www.fairinstitute.org/what-is-fair" },
             ].map((fw) => (
               <a
                 key={fw.name}
