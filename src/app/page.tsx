@@ -167,54 +167,27 @@ export default function Home() {
 
         <Separator />
 
-        {/* Approach */}
+        {/* Methodology Teaser */}
         <section className="bg-muted/30">
           <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
-            <div className="max-w-2xl">
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-                Approach
-              </h2>
-              <p className="mt-4 text-muted-foreground">
-                Every assessment starts with understanding the threat landscape,
-                not the compliance checklist. Controls exist to mitigate specific
-                risks — if you can&apos;t trace a control back to a threat, you
-                can&apos;t validate its effectiveness.
-              </p>
-            </div>
-
-            <div className="mt-12 grid gap-8 lg:grid-cols-3">
-              {[
-                {
-                  step: "01",
-                  title: "Threat Mapping",
-                  description:
-                    "Identify relevant MITRE ATT&CK techniques for your industry and environment. Focus on what adversaries actually do, not theoretical risks.",
-                },
-                {
-                  step: "02",
-                  title: "Controls Validation",
-                  description:
-                    "Map existing controls to threat mitigations. Quantify coverage using evidence-based ratings — not opinions, not checkboxes.",
-                },
-                {
-                  step: "03",
-                  title: "Gap Remediation",
-                  description:
-                    "Prioritize gaps by exploitability and business impact. Deliver actionable recommendations with implementation guidance.",
-                },
-              ].map((item) => (
-                <div key={item.step} className="flex gap-4">
-                  <span className="text-4xl font-bold text-primary/20">
-                    {item.step}
-                  </span>
-                  <div>
-                    <h3 className="font-semibold">{item.title}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+            <div className="flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
+              <div className="max-w-2xl">
+                <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+                  Threat-Informed Methodology
+                </h2>
+                <p className="mt-4 text-muted-foreground">
+                  An 11-stage process grounded in NIST CSF 2.0 — from
+                  threat profiling through coverage analysis to evidence
+                  packaging. Likelihood is driven by adversary behavior,
+                  not opinion. Impact is driven by control gaps, not
+                  guesswork. Every finding is traceable.
+                </p>
+              </div>
+              <Link href="/methodology">
+                <Button size="lg" variant="outline">
+                  View Full Process
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
