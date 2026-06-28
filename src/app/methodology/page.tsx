@@ -27,15 +27,18 @@ const frameworkUrls: Record<string, string> = {
   "FAIR": "https://www.fairinstitute.org/what-is-fair",
   "EU AI Act": "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32024R1689",
   "OWASP LLM Top 10": "https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/",
+  "Lansweeper": "https://www.lansweeper.com/",
+  "Intune": "https://learn.microsoft.com/en-us/mem/intune/fundamentals/what-is-intune",
+  "ServiceNow": "https://www.servicenow.com/",
 };
 
 const nistFunctions = [
   { fn: "Govern", color: "bg-violet-500/10 text-violet-600", stages: [1] },
-  { fn: "Identify", color: "bg-blue-500/10 text-blue-600", stages: [2, 3, 4] },
-  { fn: "Protect", color: "bg-green-500/10 text-green-600", stages: [5] },
-  { fn: "Detect", color: "bg-yellow-500/10 text-yellow-700", stages: [6, 7, 8] },
-  { fn: "Respond", color: "bg-orange-500/10 text-orange-600", stages: [9, 10] },
-  { fn: "Recover", color: "bg-red-500/10 text-red-600", stages: [11] },
+  { fn: "Identify", color: "bg-blue-500/10 text-blue-600", stages: [2, 3, 4, 5] },
+  { fn: "Protect", color: "bg-green-500/10 text-green-600", stages: [6] },
+  { fn: "Detect", color: "bg-yellow-500/10 text-yellow-700", stages: [7, 8, 9] },
+  { fn: "Respond", color: "bg-orange-500/10 text-orange-600", stages: [10, 11] },
+  { fn: "Recover", color: "bg-red-500/10 text-red-600", stages: [12] },
 ];
 
 function getNistFunction(stageNum: number) {
@@ -64,6 +67,30 @@ const stages = [
   },
   {
     num: 2,
+    title: "Asset Identification & Classification",
+    gate: "Asset Inventory Approved",
+    description:
+      "Identify and classify all organizational assets — data repositories, hardware, software, network infrastructure — by business criticality and sensitivity. This establishes what you are protecting before assessing what threatens it. Without a classified asset inventory, threat profiling is abstract and coverage analysis has no anchor.",
+    inputs: [
+      "ServiceNow CMDB (hardware, software, network)",
+      "Network discovery scans (Nmap, Lansweeper)",
+      "Software inventory (SCCM, Intune, Jamf)",
+      "Cloud service inventory (AWS, Azure, GCP)",
+      "Data flow diagrams and data classification records",
+    ],
+    deliverables: [
+      "Classified asset inventory",
+      "Data inventory with sensitivity tiers",
+      "Business criticality ratings",
+      "System boundary documentation",
+    ],
+    frameworks: ["NIST CSF 2.0", "COBIT 2019", "ISO 27001"],
+    tools: ["ServiceNow", "Lansweeper", "MS Lists", "Intune"],
+    highlight:
+      "You cannot assess what threatens you until you know what you are protecting and how critical it is.",
+  },
+  {
+    num: 3,
     title: "Threat Profiling",
     gate: "Threat Model Sign-Off",
     description:
@@ -83,16 +110,16 @@ const stages = [
     highlight: "Drives likelihood — the engine of the entire assessment.",
   },
   {
-    num: 3,
+    num: 4,
     title: "Control Inventory",
     gate: "Control Inventory Validated",
     description:
-      "Catalog the organization's existing controls against recognized control frameworks. Map each control to a standardized taxonomy so coverage can be measured consistently. Discovery tools and the CMDB feed the actual asset and control landscape — what is deployed, not what is documented.",
+      "Catalog the organization's existing controls against recognized control frameworks. Map each control to a standardized taxonomy so coverage can be measured consistently. The classified asset inventory from Stage 2 anchors every control to the assets it protects.",
     inputs: [
-      "ServiceNow CMDB (hardware, software, network)",
-      "Network discovery scans (Nmap, Lansweeper)",
-      "Software inventory (SCCM, Intune, Jamf)",
-      "Hardware asset registers",
+      "Classified asset inventory (from Stage 2)",
+      "ServiceNow GRC control catalog",
+      "Policy and procedure documentation",
+      "Existing control matrices and spreadsheets",
     ],
     deliverables: [
       "Control register",
@@ -103,7 +130,7 @@ const stages = [
     tools: ["MS Lists", "L1/L2 classification", "ServiceNow"],
   },
   {
-    num: 4,
+    num: 5,
     title: "Control-to-Mitigation Mapping",
     gate: "Mapping Reviewed",
     description:
@@ -121,7 +148,7 @@ const stages = [
     tools: ["MS Lists", "L1/L2 mapping engine", "ServiceNow GRC"],
   },
   {
-    num: 5,
+    num: 6,
     title: "Coverage Analysis",
     gate: "Coverage Rated & Reviewed",
     description:
@@ -141,7 +168,7 @@ const stages = [
     tools: ["MS Lists", "Excel", "PowerBI"],
   },
   {
-    num: 6,
+    num: 7,
     title: "Likelihood Rating",
     gate: "Likelihood Justified",
     description:
@@ -163,7 +190,7 @@ const stages = [
       "Likelihood is not a guess — it is grounded in how adversaries actually target this type of organization.",
   },
   {
-    num: 7,
+    num: 8,
     title: "Impact Assessment",
     gate: "Impact Validated",
     description:
@@ -185,7 +212,7 @@ const stages = [
       "Impact is driven by coverage gaps — what breaks when the adversary gets through.",
   },
   {
-    num: 8,
+    num: 9,
     title: "Risk Rating",
     gate: "Risk Scores Approved",
     description:
@@ -204,7 +231,7 @@ const stages = [
     tools: ["PowerBI", "MS Lists", "Excel"],
   },
   {
-    num: 9,
+    num: 10,
     title: "Gap Prioritization",
     gate: "Prioritization Reviewed",
     description:
@@ -222,7 +249,7 @@ const stages = [
     tools: ["MS Lists", "Power Automate"],
   },
   {
-    num: 10,
+    num: 11,
     title: "Remediation Design",
     gate: "Remediation Plan Approved",
     description:
@@ -241,7 +268,7 @@ const stages = [
     tools: ["SharePoint", "MS Lists", "Power Automate"],
   },
   {
-    num: 11,
+    num: 12,
     title: "Evidence Packaging",
     gate: "Executive Sign-Off",
     description:
@@ -282,7 +309,7 @@ export default function Methodology() {
                 </span>
               </h1>
               <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-                An 11-stage process grounded in NIST CSF 2.0 that transforms
+                A 12-stage process grounded in NIST CSF 2.0 that transforms
                 threat intelligence into defensible risk ratings. Likelihood
                 comes from how adversaries actually target your type of
                 organization. Impact comes from what is exposed when coverage
@@ -333,7 +360,7 @@ export default function Methodology() {
             The Process
           </h2>
           <p className="mt-4 max-w-2xl text-muted-foreground">
-            11 stages from scoping to evidence packaging. Each stage has a
+            12 stages from scoping to evidence packaging. Each stage has a
             gate — work does not advance without validated deliverables.
           </p>
 

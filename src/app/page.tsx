@@ -176,9 +176,9 @@ export default function Home() {
                   Threat-Informed Methodology
                 </h2>
                 <p className="mt-4 text-muted-foreground">
-                  An 11-stage process grounded in NIST CSF 2.0 — from
-                  threat profiling through coverage analysis to evidence
-                  packaging. Likelihood is driven by adversary behavior,
+                  A 12-stage process grounded in NIST CSF 2.0 — from
+                  asset classification through threat profiling and coverage
+                  analysis to evidence packaging. Likelihood is driven by adversary behavior,
                   not opinion. Impact is driven by control gaps, not
                   guesswork. Every finding is traceable.
                 </p>
