@@ -661,6 +661,97 @@ export default function Methodology() {
             ))}
           </div>
         </section>
+
+        <Separator />
+
+        {/* Operational Deliverables */}
+        <section className="bg-muted/30">
+          <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+            <div className="max-w-2xl">
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+                Beyond the Report
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                Most risk assessments end with a PDF. This methodology
+                produces operational artifacts that plug directly into the
+                organization&apos;s monitoring and reporting stack — every
+                deliverable is driven by the threat profile, not generic
+                templates.
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-6 sm:grid-cols-2">
+              {[
+                {
+                  title: "Threat-Targeted KPIs & KRIs",
+                  description:
+                    "Key Performance Indicators and Key Risk Indicators derived directly from the threat profile — not generic compliance metrics. Each KPI traces to a specific MITRE technique and the controls that mitigate it, so leadership measures what actually matters for their threat landscape.",
+                  examples: [
+                    "Mean time to detect per profiled technique",
+                    "Coverage % by MITRE mitigation category",
+                    "Control test currency (days since last validated)",
+                    "Open vulnerability count by threat-relevant CVE",
+                  ],
+                },
+                {
+                  title: "Splunk Logging Requirements",
+                  description:
+                    "Specific log sources, event types, and data fields required to detect the techniques in the threat profile. Ensures the SIEM is capturing the telemetry needed for detection — not just collecting everything and hoping.",
+                  examples: [
+                    "Required log sources per ATT&CK technique",
+                    "Data field specifications for detection coverage",
+                    "Log retention requirements by criticality tier",
+                    "Gap analysis: what is logged vs. what is needed",
+                  ],
+                },
+                {
+                  title: "Splunk Alert Triggers",
+                  description:
+                    "Detection rules and correlation searches configured for the specific MITRE techniques identified in the threat profile. Each alert maps to a technique, a data source, and a response playbook — turning the threat profile into active defense.",
+                  examples: [
+                    "Alert rules per profiled ATT&CK technique",
+                    "Correlation searches for technique chaining",
+                    "Threshold tuning based on environment baseline",
+                    "Response playbook linkage per alert",
+                  ],
+                },
+                {
+                  title: "Microsoft Teams Dashboards",
+                  description:
+                    "Professional dashboards integrated into Microsoft Teams where stakeholders already work. Coverage status, risk heat maps, KRI trends, and remediation progress — all visible without logging into a separate tool.",
+                  examples: [
+                    "Executive coverage dashboard (Level 1)",
+                    "Risk heat map with drill-down to technique",
+                    "KRI trend tracking with threshold alerts",
+                    "Remediation progress by risk owner",
+                  ],
+                },
+              ].map((item) => (
+                <Card key={item.title} className="h-full">
+                  <CardHeader>
+                    <CardTitle className="text-lg">{item.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">
+                      {item.description}
+                    </p>
+                    <div className="mt-4 space-y-1.5">
+                      {item.examples.map((ex) => (
+                        <div
+                          key={ex}
+                          className="flex items-start gap-2 text-xs text-muted-foreground"
+                        >
+                          <span className="mt-1 block h-1 w-1 shrink-0 rounded-full bg-primary/40" />
+                          {ex}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />
