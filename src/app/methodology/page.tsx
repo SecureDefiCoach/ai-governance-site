@@ -556,6 +556,111 @@ export default function Methodology() {
             </div>
           </div>
         </section>
+
+        <Separator />
+
+        {/* Engagement Success Factors */}
+        <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+              Engagement Success Factors
+            </h2>
+            <p className="mt-4 text-muted-foreground">
+              A defensible risk assessment requires more than a good framework.
+              These six factors — grounded in NIST, ISACA, ISO 27005, and
+              FAIR — determine whether an engagement produces actionable
+              results or a checkbox exercise.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                icon: (
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+                  </svg>
+                ),
+                title: "Clean Data Inputs",
+                description:
+                  "Quality asset inventories, vulnerability scan results, control test evidence, and system logs. Garbage in, garbage out — the assessment is only as defensible as the data behind it.",
+                sources: "NIST SP 800-30, ISO 27005, FAIR",
+              },
+              {
+                icon: (
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                  </svg>
+                ),
+                title: "Strong Stakeholder Support",
+                description:
+                  "Executive sponsorship, engaged risk owners, and cross-functional participation. Without business unit involvement, assessments stay theoretical and no one owns the residual risk.",
+                sources: "ISACA, NIST RMF, Security Executive Council",
+              },
+              {
+                icon: (
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 3.75H6A2.25 2.25 0 0 0 3.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0 1 20.25 6v1.5m0 9V18A2.25 2.25 0 0 1 18 20.25h-1.5m-9 0H6A2.25 2.25 0 0 1 3.75 18v-1.5M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                  </svg>
+                ),
+                title: "Clear Scope & Risk Criteria",
+                description:
+                  "Defined boundaries, risk tolerance thresholds, and regulatory applicability established before any technical work begins. Without explicit criteria, assessments devolve into generic vulnerability listings.",
+                sources: "NIST SP 800-30, ISO 27005, NIST CSF 2.0",
+              },
+              {
+                icon: (
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                  </svg>
+                ),
+                title: "Agreed Methodology & Definitions",
+                description:
+                  "Everyone working from the same risk model, terminology, and scoring criteria. If 'likelihood' and 'impact' mean different things to different participants, results cannot be defended or compared over time.",
+                sources: "FAIR, ISO 27005, NIST SP 800-30",
+              },
+              {
+                icon: (
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a23.54 23.54 0 0 0-2.688 6.413A12.02 12.02 0 0 1 2.25 12c0-2.291.637-4.436 1.75-6.273m13.23 4.42a23.54 23.54 0 0 1 2.688 6.413A12.02 12.02 0 0 0 21.75 12c0-2.291-.637-4.436-1.75-6.273M4.26 10.147A23.473 23.473 0 0 1 12 8.25a23.473 23.473 0 0 1 7.74 1.897M12 2.25a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
+                  </svg>
+                ),
+                title: "Skilled Practitioners",
+                description:
+                  "Analysts trained in MITRE ATT&CK, FAIR, CRI Profile, and NIST frameworks. Poorly trained analysts and a superficial culture lead directly to checkbox assessments and unconvincing risk narratives.",
+                sources: "ISACA, FAIR Institute, NIST",
+              },
+              {
+                icon: (
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                  </svg>
+                ),
+                title: "Transparent Traceability",
+                description:
+                  "Every finding traceable from MITRE technique to mitigation to control gap to risk score to remediation. In audits, regulatory inquiries, or incidents, you must show how you arrived at each conclusion.",
+                sources: "NIST SP 800-30, ISO 27001, COBIT 2019",
+              },
+            ].map((factor) => (
+              <Card key={factor.title} className="h-full">
+                <CardHeader>
+                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    {factor.icon}
+                  </div>
+                  <CardTitle className="text-lg">{factor.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    {factor.description}
+                  </p>
+                  <p className="mt-3 text-xs text-muted-foreground/60">
+                    {factor.sources}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
       </main>
 
       <Footer />
