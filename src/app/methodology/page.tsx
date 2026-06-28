@@ -49,6 +49,11 @@ const stages = [
     gate: "Engagement Approval",
     description:
       "Define the organizational context, applicable regulations, and asset boundaries. Establish the scope of the assessment and align with stakeholder expectations before any technical work begins.",
+    inputs: [
+      "Prior audit reports and findings",
+      "Regulatory filings and exam history",
+      "Organizational charts and business unit mapping",
+    ],
     deliverables: [
       "Scope document",
       "Regulatory applicability map",
@@ -63,6 +68,11 @@ const stages = [
     gate: "Threat Model Sign-Off",
     description:
       "Select the MITRE ATT&CK techniques most relevant to the organization based on industry vertical, size, geography, and known adversary targeting patterns. This profile becomes the foundation for likelihood — grounded in how adversaries actually operate, not subjective opinion.",
+    inputs: [
+      "Threat intelligence feeds (FS-ISAC, CISA)",
+      "SIEM alert trends and log analysis",
+      "Sector-specific advisories and IOCs",
+    ],
     deliverables: [
       "Threat profile document",
       "Selected ATT&CK technique set",
@@ -77,34 +87,51 @@ const stages = [
     title: "Control Inventory",
     gate: "Control Inventory Validated",
     description:
-      "Catalog the organization's existing controls against recognized control frameworks. Map each control to a standardized taxonomy so coverage can be measured consistently.",
+      "Catalog the organization's existing controls against recognized control frameworks. Map each control to a standardized taxonomy so coverage can be measured consistently. Discovery tools and the CMDB feed the actual asset and control landscape — what is deployed, not what is documented.",
+    inputs: [
+      "ServiceNow CMDB (hardware, software, network)",
+      "Network discovery scans (Nmap, Lansweeper)",
+      "Software inventory (SCCM, Intune, Jamf)",
+      "Hardware asset registers",
+    ],
     deliverables: [
       "Control register",
       "SCF/CRI control mapping",
       "Control ownership matrix",
     ],
     frameworks: ["SCF", "CRI Profile", "NIST SP 800-53"],
-    tools: ["MS Lists", "L1/L2 classification"],
+    tools: ["MS Lists", "L1/L2 classification", "ServiceNow"],
   },
   {
     num: 4,
     title: "Control-to-Mitigation Mapping",
     gate: "Mapping Reviewed",
     description:
-      "Map each control to the specific MITRE mitigations it addresses for each selected technique. This establishes the direct relationship between what the organization has and what adversaries do — the bridge between controls and threats.",
+      "Map each control to the specific MITRE mitigations it addresses for each selected technique. Control test history validates whether the control actually works — a control that has not been tested in 18 months is weighted differently than one tested last quarter.",
+    inputs: [
+      "ServiceNow GRC control test history",
+      "Control effectiveness ratings",
+      "Last-tested dates and test evidence",
+    ],
     deliverables: [
       "Mitigation coverage matrix",
       "Control-to-technique traceability",
     ],
     frameworks: ["MITRE ATT&CK Mitigations", "CRI Response Guidance"],
-    tools: ["MS Lists", "L1/L2 mapping engine"],
+    tools: ["MS Lists", "L1/L2 mapping engine", "ServiceNow GRC"],
   },
   {
     num: 5,
     title: "Coverage Analysis",
     gate: "Coverage Rated & Reviewed",
     description:
-      "Rate coverage for each Response Guidance requirement using evidence-based verdicts: Covered, Partial, or No Coverage. Produce the three-level drill-down dashboards that make coverage visible from executive summary to individual control detail.",
+      "Rate coverage for each Response Guidance requirement using evidence-based verdicts: Covered, Partial, or No Coverage. Vulnerability scan results and penetration test findings validate whether controls are working in practice — not just documented on paper.",
+    inputs: [
+      "Vulnerability scan results (Nessus, Qualys, Tenable)",
+      "Penetration test reports",
+      "Configuration audit outputs (CIS-CAT)",
+      "System and application logs",
+    ],
     deliverables: [
       "Level 1 — Executive coverage dashboard",
       "Level 2 — Domain coverage matrix",
@@ -118,14 +145,20 @@ const stages = [
     title: "Likelihood Rating",
     gate: "Likelihood Justified",
     description:
-      "Derive likelihood from the threat profile — not from a committee vote or subjective scale. Assess how frequently adversaries employ each selected technique against organizations of this type, region, and size. Likelihood is defensible because it traces to observed adversary behavior.",
+      "Derive likelihood from the threat profile — not from a committee vote or subjective scale. Active vulnerabilities from scans increase likelihood. SIEM data shows whether techniques are already being attempted against the organization. Likelihood is defensible because it traces to observed adversary behavior and real telemetry.",
+    inputs: [
+      "Active vulnerability data from scans",
+      "SIEM alert trends and incident history",
+      "Threat intelligence reports",
+      "Exploit availability data (KEV catalog)",
+    ],
     deliverables: [
       "Likelihood rating per technique",
       "Threat frequency evidence",
       "Targeting relevance justification",
     ],
     frameworks: ["MITRE ATT&CK", "NIST SP 800-30", "FAIR"],
-    tools: ["L3 AI analysis", "Threat intelligence feeds"],
+    tools: ["L3 AI analysis", "Threat intelligence feeds", "Splunk"],
     highlight:
       "Likelihood is not a guess — it is grounded in how adversaries actually target this type of organization.",
   },
@@ -134,7 +167,13 @@ const stages = [
     title: "Impact Assessment",
     gate: "Impact Validated",
     description:
-      "Determine impact based on what is exposed when coverage gaps exist. If a technique succeeds because controls are missing or partial, what is the business consequence? Impact flows directly from the coverage analysis — the gaps tell you where you are vulnerable.",
+      "Determine impact based on what is exposed when coverage gaps exist. Business impact analysis data and asset criticality ratings quantify the consequence. If a technique succeeds because controls are missing or partial, what is the business, regulatory, and operational consequence?",
+    inputs: [
+      "Business impact analysis (BIA)",
+      "Data classification inventory",
+      "Asset criticality ratings",
+      "Regulatory penalty exposure",
+    ],
     deliverables: [
       "Impact rating per technique",
       "Exposure analysis per gap",
@@ -151,6 +190,11 @@ const stages = [
     gate: "Risk Scores Approved",
     description:
       "Combine likelihood and impact to produce a risk score for each technique. Visualize across the full threat profile as a risk heat map. Every score traces back to the threat profile (likelihood) and coverage gaps (impact) — fully defensible, no opinion required.",
+    inputs: [
+      "Prior risk register entries",
+      "Risk appetite and tolerance statements",
+      "Historical risk assessment results",
+    ],
     deliverables: [
       "Risk score per technique",
       "Risk heat map",
@@ -165,6 +209,11 @@ const stages = [
     gate: "Prioritization Reviewed",
     description:
       "Rank gaps by risk score, not by compliance order or alphabetical listing. The highest-risk gaps — where likelihood is high and coverage is weakest — get addressed first. This ensures remediation effort is directed where it reduces the most risk.",
+    inputs: [
+      "Existing remediation backlog",
+      "Budget and resource constraints",
+      "Regulatory deadlines and exam schedules",
+    ],
     deliverables: [
       "Prioritized gap register",
       "Risk-ranked remediation queue",
@@ -178,6 +227,11 @@ const stages = [
     gate: "Remediation Plan Approved",
     description:
       "Design controls to close the highest-risk gaps. Each recommendation traces back to the specific MITRE mitigation it addresses, the gap it closes, and the risk it reduces. Assign owners, timelines, and success criteria.",
+    inputs: [
+      "Vendor and product capability assessments",
+      "Change management records (ServiceNow)",
+      "Implementation precedents and lessons learned",
+    ],
     deliverables: [
       "Remediation plan with owners",
       "Control design specifications",
@@ -192,6 +246,11 @@ const stages = [
     gate: "Executive Sign-Off",
     description:
       "Bundle the complete evidence chain — from threat profile through coverage analysis to risk ratings and remediation plans — into deliverables for the board, regulators, and audit committee. Every finding traces from adversary technique to control gap to business risk.",
+    inputs: [
+      "Audit trail and activity logs",
+      "Compliance tracking dashboards",
+      "Prior board reporting packages",
+    ],
     deliverables: [
       "Executive summary",
       "Board-ready risk report",
@@ -325,7 +384,22 @@ export default function Methodology() {
                       </div>
                     )}
 
-                    <div className="mt-6 grid gap-6 sm:grid-cols-3">
+                    <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-foreground mb-2">
+                          <span className="text-blue-600">&#9654;</span> Data Inputs
+                        </p>
+                        <ul className="space-y-1">
+                          {stage.inputs.map((inp) => (
+                            <li
+                              key={inp}
+                              className="text-xs text-muted-foreground"
+                            >
+                              {inp}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-wider text-foreground mb-2">
                           Deliverables
