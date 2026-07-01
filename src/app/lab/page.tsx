@@ -6,61 +6,77 @@ import { Separator } from "@/components/ui/separator";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
-const tiers = [
+const layers = [
   {
-    name: "L1 — Local Private",
-    location: "Mac Studio (M4 Max, 36GB)",
-    models: ["Qwen2.5 14B (text)", "Qwen2.5-VL 7B (vision)"],
-    role: "On-device execution engine. Nothing leaves the machine. Handles assessments, classification, document extraction, and compliance scanning.",
-    privacy: "Fully offline",
-    cost: "$0",
+    name: "Knowledge",
+    subtitle: "Methodologies, standards, decision logic",
+    description: "The professional expertise layer — codified methodologies, regulatory standards, templates, decision trees, and lessons learned from real engagements. Knowledge is authored by domain experts and captured in versioned, reusable formats.",
+    examples: ["MITRE ATT&CK mappings", "CRI control frameworks", "Audit playbooks", "Threat modeling templates"],
     icon: (
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
       </svg>
     ),
   },
   {
-    name: "L2 — Cloud Private",
-    location: "AWS Bedrock + NVIDIA NIM",
-    models: ["Claude Sonnet 4.6 (Bedrock)", "Llama 3.3 70B (NIM)", "121 models via NIM"],
-    role: "Private cloud inference within a controlled AWS boundary. Managed services with full audit trails. No infrastructure to maintain.",
-    privacy: "Private account boundary",
-    cost: "~$15-50/mo",
+    name: "Capability",
+    subtitle: "Versioned, testable packages",
+    description: "Portable capability packages (.acf) that bundle purpose, tools, workflows, evidence requirements, quality gates, failure modes, and validation tests into one consumable unit — like a software package for professional work.",
+    examples: ["817 cybersecurity skills", "Network recovery package", "AI governance assessment", "Threat-informed risk assessment"],
     icon: (
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 .75-7.425A4.502 4.502 0 0 0 13.5 6 4.5 4.5 0 0 0 9.17 8.537A4.499 4.499 0 0 0 2.25 15Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
       </svg>
     ),
   },
   {
-    name: "L3 — Public",
-    location: "Claude Code (VS Code)",
-    models: ["Claude Opus / Sonnet"],
-    role: "Operations manager — strategy, orchestration, and workforce optimization. Designs work packages, measures outcomes, and continuously improves the system.",
-    privacy: "Third-party API",
-    cost: "Subscription",
+    name: "Orchestration",
+    subtitle: "Routing, handoff, escalation",
+    description: "Selects the right tools and executors for each capability based on confidence scores, cost, and availability. Resolves dependency graphs, manages handoffs between executors, and escalates when quality gates are not met.",
+    examples: ["Tool registry (81+ tools)", "Dependency resolution", "Confidence-based routing", "Escalation policies"],
     icon: (
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+      </svg>
+    ),
+  },
+  {
+    name: "Execution",
+    subtitle: "Models, scripts, humans, APIs",
+    description: "The interchangeable compute layer. Local models for private work, frontier models for complex reasoning, deterministic scripts for known patterns, and humans for judgment calls. The capability package does not care which executor runs it.",
+    examples: ["Ollama (local, offline)", "Claude Opus (frontier)", "Bash scripts", "Human analyst review"],
+    icon: (
+      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7m0 0a3 3 0 0 1-3 3m0 3h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Zm-3 6h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Z" />
+      </svg>
+    ),
+  },
+  {
+    name: "Evidence",
+    subtitle: "Logs, artifacts, continuous learning",
+    description: "Every execution produces evidence — structured logs, before/after state, quality gate results, and PASS/FAIL outcomes. Evidence feeds back into the knowledge layer, creating a continuous improvement loop.",
+    examples: ["Recovery logs", "Splunk observability", "Audit artifacts", "Validation test results"],
+    icon: (
+      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
       </svg>
     ),
   },
 ];
 
 const capabilities = [
-  { name: "CRI Coverage Classification", status: "Pilot", tier: "L1" },
-  { name: "Executive Observation Writing", status: "Pilot", tier: "L1" },
-  { name: "Control Design Assessment", status: "Experimental", tier: "L1/L2" },
-  { name: "Control-to-RG Mapping", status: "Experimental", tier: "L1/L2" },
-  { name: "MITRE Technique-to-CRI Mapping", status: "Experimental", tier: "L1/L2" },
-  { name: "Gap Assessment Narrative", status: "Experimental", tier: "L1/L2" },
-  { name: "Evidence Validation", status: "Experimental", tier: "L1/L2" },
-  { name: "Finding Generation", status: "Experimental", tier: "L1/L2" },
-  { name: "CIS Benchmark Scan & Report", status: "Experimental", tier: "L1" },
-  { name: "Workpaper Generation", status: "Experimental", tier: "L1/L2" },
-  { name: "KPI & KRI Definition and Implementation", status: "Experimental", tier: "L1/L2" },
-  { name: "Data Analytics & Executive Dashboards", status: "Experimental", tier: "L1/L2" },
+  { name: "CRI Coverage Classification", status: "Pilot", executor: "Local / Cloud" },
+  { name: "Executive Observation Writing", status: "Pilot", executor: "Local" },
+  { name: "Control Design Assessment", status: "Experimental", executor: "Local / Cloud" },
+  { name: "Control-to-RG Mapping", status: "Experimental", executor: "Local / Cloud" },
+  { name: "MITRE Technique-to-CRI Mapping", status: "Experimental", executor: "Local / Cloud" },
+  { name: "Gap Assessment Narrative", status: "Experimental", executor: "Local / Cloud" },
+  { name: "Evidence Validation", status: "Experimental", executor: "Local / Cloud" },
+  { name: "Finding Generation", status: "Experimental", executor: "Local / Cloud" },
+  { name: "CIS Benchmark Scan & Report", status: "Experimental", executor: "Script" },
+  { name: "Workpaper Generation", status: "Experimental", executor: "Local / Cloud" },
+  { name: "Network Connectivity Recovery", status: "Production", executor: "Script / Local" },
+  { name: "Data Analytics & Executive Dashboards", status: "Experimental", executor: "Local / Cloud" },
 ];
 
 const observabilityStack = [
@@ -73,7 +89,7 @@ const observabilityStack = [
 const principles = [
   {
     title: "Every Capability Earns Trust",
-    description: "New AI capabilities follow a probation model: Experimental, Pilot, Production, Review Required, Retired. 50 successful executions before production status.",
+    description: "New capabilities follow a probation model: Experimental, Pilot, Production, Review Required, Retired. 50 successful executions before production status.",
   },
   {
     title: "No Observability, No Production",
@@ -81,11 +97,38 @@ const principles = [
   },
   {
     title: "Privacy by Architecture",
-    description: "Three tiers with distinct data boundaries. L1 stays on-device. L2 stays within a private cloud account. L3 handles strategy only. Privacy is structural, not policy.",
+    description: "Distinct data boundaries at every layer. Local execution stays on-device. Cloud stays within a private account. Privacy is structural, not policy.",
   },
   {
     title: "Measure Like an Auditor",
     description: "Don't ask 'does this prompt work?' Ask 'what evidence demonstrates this capability is reliable enough to trust with production work?'",
+  },
+];
+
+const osPrinciples = [
+  {
+    title: "Capabilities, Not Agents",
+    description: "The organizing principle is WHAT work gets done, not WHO performs it. Agents are interchangeable execution resources — the capability package is the durable abstraction.",
+  },
+  {
+    title: "Executors Are Interchangeable",
+    description: "Today's executor might be a 14B local model. Tomorrow it might be a 70B cloud model, a frontier model, a script, or a human analyst. The capability package does not care.",
+  },
+  {
+    title: "Capabilities Compose Like Software",
+    description: "Each capability declares its inputs, outputs, dependencies, and version. A dependency registry resolves the graph before execution — enabling complex professional work without hard-coding workflows.",
+  },
+  {
+    title: "Confidence Drives Routing",
+    description: "Every capability has an operational confidence score per executor type. If a local model scores 0.61 on a task, the orchestrator escalates to a frontier model. Model selection is policy-driven, not manual.",
+  },
+  {
+    title: "Evidence Is a First-Class Layer",
+    description: "Every execution produces structured proof — before/after state, quality gate results, and PASS/FAIL outcomes. Evidence feeds back into the knowledge layer for continuous improvement.",
+  },
+  {
+    title: "Six Registries, One System",
+    description: "Capability, Tool, Workflow, Evidence, Validation, and Dependency registries form the operating system. Models are compute engines. The registries are the platform.",
   },
 ];
 
@@ -113,16 +156,17 @@ export default function Lab() {
                 AI Governance Lab
               </Badge>
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-                A Governed AI{" "}
-                <span className="text-muted-foreground">Workforce</span>
+                Capability{" "}
+                <span className="text-muted-foreground">Operating System</span>
               </h1>
               <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-                Purpose-built AI agents trained to perform IT risk and audit
-                functions — from control assessment to compliance scanning to
-                evidence validation. A three-tier architecture provides the
-                infrastructure: local models for private execution, cloud for
-                scale, and a frontier model managing the workforce. Every agent
-                is measured, monitored, and continuously improved.
+                Professional methodologies codified as portable, versioned,
+                testable capability packages — from control assessment to
+                compliance scanning to evidence validation. A five-layer
+                architecture separates knowledge from execution: capabilities
+                are the durable abstraction, executors are interchangeable.
+                Every capability is measured, monitored, and continuously
+                improved.
               </p>
             </div>
           </div>
@@ -136,35 +180,48 @@ export default function Lab() {
             Architecture
           </h2>
           <p className="mt-4 max-w-2xl text-muted-foreground">
-            Three tiers — local private, cloud private, and public — each with
-            a distinct role and privacy boundary.
+            Five layers — knowledge flows down through capability packages to
+            interchangeable executors. Evidence flows back up for continuous
+            improvement. Agents disappear as the organizing principle.
           </p>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {tiers.map((tier) => (
-              <Card key={tier.name} className="group transition-colors hover:border-foreground/20">
-                <CardHeader>
-                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                    {tier.icon}
+          <div className="mt-12 space-y-4">
+            {layers.map((layer, i) => (
+              <div key={layer.name} className="group">
+                <Card className="transition-colors hover:border-foreground/20">
+                  <CardContent className="flex items-start gap-6 p-6">
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                        {layer.icon}
+                      </div>
+                      <span className="text-xs font-medium text-muted-foreground/50">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-baseline gap-3">
+                        <CardTitle className="text-lg">{layer.name}</CardTitle>
+                        <span className="text-xs text-muted-foreground">{layer.subtitle}</span>
+                      </div>
+                      <p className="mt-2 text-sm text-muted-foreground">{layer.description}</p>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {layer.examples.map((ex) => (
+                          <Badge key={ex} variant="secondary" className="text-xs">
+                            {ex}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                {i < layers.length - 1 && (
+                  <div className="flex justify-center py-1">
+                    <svg className="h-4 w-4 text-muted-foreground/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+                    </svg>
                   </div>
-                  <CardTitle className="text-lg">{tier.name}</CardTitle>
-                  <p className="text-xs text-muted-foreground">{tier.location}</p>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">{tier.role}</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {tier.models.map((model) => (
-                      <Badge key={model} variant="secondary" className="text-xs">
-                        {model}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="mt-4 flex items-center justify-between text-xs">
-                    <span className="text-muted-foreground">{tier.privacy}</span>
-                    <span className="text-muted-foreground">{tier.cost}</span>
-                  </div>
-                </CardContent>
-              </Card>
+                )}
+              </div>
             ))}
           </div>
         </section>
@@ -175,13 +232,13 @@ export default function Lab() {
         <section className="bg-muted/30">
           <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-              Agent Registry
+              Capability Registry
             </h2>
             <p className="mt-4 max-w-2xl text-muted-foreground">
-              Each agent is trained to perform a specific IT risk or audit
-              function. Like employees, they are hired one at a time, measured
-              against acceptance criteria, supervised through observability, and
-              required to earn trust before reaching production.
+              Each capability is a versioned, testable package — purpose, tools,
+              workflow, evidence requirements, quality gates, and failure modes
+              bundled together. Capabilities earn trust through a probation
+              model and are executor-agnostic.
             </p>
 
             <div className="mt-12 grid gap-4 sm:grid-cols-2">
@@ -192,7 +249,7 @@ export default function Lab() {
                 >
                   <div>
                     <p className="font-medium text-sm">{cap.name}</p>
-                    <p className="text-xs text-muted-foreground mt-1">Tier: {cap.tier}</p>
+                    <p className="text-xs text-muted-foreground mt-1">Executor: {cap.executor}</p>
                   </div>
                   <Badge variant={statusColor(cap.status)} className="text-xs">
                     {cap.status}
@@ -235,8 +292,41 @@ export default function Lab() {
 
         <Separator />
 
-        {/* Observability */}
+        {/* Capability Operating System */}
         <section className="bg-muted/30">
+          <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+              Operating System Principles
+            </h2>
+            <p className="mt-4 max-w-2xl text-muted-foreground">
+              Most AI systems jump from knowledge to execution. The missing
+              layer is capability packaging — portable, versioned bundles that
+              any compliant executor can consume. Models become interchangeable
+              compute engines. The registries are the platform.
+            </p>
+
+            <div className="mt-12 grid gap-8 lg:grid-cols-2">
+              {osPrinciples.map((p, i) => (
+                <div key={p.title} className="flex gap-4">
+                  <span className="text-4xl font-bold text-primary/20">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="font-semibold">{p.title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      {p.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <Separator />
+
+        {/* Observability */}
+        <section>
           <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
               Observability Stack
