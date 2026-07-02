@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heritage Community Bank | Board Risk Appetite Questionnaire</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: #1a1a2e; line-height: 1.6; }
+
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    padding: 40px;
+    text-align: center;
+  }
+  .header .firm { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #94a3b8; margin-bottom: 8px; }
+  .header h1 { font-size: 26px; font-weight: 600; margin-bottom: 4px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .header .subtitle { font-size: 15px; color: #cbd5e1; }
+  .header .doc-id { font-size: 12px; color: #64748b; margin-top: 12px; }
+
+  .confidential-bar {
+    background: #dc2626;
+    color: #fff;
+    text-align: center;
+    padding: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+
+  .intro {
+    max-width: 860px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+  .intro-box {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 28px 32px;
+  }
+  .intro-box h2 { font-size: 18px; color: #1a1a2e; margin-bottom: 12px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .intro-box p { margin-bottom: 12px; font-size: 15px; color: #475569; }
+  .intro-box .chain {
+    background: #f1f5f9;
+    border-left: 4px solid #1a1a2e;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 14px;
+    color: #334155;
+  }
+  .intro-box .chain span { color: #64748b; }
+
+  .respondent-section {
+    max-width: 860px;
+    margin: 0 auto 32px;
+    padding: 0 24px;
+  }
+  .respondent-card {
+    background: #fff;
+    border: 2px solid #1a1a2e;
+    border-radius: 8px;
+    padding: 24px 32px;
+  }
+  .respondent-card h3 { font-size: 16px; margin-bottom: 16px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .respondent-card label {
+    display: block;
+    font-size: 13px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  .respondent-card input[type="text"], .respondent-card select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: Georgia, serif;
+    margin-bottom: 16px;
+  }
+  .respondent-card input:focus, .respondent-card select:focus {
+    outline: none;
+    border-color: #1a1a2e;
+    box-shadow: 0 0 0 3px rgba(26,26,46,0.1);
+  }
+  .respondent-row { display: flex; gap: 16px; }
+  .respondent-row > div { flex: 1; }
+
+  .content { max-width: 860px; margin: 0 auto; padding: 0 24px 40px; }
+
+  .section {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .section-header {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-num {
+    background: rgba(255,255,255,0.15);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  .section-header h2 { font-size: 16px; font-weight: 600; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .section-source {
+    font-size: 11px;
+    color: #94a3b8;
+    margin-left: auto;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .section-body { padding: 24px 28px; }
+
+  .question {
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .question:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .question-id {
+    font-size: 12px;
+    color: #94a3b8;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .badge-core {
+    background: #1a1a2e;
+    color: #fff;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-weight: 700;
+  }
+  .badge-optional {
+    background: #e2e8f0;
+    color: #64748b;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-weight: 600;
+  }
+  .question.optional { opacity: 0.85; }
+  .question.optional .question-text { color: #475569; }
+  .influence-note {
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 20px 24px;
+    font-size: 13px;
+    color: #92400e;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  .question-text { font-size: 15px; color: #1e293b; margin-bottom: 14px; }
+  .question-context { font-size: 13px; color: #64748b; font-style: italic; margin-bottom: 12px; }
+
+  .scale-row {
+    display: flex;
+    gap: 0;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+  }
+  .scale-option {
+    flex: 1;
+    text-align: center;
+    padding: 12px 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    border-right: 1px solid #e2e8f0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #fff;
+  }
+  .scale-option:last-child { border-right: none; }
+  .scale-option:hover { background: #f1f5f9; }
+  .scale-option.selected { background: #1a1a2e; color: #fff; }
+  .scale-option .score { font-size: 20px; font-weight: 700; display: block; }
+  .scale-option .score-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.3px; display: block; margin-top: 2px; }
+
+  .checkbox-group { margin-bottom: 12px; }
+  .checkbox-group label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #334155;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    transition: background 0.1s;
+  }
+  .checkbox-group label:hover { background: #f8fafc; }
+  .checkbox-group input[type="checkbox"], .checkbox-group input[type="radio"] {
+    margin-top: 3px;
+    accent-color: #1a1a2e;
+  }
+
+  .rationale-field {
+    margin-top: 8px;
+  }
+  .rationale-field textarea {
+    width: 100%;
+    min-height: 70px;
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    resize: vertical;
+    color: #334155;
+  }
+  .rationale-field textarea:focus {
+    outline: none;
+    border-color: #1a1a2e;
+    box-shadow: 0 0 0 3px rgba(26,26,46,0.1);
+  }
+  .rationale-field .field-label {
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 4px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+
+  .section-rationale {
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    padding: 20px 28px;
+  }
+  .section-rationale .field-label {
+    font-size: 13px;
+    color: #475569;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+
+  .submit-section {
+    max-width: 860px;
+    margin: 0 auto 40px;
+    padding: 0 24px;
+  }
+  .submit-card {
+    background: #fff;
+    border: 2px solid #059669;
+    border-radius: 8px;
+    padding: 28px 32px;
+    text-align: center;
+  }
+  .submit-card p { font-size: 14px; color: #475569; margin-bottom: 16px; }
+  .progress-summary {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  .progress-summary .stat-value { font-size: 28px; font-weight: 700; color: #1a1a2e; }
+  .progress-summary .stat-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+  .btn-submit {
+    background: #1a1a2e;
+    color: #fff;
+    border: none;
+    padding: 14px 48px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    transition: background 0.2s;
+  }
+  .btn-submit:hover { background: #16213e; }
+  .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; }
+  .btn-download {
+    background: #fff;
+    color: #1a1a2e;
+    border: 2px solid #1a1a2e;
+    padding: 12px 36px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    margin-left: 12px;
+    transition: all 0.2s;
+  }
+  .btn-download:hover { background: #f1f5f9; }
+
+  .footer {
+    background: #1a1a2e;
+    color: #94a3b8;
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  .footer .confidential { color: #dc2626; font-weight: 600; }
+
+  @media print {
+    .btn-submit, .btn-download { display: none; }
+    .scale-option.selected { background: #000 !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { background: #fff; }
+    .section, .intro-box, .respondent-card, .submit-card { break-inside: avoid; }
+  }
+
+  @media (max-width: 700px) {
+    .header, .intro, .respondent-section, .content, .submit-section { padding-left: 12px; padding-right: 12px; }
+    .scale-option .score-label { font-size: 8px; }
+    .respondent-row { flex-direction: column; gap: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="firm">Jones & Associates</div>
+  <h1>Board Risk Appetite Questionnaire</h1>
+  <div class="subtitle">Heritage Community Bank | Threat-Informed Cyber Risk Assessment</div>
+  <div class="doc-id">Document ID: HCB-RAQ-004 | Version 1.1 | July 2026</div>
+  <div class="doc-id" style="margin-top:4px;color:#dc2626;">Regulatory: MRA 2026-IT-002</div>
+</div>
+
+<div class="confidential-bar">
+  Confidential — Individual Responses Are Not Shared With Management
+</div>
+
+<div class="intro">
+  <div class="intro-box">
+    <h2>Dear Director,</h2>
+    <p>Heritage Community Bank has engaged Jones &amp; Associates to conduct an independent cyber risk assessment. A critical part of this work is understanding what the Board expects — not what management is currently doing, but what the Board believes the Bank <em>should</em> be doing.</p>
+    <p>This questionnaire asks for <strong>your perspective</strong> on how much cyber and technology risk the Bank should accept. There are no right or wrong answers. We are not testing your knowledge. We are asking for your judgment as a fiduciary.</p>
+
+    <h2 style="margin-top: 24px;">Why Your Individual Response Matters</h2>
+    <p>Regulators (OCC, FDIC) expect each board member to form an independent view of the institution's risk appetite. When we collect responses separately, we can identify where the Board agrees, where members see things differently, and where the Board's expectations may differ from management's current practices.</p>
+    <p>Those differences are among the most valuable findings in a risk assessment. They help the Bank focus resources where they matter most.</p>
+
+    <h2 style="margin-top: 24px;">What Happens With Your Answers</h2>
+    <p><strong>1.</strong> Each board member completes this questionnaire independently — your responses are not shared with other members or with management.</p>
+    <p><strong>2.</strong> Jones &amp; Associates compiles all responses into a single Board Risk Appetite Summary showing consensus areas and areas of divergence. No individual names are attached.</p>
+    <p><strong>3.</strong> That summary shapes our assessment priorities:</p>
+    <div class="chain">
+      <strong>Areas where the Board wants low risk but controls are weak</strong> <span>&rarr;</span> receive the most scrutiny<br><br>
+      <strong>Areas where the Board accepts higher risk</strong> <span>&rarr;</span> evaluated for appropriate documentation and regulatory defensibility<br><br>
+      <strong>Areas of Board disagreement</strong> <span>&rarr;</span> flagged for discussion at a future Board session
+    </div>
+    <p><strong>4.</strong> The final assessment report will show how the Bank's actual cyber posture compares to the Board's stated appetite — giving you a clear picture of where the Bank stands relative to where you want it to be.</p>
+
+    <div class="chain" style="margin-top: 20px; border-left-color: #059669;">
+      <strong>Example:</strong> If the Board selects "low appetite" for customer data exposure, but evidence shows weak data classification or encryption gaps, that mismatch becomes a priority finding in our assessment. Your answers set the standard we measure against.
+    </div>
+
+    <h2 style="margin-top: 24px;">Core vs. Optional Questions</h2>
+    <p>Questions are divided into two tiers:</p>
+    <p><span style="background:#1a1a2e;color:#fff;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:700;letter-spacing:0.5px;">CORE</span> &nbsp;<strong>30 questions</strong> — These directly shape assessment priorities and risk scoring. Please answer all core questions.</p>
+    <p><span style="background:#e2e8f0;color:#64748b;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600;letter-spacing:0.5px;">OPTIONAL</span> &nbsp;<strong>37 questions</strong> — These provide additional depth. Answer as many as you wish.</p>
+    <p style="color: #92400e; font-size: 14px;"><strong>Note:</strong> For optional questions, the directors who do respond will carry greater weight in shaping that area of the assessment. If a topic matters to you, answering the optional questions ensures your perspective is represented.</p>
+
+    <p style="margin-top: 16px; padding: 14px 18px; background: #f1f5f9; border-radius: 6px; font-size: 14px;"><strong>Time commitment:</strong> Core questions take approximately 15 minutes. The full questionnaire takes 25–30 minutes. You do not need to complete it in one sitting — you may save and return.</p>
+
+    <p style="margin-top: 12px; font-size: 13px; color: #64748b;"><strong>Important:</strong> Responses to this questionnaire are not risk acceptance decisions. They express the Board's appetite and expectations. Formal risk acceptance requires separate Board action through established governance processes. Management validation is required before responses are used to support assessment findings.</p>
+  </div>
+</div>
+
+<div class="respondent-section">
+  <div class="respondent-card">
+    <h3>Respondent Information</h3>
+    <div class="respondent-row">
+      <div>
+        <label for="resp-name">Full Name</label>
+        <input type="text" id="resp-name" placeholder="Board member name">
+      </div>
+      <div>
+        <label for="resp-title">Title / Role</label>
+        <input type="text" id="resp-title" placeholder="e.g., Board Chair, Director">
+      </div>
+    </div>
+    <div class="respondent-row">
+      <div>
+        <label for="resp-tenure">Years on Board</label>
+        <input type="text" id="resp-tenure" placeholder="e.g., 4">
+      </div>
+      <div>
+        <label for="resp-committee">Committee Membership</label>
+        <input type="text" id="resp-committee" placeholder="e.g., Risk, Audit, Technology">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content" id="questionnaire"></div>
+
+<div class="submit-section">
+  <div class="submit-card">
+    <div class="progress-summary">
+      <div><div class="stat-value" id="coreAnswered">0 / 30</div><div class="stat-label">Core Answered</div></div>
+      <div><div class="stat-value" id="optAnswered">0</div><div class="stat-label">Optional Answered</div></div>
+      <div><div class="stat-value" id="pctComplete">0%</div><div class="stat-label">Core Complete</div></div>
+    </div>
+    <p>When finished, click Submit to generate your confidential response file for upload to the secure data environment.</p>
+    <button class="btn-submit" id="btnSubmit" onclick="submitForm()">Submit Responses</button>
+    <button class="btn-download" id="btnDownload" onclick="downloadJSON()" style="display:none">Download Response File</button>
+  </div>
+</div>
+
+<div class="footer">
+  <span class="confidential">CONFIDENTIAL</span> | Jones &amp; Associates | Heritage Community Bank<br>
+  Individual responses are aggregated only — no attribution to individual Board members<br>
+  Document ID: HCB-RAQ-004 | Version 1.1 | July 2026
+</div>
+
+<script>
+const SECTIONS = [
+  {
+    id: 1, title: "Cyber Risk Appetite", source: "NIST CSF 2.0 GV.RM / OCC Heightened Standards / FSB RAF",
+    questions: [
+      { id: "1.1", text: "How much cyber risk is the Bank willing to accept to support digital banking growth and innovation?", type: "scale", context: "Consider: online banking expansion, mobile features, API integrations with fintechs." },
+      { id: "1.2", text: "What is the Board's tolerance for residual risk in internet-facing systems (online banking, mobile banking, customer portal)?", type: "scale" },
+      { id: "1.3", text: "How much risk is acceptable in internal systems that support banking operations but do not directly face customers (core processing, GL, wire transfer)?", type: "scale" },
+      { id: "1.4", text: "What is the Board's appetite for accepting known vulnerabilities when compensating controls exist but the root cause remains unresolved?", type: "scale", context: "Example: a legacy system with a known CVE mitigated by network segmentation but not patched." },
+      { id: "1.5", text: "How much risk is acceptable in end-of-life or unsupported systems that still serve a business function?", type: "scale" },
+      { id: "1.6", text: "What is the Board's tolerance for cybersecurity underinvestment relative to the Bank's risk profile?", type: "scale", context: "1 = we must invest at or above industry benchmarks; 5 = minimum regulatory-required spending is acceptable." },
+      { id: "1.7", text: "How much risk is the Board willing to accept in the Bank's ability to detect a sophisticated attacker within its network?", type: "scale", context: "Consider: dwell time, threat hunting capability, SIEM maturity." },
+      { id: "1.8", text: "Does the Board distinguish between risk capacity (the maximum risk the Bank can absorb before insolvency or regulatory intervention) and risk appetite (the risk the Bank chooses to accept in pursuit of its objectives)?", type: "choice", options: ["Yes — both are defined and the gap between them is monitored", "Partially — we discuss appetite but have not quantified capacity", "No — we have not formally distinguished between them", "Unsure"], context: "The FSB Risk Appetite Framework requires institutions to address risk capacity, appetite, limits, and profile as distinct but coordinated concepts." },
+      { id: "1.9", text: "What is the maximum acceptable financial loss from a single cyber event within a 12-month period before the Board considers it a threat to the Bank's safety and soundness?", type: "open", context: "Express as a dollar amount or as a percentage of capital/revenue. Examples: $2M, 5% of Tier 1 capital, no defined threshold. This establishes a quantitative anchor for risk appetite." }
+    ]
+  },
+  {
+    id: 2, title: "Operational Resilience", source: "Basel BCBS 516 / FFIEC BCP",
+    questions: [
+      { id: "2.1", text: "Which systems or processes should have near-zero tolerance for disruption?", type: "open" },
+      { id: "2.2", text: "What is the maximum acceptable downtime for the core banking system before the Board considers it a material incident?", type: "choice", options: ["Less than 1 hour", "1-4 hours", "4-8 hours", "8-24 hours", "More than 24 hours"] },
+      { id: "2.3", text: "What is the Board's appetite for single points of failure in critical infrastructure (e.g., single internet connection, single data center, single administrator)?", type: "scale" },
+      { id: "2.4", text: "How much risk is acceptable in the Bank's ability to recover from a ransomware event within stated recovery time objectives?", type: "scale" },
+      { id: "2.5", text: "What is the Board's tolerance for untested disaster recovery procedures?", type: "scale" },
+      { id: "2.6", text: "What is an acceptable Recovery Point Objective (RPO) for customer transaction data — how much data loss is tolerable?", type: "choice", options: ["Zero data loss", "Up to 1 hour", "Up to 4 hours", "Up to 24 hours", "Board has not defined this"] },
+      { id: "2.7", text: "How much risk is acceptable in the Bank's ability to operate critical functions manually if technology systems are unavailable?", type: "scale" }
+    ]
+  },
+  {
+    id: 3, title: "Third-Party and Vendor Risk", source: "OCC 2013-29 / NACD 2026 Supply Chain",
+    questions: [
+      { id: "3.1", text: "What is the Board's appetite for concentrating critical services with a single vendor (e.g., core processor, cloud provider)?", type: "scale" },
+      { id: "3.2", text: "How much risk is acceptable when a critical vendor cannot provide a current SOC 2 Type II report?", type: "scale" },
+      { id: "3.3", text: "What is the Board's tolerance for vendors that store or process Bank customer data outside the United States?", type: "scale" },
+      { id: "3.4", text: "How much risk is acceptable in fourth-party relationships (your vendor's vendors) that the Bank has limited visibility into?", type: "scale" },
+      { id: "3.5", text: "What is the Board's appetite for using cloud-based services for critical banking functions?", type: "scale", context: "Consider: core banking in the cloud, cloud-based lending platforms, SaaS compliance tools." },
+      { id: "3.6", text: "Should the Bank require right-to-audit clauses in all critical vendor contracts?", type: "choice", options: ["Yes — mandatory for all critical vendors", "Yes — but with flexibility for large vendors who refuse", "Only for vendors handling customer data", "Not a Board-level decision"] }
+    ]
+  },
+  {
+    id: 4, title: "Data Protection and Privacy", source: "GLBA / FFIEC InfoSec / FDIC InTREx",
+    questions: [
+      { id: "4.1", text: "What is the Board's appetite for risk to customer personally identifiable information (PII)?", type: "scale" },
+      { id: "4.2", text: "How much risk is acceptable in the Bank's ability to detect and respond to a data breach within regulatory notification timelines?", type: "scale" },
+      { id: "4.3", text: "What is the Board's tolerance for unencrypted sensitive data at rest or in transit?", type: "scale" },
+      { id: "4.4", text: "How much risk is acceptable in the Bank's data classification and handling practices?", type: "scale" },
+      { id: "4.5", text: "What is the Board's appetite for collecting and retaining customer data beyond what is required for the banking relationship?", type: "scale", context: "Consider: marketing analytics, behavioral data, location data from mobile apps." },
+      { id: "4.6", text: "Should the Bank maintain a data inventory that maps where all sensitive data resides across systems and vendors?", type: "choice", options: ["Yes — comprehensive data mapping required", "Yes — for regulated data only (NPI, PII)", "Partial — critical systems only", "Not a current priority"] }
+    ]
+  },
+  {
+    id: 5, title: "AI Governance Appetite", source: "NIST AI RMF / SR 11-7",
+    questions: [
+      { id: "5.1", text: "Should AI tools be allowed to process confidential Bank or customer data?", type: "choice", options: ["No — under no circumstances", "Yes — only with Board-approved controls and vendors", "Yes — with management-approved controls", "Undecided — need more information"] },
+      { id: "5.2", text: "What is the Board's appetite for using AI to automate decisions that currently require human judgment (e.g., fraud detection, credit decisioning, compliance monitoring)?", type: "scale" },
+      { id: "5.3", text: "How much risk is acceptable in AI-generated content used in customer communications (chatbots, email responses, document generation)?", type: "scale" },
+      { id: "5.4", text: "What is the Board's appetite for deploying AI tools from vendors that cannot explain how their models make decisions (black-box models)?", type: "scale" },
+      { id: "5.5", text: "What is the Board's appetite for using AI in BSA/AML transaction monitoring and suspicious activity detection?", type: "scale", context: "Consider: AI may improve detection rates but introduces model risk and explainability challenges for examiners." },
+      { id: "5.6", text: "How much risk is acceptable in allowing employees to use AI tools for productivity (document drafting, data analysis, research)?", type: "scale", context: "Consider: data leakage, accuracy, employee dependence on AI outputs." },
+      { id: "5.7", text: "Should Bank customer data, employee data, or proprietary information be permitted to train vendor AI models?", type: "choice", options: ["No — under no circumstances", "Only with Board approval and contractual prohibition on model training", "Yes — if the vendor's privacy policy permits it", "Undecided"] },
+      { id: "5.8", text: "What is the Board's tolerance for AI vendors retaining Bank prompts, queries, or outputs after processing?", type: "scale", context: "Many AI platforms retain inputs for model improvement. This creates data residency, confidentiality, and regulatory risk." }
+    ]
+  },
+  {
+    id: 6, title: "AI Use Restrictions", source: "NIST AI RMF / OCC Model Risk / NACD 2026",
+    questions: [
+      { id: "6.1", text: "Which AI use cases should require Board approval before deployment?", type: "multi", options: ["Any AI processing customer PII", "AI involved in credit or lending decisions", "AI used in BSA/AML monitoring", "AI-generated regulatory filings or responses", "AI used in employee performance evaluation", "Customer-facing AI (chatbots, advisors)", "AI tools from non-US providers", "AI that operates autonomously without human review"] },
+      { id: "6.2", text: "Should the Bank prohibit external AI tools (e.g., ChatGPT, Copilot, Gemini) unless approved through the vendor and security review process?", type: "choice", options: ["Yes — strict prohibition, no exceptions", "Yes — with a formal exception process for specific use cases", "No — employees may use with guidelines and training", "Undecided"] },
+      { id: "6.3", text: "Should employees be required to disclose when AI tools were used in producing work product?", type: "choice", options: ["Yes — mandatory disclosure on all AI-assisted work", "Yes — only for externally shared documents and regulatory filings", "No — not required", "Undecided"] },
+      { id: "6.4", text: "Should the Bank maintain an AI use inventory — a register of all AI tools in use, their purpose, data accessed, and risk classification?", type: "choice", options: ["Yes — comprehensive inventory with regular review", "Yes — for customer-impacting AI only", "Management discretion", "Undecided"] },
+      { id: "6.5", text: "What is the Board's appetite for risk from AI components embedded in vendor software that the Bank may not be aware of (e.g., AI-powered features in core banking, fraud detection, or compliance tools)?", type: "scale", context: "NACD 2026: Many vendors are embedding AI into existing products without explicit disclosure. The Bank may be consuming AI without knowing it — creating unmanaged model risk and data exposure." },
+      { id: "6.6", text: "What is the Board's tolerance for unapproved AI tool use by employees (shadow AI) — AI tools adopted by business units without going through the vendor and security review process?", type: "scale", context: "Shadow AI creates unmanaged data exposure, compliance gaps, and model risk. Employees may be using AI tools the Bank has no visibility into." }
+    ]
+  },
+  {
+    id: 7, title: "Model and Agent Oversight", source: "SR 11-7 / NIST AI RMF",
+    questions: [
+      { id: "7.1", text: "What level of human review is required before AI-generated analysis influences risk decisions?", type: "choice", options: ["Full human review of all AI output", "Sampling-based review (e.g., 20% spot checks)", "Review only when AI flags uncertainty or low confidence", "No mandatory review if the model is validated", "Undecided"] },
+      { id: "7.2", text: "If the Bank deploys AI agents (automated processes that take actions without real-time human intervention), what should the Board's oversight role be?", type: "choice", options: ["Board approves each agent before deployment", "Board reviews agent inventory quarterly", "Management handles — Board receives summary reports", "No separate oversight needed for internal automation", "Undecided"] },
+      { id: "7.3", text: "What is the Board's appetite for AI model risk — the risk that a model produces incorrect, biased, or unexplainable outputs?", type: "scale" },
+      { id: "7.4", text: "Should AI models and agents be subject to the same change management process as other technology changes?", type: "choice", options: ["Yes — full change management with testing and approval", "Yes — expedited process for low-risk model updates", "No — separate AI governance process", "Undecided"] },
+      { id: "7.5", text: "How frequently should AI models used in risk or compliance decisions be independently validated?", type: "choice", options: ["Annually", "Every 2 years", "When material changes occur", "Same schedule as other model validation (per SR 11-7)", "Undecided"] }
+    ]
+  },
+  {
+    id: 8, title: "Regulatory, Reputational, and Emerging Risk", source: "FDIC / OCC / NACD 2026",
+    questions: [
+      { id: "8.1", text: "What is the Board's appetite for regulatory risk related to cybersecurity (e.g., MRA, consent order, enforcement action)?", type: "scale" },
+      { id: "8.2", text: "What is the Board's tolerance for reputational risk from a publicly disclosed cyber incident?", type: "scale" },
+      { id: "8.3", text: "How much risk is acceptable in the Bank's ability to demonstrate compliance to examiners during a regulatory examination?", type: "scale", context: "Consider: documentation quality, evidence availability, staff readiness for examiner interviews." },
+      { id: "8.4", text: "What is the Board's appetite for regulatory risk related to AI use — including fair lending, model risk management (SR 11-7), and consumer protection?", type: "scale" },
+      { id: "8.5", text: "How concerned is the Board about reputational risk from AI-related incidents (biased decisions, data leaks through AI tools, AI errors affecting customers)?", type: "scale", context: "1 = very concerned, minimal appetite; 5 = willing to accept some risk for innovation." },
+      { id: "8.6", text: "What is the Board's level of concern about quantum computing risk — the future ability of quantum computers to break current encryption protecting Bank and customer data?", type: "scale", context: "NACD 2026 asks: What is our risk exposure if all our data can be decrypted by quantum computers? Has management begun evaluating post-quantum cryptography readiness?" },
+      { id: "8.7", text: "Has the Board discussed the Bank's preparedness for emerging technology risks beyond AI (e.g., deepfakes used in social engineering, quantum decryption, open-source supply chain compromise)?", type: "choice", options: ["Yes — formally discussed and documented", "Yes — informally discussed but no formal position", "No — not yet addressed", "Unsure what these risks mean for a community bank"], context: "NACD 2026: What are the cybersecurity risks if we adopt this technology? What is the risk if we do not?" }
+    ]
+  },
+  {
+    id: 9, title: "Incident Escalation Thresholds", source: "FFIEC IR / FDIC FIL / C-Risk",
+    questions: [
+      { id: "9.1", text: "Which incident types require immediate Board notification (within 24 hours)?", type: "multi", options: ["Confirmed data breach involving customer PII", "Ransomware attack on any Bank system", "Regulatory notification or enforcement action", "Unauthorized access to core banking system", "Vendor breach affecting Bank data", "AI system producing incorrect customer-impacting outcomes", "Any incident requiring law enforcement engagement", "Media inquiry about a cyber or AI incident", "Fraud loss exceeding a material threshold"] },
+      { id: "9.2", text: "Which incident types require Board notification within one week?", type: "multi", options: ["Attempted but unsuccessful cyberattack (sophisticated)", "Internal policy violation by an employee", "Phishing compromise (contained, no data loss)", "Vendor SLA breach on a critical service", "AI model performance degradation", "Regulatory inquiry or informal request for information"] },
+      { id: "9.3", text: "For incidents not requiring immediate escalation, how should they be reported to the Board?", type: "choice", options: ["Quarterly incident summary in Board packet", "Monthly incident summary to Risk Committee", "Only if management determines material impact", "Real-time dashboard access for Board members"] },
+      { id: "9.4", text: "What dollar threshold for fraud or cyber loss should trigger immediate Board notification?", type: "open", context: "Examples: $50,000, $100,000, $500,000, any amount, no specific threshold defined." },
+      { id: "9.5", text: "Who should have authority to accept cyber or AI risk on behalf of the Bank?", type: "choice", options: ["CISO/CIO for routine exceptions; Risk Committee for material exceptions; Full Board for strategic risk decisions", "All risk acceptance requires Risk Committee approval", "Management has authority for all operational risk acceptance; Board informed quarterly", "The Board has not formally defined risk acceptance authority"], context: "Routine = delayed patch or temporary compensating control. Material = known critical vulnerability with no remediation timeline. Strategic = new product line or AI deployment with inherent risk." },
+      { id: "9.6", text: "Beyond financial loss, at what thresholds should the Board consider a cyber event material?", type: "multi", options: ["Customer records exposed exceeding a defined count", "Customer-facing system downtime exceeding a defined number of hours", "Any event requiring regulatory notification", "Any event likely to generate media coverage", "Any event creating reputational damage to trust or brand", "Any event creating legal liability or litigation exposure"] }
+    ]
+  },
+  {
+    id: 10, title: "Board Governance and Reporting", source: "OCC Heightened Stds / NACD 2026 / IIA 2026",
+    questions: [
+      { id: "10.1", text: "What Key Risk Indicators (KRIs) should management report to the Board quarterly for cybersecurity?", type: "multi", options: ["Unpatched critical vulnerabilities (count and aging)", "Privileged account count and growth rate", "Phishing simulation click rate and trend", "Incident count by severity", "Vendor risk assessment completion rate", "Mean time to detect and respond to incidents", "Exception count and aging", "MFA enrollment percentage", "Security training completion rate", "Overdue access reviews", "Open audit and exam findings"] },
+      { id: "10.2", text: "What KRIs should management report for AI risk?", type: "multi", options: ["Number of AI tools in use (approved vs. unapproved)", "AI model accuracy and performance metrics", "Customer complaints related to AI-assisted decisions", "Regulatory inquiries about AI use", "Employee AI disclosure compliance rate", "Volume and type of data processed by AI systems", "AI-related incidents or near-misses"] },
+      { id: "10.3", text: "How should management present risk information to the Board?", type: "choice", options: ["Dashboard with trends and movement indicators", "Narrative report with data appendix", "Risk heat map with quarter-over-quarter movement", "Exception-based reporting (material items only)", "Combination of dashboard and narrative"] },
+      { id: "10.4", text: "How often should the Board receive a comprehensive cybersecurity and AI risk briefing (beyond the quarterly KRI report)?", type: "choice", options: ["Quarterly (aligned with Board meetings)", "Semi-annually", "Annually", "Only when material changes or incidents occur"] },
+      { id: "10.5", text: "Should the Board receive independent assurance on cybersecurity (e.g., external assessment, internal audit) separate from management's self-reporting?", type: "choice", options: ["Yes — annually at minimum", "Yes — every 2 years", "Only when triggered by an incident or exam finding", "Management reporting is sufficient"] },
+      { id: "10.6", text: "Does the Board believe it has adequate cybersecurity and AI expertise among its current members to provide effective oversight?", type: "choice", options: ["Yes — sufficient expertise exists on the Board", "Partially — some expertise but gaps in emerging areas (AI, cloud)", "No — the Board relies primarily on management for technical understanding", "Unsure — the Board has not formally assessed its cyber competency"], context: "OCC Heightened Standards require ongoing Board training. NACD 2026 asks: Is cybersecurity included in the Board skills matrix? Do we identify directors with cybersecurity expertise?" },
+      { id: "10.7", text: "Is the Board satisfied with the independence and effectiveness of the three lines of defense for cybersecurity risk (front-line business units, independent risk management, internal audit)?", type: "choice", options: ["Yes — all three lines are independent and effective", "Partially — some overlap or resource gaps between lines", "No — lines of defense are not clearly delineated", "Unsure — the Board has not evaluated this structure"], context: "OCC 12 CFR Part 30 Appendix D requires clear three-lines-of-defense structure. The CRO must have unrestricted Board access. Internal audit must independently assess the framework annually." }
+    ]
+  }
+];
+
+const CORE_IDS = new Set([
+  "1.1", "1.4", "1.6", "1.8", "1.9",
+  "2.2", "2.3", "2.4",
+  "3.1", "3.2", "3.4",
+  "4.1", "4.2", "4.3",
+  "5.1", "5.2", "5.7",
+  "6.1", "6.2", "6.6",
+  "7.1", "7.3",
+  "8.1", "8.2", "8.4",
+  "9.1", "9.5", "9.6",
+  "10.1", "10.4", "10.6"
+]);
+
+const responses = {};
+
+function renderScale(qId) {
+  const labels = ["Very Low", "Low", "Moderate", "Elevated", "High"];
+  return `<div class="scale-row">${labels.map((l, i) =>
+    `<div class="scale-option" data-qid="${qId}" data-val="${i+1}" onclick="selectScale(this)">
+      <span class="score">${i+1}</span>
+      <span class="score-label">${l}</span>
+    </div>`
+  ).join("")}</div>`;
+}
+
+function renderChoice(qId, options) {
+  return `<div class="checkbox-group">${options.map((o, i) =>
+    `<label><input type="radio" name="q_${qId}" value="${o}" onchange="recordChoice('${qId}', this.value)"> ${o}</label>`
+  ).join("")}</div>`;
+}
+
+function renderMulti(qId, options) {
+  return `<div class="checkbox-group">${options.map((o, i) =>
+    `<label><input type="checkbox" name="q_${qId}" value="${o}" onchange="recordMulti('${qId}')"> ${o}</label>`
+  ).join("")}</div>`;
+}
+
+function renderOpen(qId) {
+  return `<div class="rationale-field"><textarea placeholder="Type your response here..." oninput="recordOpen('${qId}', this.value)"></textarea></div>`;
+}
+
+function render() {
+  let totalQ = 0;
+  const html = SECTIONS.map(s => {
+    const qHtml = s.questions.map(q => {
+      totalQ++;
+      let input = "";
+      if (q.type === "scale") input = renderScale(q.id);
+      else if (q.type === "choice") input = renderChoice(q.id, q.options);
+      else if (q.type === "multi") input = renderMulti(q.id, q.options);
+      else if (q.type === "open") input = renderOpen(q.id);
+
+      const isCore = CORE_IDS.has(q.id);
+      return `<div class="question${isCore ? '' : ' optional'}">
+        <div class="question-id">Q${q.id} <span class="${isCore ? 'badge-core' : 'badge-optional'}">${isCore ? 'CORE' : 'OPTIONAL'}</span></div>
+        <div class="question-text">${q.text}</div>
+        ${q.context ? `<div class="question-context">${q.context}</div>` : ""}
+        ${input}
+        ${q.type !== "open" ? `<div class="rationale-field"><div class="field-label">Rationale (optional)</div><textarea placeholder="Why did you choose this rating?" oninput="recordRationale('${q.id}', this.value)"></textarea></div>` : ""}
+      </div>`;
+    }).join("");
+
+    const hasOptional = s.questions.some(q => !CORE_IDS.has(q.id));
+    const coreCount = s.questions.filter(q => CORE_IDS.has(q.id)).length;
+    const optCount = s.questions.length - coreCount;
+    return `<div class="section">
+      <div class="section-header">
+        <div class="section-num">${s.id}</div>
+        <h2>${s.title}</h2>
+        <div class="section-source">${s.source}</div>
+      </div>
+      ${hasOptional ? `<div class="influence-note">${coreCount} core + ${optCount} optional questions. Directors who answer optional questions will have greater influence on this area of the assessment.</div>` : ''}
+      <div class="section-body">${qHtml}</div>
+      <div class="section-rationale">
+        <div class="field-label">Section ${s.id} — Additional Comments</div>
+        <textarea style="width:100%;min-height:60px;padding:10px;border:1px solid #d1d5db;border-radius:6px;font-family:Georgia,serif;font-size:14px;resize:vertical;" placeholder="Any additional thoughts on ${s.title.toLowerCase()}..." oninput="recordSectionComment(${s.id}, this.value)"></textarea>
+      </div>
+    </div>`;
+  }).join("");
+
+  document.getElementById("questionnaire").innerHTML = html;
+  document.getElementById("totalCount").textContent = totalQ;
+}
+
+function selectScale(el) {
+  const qId = el.dataset.qid;
+  const val = parseInt(el.dataset.val);
+  el.parentElement.querySelectorAll(".scale-option").forEach(o => o.classList.remove("selected"));
+  el.classList.add("selected");
+  responses[qId] = { value: val, type: "scale" };
+  updateProgress();
+}
+
+function recordChoice(qId, val) {
+  responses[qId] = { value: val, type: "choice" };
+  updateProgress();
+}
+
+function recordMulti(qId) {
+  const checked = [...document.querySelectorAll(`input[name="q_${qId}"]:checked`)].map(c => c.value);
+  if (checked.length > 0) responses[qId] = { value: checked, type: "multi" };
+  else delete responses[qId];
+  updateProgress();
+}
+
+function recordOpen(qId, val) {
+  if (val.trim()) responses[qId] = { value: val.trim(), type: "open" };
+  else delete responses[qId];
+  updateProgress();
+}
+
+function recordRationale(qId, val) {
+  if (responses[qId]) responses[qId].rationale = val.trim();
+}
+
+function recordSectionComment(sId, val) {
+  responses[`section_${sId}_comment`] = val.trim();
+}
+
+function updateProgress() {
+  const answeredIds = Object.keys(responses).filter(k => !k.startsWith("section_"));
+  const coreAnswered = answeredIds.filter(id => CORE_IDS.has(id)).length;
+  const optAnswered = answeredIds.filter(id => !CORE_IDS.has(id)).length;
+  document.getElementById("coreAnswered").textContent = coreAnswered + " / 30";
+  document.getElementById("optAnswered").textContent = optAnswered;
+  document.getElementById("pctComplete").textContent = Math.round(coreAnswered / 30 * 100) + "%";
+}
+
+function submitForm() {
+  const name = document.getElementById("resp-name").value.trim();
+  if (!name) { alert("Please enter your name before submitting."); return; }
+
+  const submission = {
+    document_id: "HCB-RAQ-004",
+    version: "1.1",
+    submitted_at: new Date().toISOString(),
+    respondent: {
+      name: name,
+      title: document.getElementById("resp-title").value.trim(),
+      tenure: document.getElementById("resp-tenure").value.trim(),
+      committees: document.getElementById("resp-committee").value.trim()
+    },
+    responses: {}
+  };
+
+  SECTIONS.forEach(s => {
+    submission.responses[`section_${s.id}`] = {
+      title: s.title,
+      questions: {},
+      comment: responses[`section_${s.id}_comment`] || ""
+    };
+    s.questions.forEach(q => {
+      const r = responses[q.id];
+      submission.responses[`section_${s.id}`].questions[q.id] = {
+        text: q.text,
+        answer: r ? r.value : null,
+        type: r ? r.type : q.type,
+        rationale: r ? (r.rationale || "") : ""
+      };
+    });
+  });
+
+  const blob = new Blob([JSON.stringify(submission, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const slug = name.toLowerCase().replace(/[^a-z0-9]/g, "_");
+  a.href = url;
+  a.download = `RAQ-004_${slug}_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+
+  document.getElementById("btnDownload").style.display = "inline-block";
+  document.getElementById("btnSubmit").textContent = "Submitted — Download Again?";
+  document.getElementById("btnSubmit").onclick = function() { downloadJSON(); };
+
+  alert("Response file downloaded. Please upload this file to the secure data environment (Heritage_Risk_Assessment_Data) in the responses/IR-RAQ/ folder.\n\nYour responses are confidential to Jones & Associates.");
+}
+
+function downloadJSON() {
+  submitForm();
+}
+
+render();
+</script>
+</body>
+</html>

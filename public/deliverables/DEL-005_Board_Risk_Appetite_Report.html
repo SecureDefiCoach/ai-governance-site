@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heritage Community Bank | Board Risk Appetite Report</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f8f9fa; color: #1a1a2e; line-height: 1.6; }
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #fff; padding: 48px 40px; text-align: center; }
+  .header .firm { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #94a3b8; margin-bottom: 8px; }
+  .header h1 { font-size: 28px; font-weight: 600; margin-bottom: 4px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .header .subtitle { font-size: 15px; color: #cbd5e1; margin-bottom: 4px; }
+  .header .doc-id { font-size: 12px; color: #64748b; margin-top: 12px; }
+  .classification { background: #dc2626; color: #fff; text-align: center; padding: 8px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .content { max-width: 960px; margin: 0 auto; padding: 32px 24px; }
+  .section { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 24px; overflow: hidden; break-inside: avoid; }
+  .section-header { background: #1a1a2e; color: #fff; padding: 16px 24px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .section-header h2 { font-size: 16px; font-weight: 600; }
+  .section-header .section-num { font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .section-body { padding: 24px; }
+  .section-body p { font-size: 14px; color: #334155; margin-bottom: 12px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .section-body ul, .section-body ol { font-size: 14px; color: #334155; margin: 0 0 12px 24px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .section-body li { margin-bottom: 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  th { background: #f1f5f9; padding: 10px 12px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; border-bottom: 2px solid #e2e8f0; }
+  td { padding: 10px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+  tr:hover { background: #fafbfc; }
+  .kpi-row { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .kpi-card { flex: 1; min-width: 140px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; text-align: center; }
+  .kpi-value { font-size: 32px; font-weight: 700; color: #1a1a2e; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .kpi-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .kpi-sub { font-size: 12px; color: #94a3b8; margin-top: 2px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .index-card { flex: 1; min-width: 200px; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px; text-align: center; }
+  .index-score { font-size: 40px; font-weight: 700; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .index-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .index-category { font-size: 12px; font-weight: 600; margin-bottom: 12px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .bar-track { background: #f1f5f9; height: 8px; border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; }
+  .severity-critical { color: #dc2626; }
+  .severity-high { color: #f97316; }
+  .severity-medium { color: #eab308; }
+  .motion-box { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 20px 24px; margin-bottom: 16px; }
+  .motion-num { font-size: 11px; font-weight: 700; color: #2563eb; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .motion-title { font-size: 15px; font-weight: 600; color: #1a1a2e; margin-bottom: 12px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .motion-resolved { font-size: 14px; color: #334155; font-style: italic; border-left: 3px solid #2563eb; padding-left: 16px; margin-bottom: 12px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .motion-effect { font-size: 13px; color: #475569; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .callout { border-radius: 8px; padding: 16px 20px; margin-bottom: 16px; font-size: 13px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .callout-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .callout-warning { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; }
+  .callout-critical { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+  .sig-table { margin-top: 24px; }
+  .sig-table td { padding: 16px 12px; border-bottom: 1px solid #e2e8f0; }
+  .sig-line { border-bottom: 1px solid #334155; width: 200px; display: inline-block; margin-bottom: 4px; }
+  .footer { background: #1a1a2e; color: #94a3b8; text-align: center; padding: 20px; font-size: 12px; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .footer .confidential { color: #dc2626; font-weight: 600; }
+  .toc { font-family: 'Segoe UI', system-ui, sans-serif; }
+  .toc-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dotted #e2e8f0; font-size: 14px; color: #334155; }
+  .toc-item .toc-num { color: #64748b; font-weight: 600; margin-right: 12px; min-width: 24px; }
+  @media print {
+    body { background: #fff; }
+    .section { break-inside: avoid; }
+    .header { padding: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="firm">Jones & Associates</div>
+  <h1>Board Risk Appetite Report</h1>
+  <div class="subtitle">Heritage Community Bank | Threat-Informed Cyber Risk Assessment</div>
+  <div class="doc-id">Document ID: DEL-005 | Version 1.0 | July 2026</div>
+  <div class="doc-id" style="margin-top:4px;color:#dc2626;">Regulatory Basis: MRA 2026-IT-002 (Board risk appetite articulation)</div>
+</div>
+
+<div class="classification">
+  Confidential — Board and Assessment Use Only — No Individual Attribution
+</div>
+
+<div class="content">
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="section">
+    <div class="section-header"><h2>Table of Contents</h2></div>
+    <div class="section-body toc">
+      <div class="toc-item"><span><span class="toc-num">1</span>Executive Summary</span></div>
+      <div class="toc-item"><span><span class="toc-num">2</span>Purpose and Authority</span></div>
+      <div class="toc-item"><span><span class="toc-num">3</span>Methodology</span></div>
+      <div class="toc-item"><span><span class="toc-num">4</span>Participation</span></div>
+      <div class="toc-item"><span><span class="toc-num">5</span>Board Risk Appetite Indices</span></div>
+      <div class="toc-item"><span><span class="toc-num">6</span>Consensus Baseline</span></div>
+      <div class="toc-item"><span><span class="toc-num">7</span>Divergence Resolution</span></div>
+      <div class="toc-item"><span><span class="toc-num">8</span>Board Motions Adopted</span></div>
+      <div class="toc-item"><span><span class="toc-num">9</span>Assessment Severity Calibration</span></div>
+      <div class="toc-item"><span><span class="toc-num">10</span>Governance Framework Decisions</span></div>
+      <div class="toc-item"><span><span class="toc-num">11</span>Recommendations</span></div>
+      <div class="toc-item"><span><span class="toc-num">12</span>Certification</span></div>
+    </div>
+  </div>
+
+  <!-- 1. EXECUTIVE SUMMARY -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">Section 1</div>
+      <h2>Executive Summary</h2>
+    </div>
+    <div class="section-body">
+      <p>The Board of Directors of Heritage Community Bank completed a comprehensive risk appetite assessment through the Board Risk Appetite Questionnaire (DEL-004), followed by a Board Working Session to resolve areas of divergence. This report documents the Board's formally adopted risk appetite baseline, which will govern severity calibration throughout the threat-informed cyber risk assessment.</p>
+
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-value severity-critical">1.39</div>
+          <div class="kpi-label">Overall Appetite</div>
+          <div class="kpi-sub">Very Low (1-5 scale)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-value" style="color:#059669;">5/5</div>
+          <div class="kpi-label">Directors Responded</div>
+          <div class="kpi-sub">100% participation</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-value" style="color:#2563eb;">25</div>
+          <div class="kpi-label">Consensus Areas</div>
+          <div class="kpi-sub">Spread ≤ 1 point</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-value" style="color:#059669;">6</div>
+          <div class="kpi-label">Motions Adopted</div>
+          <div class="kpi-sub">All divergences resolved</div>
+        </div>
+      </div>
+
+      <div class="callout callout-critical">
+        <strong>Calibration Effect:</strong> The Board's 1.39 appetite means the assessment applies strict severity scoring. Control gaps that might be rated "moderate" at a higher-appetite institution will be rated "high" here. Any gap in a zero-tolerance area (11 questions scored 1.0) is automatically a Critical or High finding.
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. PURPOSE AND AUTHORITY -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">Section 2</div>
+      <h2>Purpose and Authority</h2>
+    </div>
+    <div class="section-body">
+      <p><strong>This report serves three functions:</strong></p>
+      <ol>
+        <li><strong>Assessment Baseline.</strong> Establishes the Board-approved risk appetite against which all assessment findings will be calibrated. A control gap is measured not just by technical severity but by its distance from the Board's stated tolerance.</li>
+        <li><strong>Regulatory Evidence.</strong> Documents the Board's active engagement in risk governance, directly addressing MRA 2026-IT-002, which cited that "the Board of Directors has not formally documented its risk appetite for cybersecurity, information technology, artificial intelligence, or operational resilience at a level of specificity sufficient to guide management's risk-taking decisions." This report, together with the Board's adopted motions, satisfies the FDIC's corrective action requirement for Board-level risk appetite articulation within 90 days.</li>
+        <li><strong>Governance Record.</strong> Records the Board's formal positions through 6 adopted motions on cybersecurity investment, AI governance, risk acceptance authority, financial loss thresholds, Board competency, and organizational defense structure.</li>
+      </ol>
+
+      <div class="callout callout-info" style="margin-top: 16px;">
+        <strong>Confidentiality:</strong> Individual director responses are confidential to Jones &amp; Associates. No scores, quotes, or positions in this report are attributed to individual directors. All data is presented in aggregate.
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. METHODOLOGY -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">Section 3</div>
+      <h2>Methodology</h2>
+    </div>
+    <div class="section-body">
+      <p><strong>3.1 Risk Appetite Intake Pathway.</strong> Before administering its own questionnaire, Jones &amp; Associates determines whether the Bank has an existing Board-approved risk appetite assessment:</p>
+
+      <table style="margin: 16px 0;">
+        <thead>
+          <tr><th>Pathway</th><th>Condition</th><th>Firm Action</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:700;white-space:nowrap;">A — Existing</td>
+            <td>Bank has a current, Board-approved risk appetite statement or assessment</td>
+            <td>Request the existing document. Review for completeness, currency, and scope alignment. If sufficient, adopt the Board's stated appetite as the severity baseline. No questionnaire administered.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;white-space:nowrap;">B — None</td>
+            <td>Bank has no formal risk appetite statement, or the existing statement does not address cyber, AI, or operational resilience</td>
+            <td>Administer the full Jones &amp; Associates Board Risk Appetite Questionnaire. Aggregate, present, resolve divergences, produce this report.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;white-space:nowrap;">C — Partial</td>
+            <td>Bank has a statement that partially covers the scope, is outdated, or lacks domain-level granularity</td>
+            <td>Request the existing document. Identify gaps. Administer a targeted supplemental questionnaire covering only missing domains. Merge existing positions with supplemental results.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-info">
+        <strong>Heritage Community Bank — Pathway B.</strong> The Bank does not have a formal Board-level risk appetite statement addressing cybersecurity, AI governance, or operational resilience at the granularity required for threat-informed severity calibration. The full questionnaire was administered.
+      </div>
+
+      <p style="margin-top:20px;"><strong>3.2 Questionnaire Design.</strong> 10 sections, 44 questions covering cyber, operational resilience, third-party, data protection, AI, governance, regulatory, and Board oversight domains.</p>
+
+      <table style="margin: 16px 0;">
+        <thead>
+          <tr><th>#</th><th>Section</th><th>Questions</th><th>Type</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Cybersecurity Risk Tolerance</td><td>9</td><td>Scale + Choice + Open</td></tr>
+          <tr><td>2</td><td>Operational Resilience</td><td>5</td><td>Scale + Choice</td></tr>
+          <tr><td>3</td><td>Third-Party / Vendor Risk</td><td>4</td><td>Scale</td></tr>
+          <tr><td>4</td><td>Data Protection and Privacy</td><td>4</td><td>Scale</td></tr>
+          <tr><td>5</td><td>AI and Emerging Technology</td><td>6</td><td>Scale + Choice</td></tr>
+          <tr><td>6</td><td>AI Governance and Controls</td><td>5</td><td>Scale + Choice</td></tr>
+          <tr><td>7</td><td>AI Oversight and Human Control</td><td>4</td><td>Choice</td></tr>
+          <tr><td>8</td><td>Strategic and Regulatory</td><td>6</td><td>Scale + Choice</td></tr>
+          <tr><td>9</td><td>Risk Governance Structure</td><td>4</td><td>Choice</td></tr>
+          <tr><td>10</td><td>Board Oversight Preferences</td><td>6</td><td>Choice</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Scoring:</strong> Scale questions use a 1-5 range (1 = Very Low appetite / zero tolerance, 5 = Very High appetite / full acceptance). Consensus is defined as spread ≤ 1 point. Divergence (spread ≥ 2) requires Board discussion and formal resolution.</p>
+
+      <p><strong>Index Calculation:</strong></p>
+      <table>
+        <thead>
+          <tr><th>Index</th><th>Sections</th><th>Questions</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Board Cyber Appetite Index</td><td>1 (Cyber), 4 (Data), 8 (Regulatory)</td><td>19</td></tr>
+          <tr><td>Board AI Appetite Index</td><td>5 (AI Tech), 6 (AI Gov), 7 (AI Oversight)</td><td>15</td></tr>
+          <tr><td>Operational Resilience Index</td><td>2 (Resilience), 3 (Third Party)</td><td>9</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 4. PARTICIPATION -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">Section 4</div>
+      <h2>Participation</h2>
+    </div>
+    <div class="section-body">
+      <table>
+        <thead>
+          <tr><th>Director</th><th>Title</th><th>Response Filed</th><th>Delegation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Richard Alderman</td><td>Board Chair, Independent</td><td style="color:#059669;font-weight:600;">Yes</td><td>None</td></tr>
+          <tr><td>Catherine Whitfield</td><td>CEO / President</td><td style="color:#059669;font-weight:600;">Yes</td><td>None</td></tr>
+          <tr><td>James Okafor</td><td>Director, Independent</td><td style="color:#059669;font-weight:600;">Yes</td><td>None</td></tr>
+          <tr><td>Patricia Navarro</td><td>Director, Independent</td><td style="color:#059669;font-weight:600;">Yes</td><td>None</td></tr>
+          <tr><td>William Trent</td><td>Director, Independent</td><td style="color:#059669;font-weight:600;">Yes</td><td>None</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-warning" style="margin-top: 16px;">
+        <strong>Note:</strong> One director did not respond to 13 of 44 questions, primarily in AI governance sections. Rationale fields indicated unfamiliarity with the subject matter and an explicit request for educational briefings. This pattern is addressed in Board Motion #5 (Board Competency).
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. BOARD RISK APPETITE INDICES -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">Section 5</div>
+      <h2>Board Risk Appetite Indices</h2>
+    </div>
+    <div class="section-body">
+      <div style="text-align:center;margin-bottom:24px;">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;font-family:'Segoe UI',system-ui,sans-serif;">Overall Board Risk Appetite</div>
+        <div style="font-size:56px;font-weight:700;color:#dc2626;font-family:'Segoe UI',system-ui,sans-serif;">1.39</div>
+        <div style="font-size:14px;font-weight:600;color:#dc2626;font-family:'Segoe UI',system-ui,sans-serif;">Very Low Appetite — out of 5.0</div>
+      </div>
+
+      <div class="kpi-row">
+        <div class="index-card">
+          <div class="index-label">Board Cyber Appetite Index</div>
+          <div class="index-score severity-critical">1.45</div>
+          <div class="index-category severity-critical">Very Low Appetite</div>
+          <div class="bar-track"><div class="bar-fill" style="background:#dc2626;width:29%;"></div></div>
+          <div style="font-size:11px;color:#94a3b8;margin-top:8px;font-family:'Segoe UI',system-ui,sans-serif;">Sections 1, 4, 8</div>
+        </div>
+        <div class="index-card">
+          <div class="index-label">Board AI Appetite Index</div>
+          <div class="index-score severity-critical">1.12</div>
+          <div class="index-category severity-critical">Very Low Appetite</div>
+          <div class="bar-track"><div class="bar-fill" style="background:#dc2626;width:22%;"></div></div>
+          <div style="font-size:11px;color:#94a3b8;margin-top:8px;font-family:'Segoe UI',system-ui,sans-serif;">Sections 5, 6, 7</div>
+        </div>
+        <div class="index-card">
+          <div class="index-label">Operational Resilience Index</div>
+          <div class="index-score severity-critical">1.40</div>
+          <div class="index-category severity-critical">Very Low Appetite</div>
+          <div class="bar-track"><div class="bar-fill" style="background:#dc2626;width:28%;"></div></div>
+          <div style="font-size:11px;color:#94a3b8;margin-top:8px;font-family:'Segoe UI',system-ui,sans-serif;">Sections 2, 3</div>
+        </div>
+      </div>
+
+      <p>The AI index is notably lower than the other two domains, reflecting the Board's near-unanimous caution toward AI adoption. The 0.33-point gap between AI appetite (1.12) and cyber appetite (1.45) indicates the Board views AI as the higher-risk category.</p>
+    </div>
+  </div>
+
+  <!-- 6. CONSENSUS BASELINE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">Section 6</div>
+      <h2>Consensus Baseline — 25 Areas of Board Alignment</h2>
+    </div>
+    <div class="section-body">
+      <p>The following questions achieved Board consensus (spread ≤ 1 point). These scores are adopted as the assessment severity baseline without further Board action.</p>
+
+      <div style="margin: 16px 0 8px; font-size: 13px; font-weight: 700; color: #dc2626; font-family: 'Segoe UI', system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.5px;">Zero-Tolerance Areas (Mean = 1.0)</div>
+      <table>
+        <thead><tr><th>Q#</th><th>Topic</th><th style="text-align:center;">Mean</th><th style="text-align:center;">Resp.</th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q2.4</td><td>Ransomware recovery capability risk</td><td style="text-align:center;font-weight:700;color:#dc2626;">1.0</td><td style="text-align:center;">5/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q3.3</td><td>Data stored outside the US</td><td style="text-align:center;font-weight:700;color:#dc2626;">1.0</td><td style="text-align:center;">5/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q4.1</td><td>Customer PII risk</td><td style="text-align:center;font-weight:700;color:#dc2626;">1.0</td><td style="text-align:center;">5/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q4.3</td><td>Unencrypted sensitive data</td><td style="text-align:center;font-weight:700;color:#dc2626;">1.0</td><td style="text-align:center;">5/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q5.3</td><td>AI-generated customer communications</td><td style="text-align:center;font-weight:700;color:#dc2626;">1.0</td><td style="text-align:center;">5/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q5.4</td><td>Black-box AI models</td><td style="text-align:center;font-weight:700;color:#dc2626;">1.0</td><td style="text-align:center;">4/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q5.6</td><td>AI vendor retention of prompts/outputs</td><td style="text-align:center;font-weight:700;color:#dc2626;">1.0</td><td style="text-align:center;">4/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q6.5</td><td>Shadow AI / unapproved AI use</td><td style="text-align:center;font-weight:700;color:#dc2626;">1.0</td><td style="text-align:center;">5/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q8.1</td><td>Regulatory risk — cybersecurity</td><td style="text-align:center;font-weight:700;color:#dc2626;">1.0</td><td style="text-align:center;">5/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q8.2</td><td>Reputational risk — cyber incident</td><td style="text-align:center;font-weight:700;color:#dc2626;">1.0</td><td style="text-align:center;">5/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q8.3</td><td>Compliance demonstration capability</td><td style="text-align:center;font-weight:700;color:#dc2626;">1.0</td><td style="text-align:center;">4/5</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-critical" style="margin: 16px 0;">
+        <strong>Assessment Rule:</strong> Any control gap in a zero-tolerance area is automatically a Critical or High severity finding. The Board has spoken unanimously — there is no appetite for residual risk in these domains.
+      </div>
+
+      <div style="margin: 16px 0 8px; font-size: 13px; font-weight: 700; color: #f97316; font-family: 'Segoe UI', system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.5px;">Very Low Appetite Areas (Mean 1.1 – 1.5)</div>
+      <table>
+        <thead><tr><th>Q#</th><th>Topic</th><th style="text-align:center;">Mean</th><th style="text-align:center;">Resp.</th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q2.5</td><td>Untested DR procedures tolerance</td><td style="text-align:center;font-weight:700;color:#f97316;">1.2</td><td style="text-align:center;">5/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q3.2</td><td>Vendors lacking SOC 2 Type II</td><td style="text-align:center;font-weight:700;color:#f97316;">1.2</td><td style="text-align:center;">5/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q4.2</td><td>Breach detection and response capability</td><td style="text-align:center;font-weight:700;color:#f97316;">1.2</td><td style="text-align:center;">5/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q6.4</td><td>AI supply chain risk</td><td style="text-align:center;font-weight:700;color:#f97316;">1.2</td><td style="text-align:center;">4/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q7.3</td><td>AI model risk appetite</td><td style="text-align:center;font-weight:700;color:#f97316;">1.2</td><td style="text-align:center;">5/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q8.4</td><td>Regulatory risk — AI use</td><td style="text-align:center;font-weight:700;color:#f97316;">1.2</td><td style="text-align:center;">5/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q1.2</td><td>Residual risk in internet-facing systems</td><td style="text-align:center;font-weight:700;color:#f97316;">1.4</td><td style="text-align:center;">5/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q2.3</td><td>Single points of failure tolerance</td><td style="text-align:center;font-weight:700;color:#f97316;">1.4</td><td style="text-align:center;">5/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q5.2</td><td>AI automating human judgment decisions</td><td style="text-align:center;font-weight:700;color:#f97316;">1.4</td><td style="text-align:center;">5/5</td></tr>
+        </tbody>
+      </table>
+
+      <div style="margin: 16px 0 8px; font-size: 13px; font-weight: 700; color: #eab308; font-family: 'Segoe UI', system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.5px;">Low Appetite Areas (Mean 1.6 – 2.5)</div>
+      <table>
+        <thead><tr><th>Q#</th><th>Topic</th><th style="text-align:center;">Mean</th><th style="text-align:center;">Resp.</th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q1.1</td><td>Cyber risk tolerance for digital banking growth</td><td style="text-align:center;font-weight:700;color:#eab308;">1.8</td><td style="text-align:center;">5/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q1.7</td><td>Attacker detection capability risk</td><td style="text-align:center;font-weight:700;color:#eab308;">1.8</td><td style="text-align:center;">4/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q4.4</td><td>Data classification practices</td><td style="text-align:center;font-weight:700;color:#eab308;">1.8</td><td style="text-align:center;">4/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q1.3</td><td>Risk in internal operations systems</td><td style="text-align:center;font-weight:700;color:#eab308;">2.0</td><td style="text-align:center;">4/5</td></tr>
+          <tr><td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q8.5</td><td>Quantum computing risk</td><td style="text-align:center;font-weight:700;color:#eab308;">2.4</td><td style="text-align:center;">5/5</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 7. DIVERGENCE RESOLUTION -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">Section 7</div>
+      <h2>Divergence Resolution</h2>
+    </div>
+    <div class="section-body">
+      <p>Five scale questions had a spread of 2 or more points, indicating structural disagreement. All were resolved through Board motions at the Working Session.</p>
+
+      <table style="margin: 16px 0;">
+        <thead>
+          <tr><th>Q#</th><th>Topic</th><th style="text-align:center;">Mean</th><th style="text-align:center;">Spread</th><th>Resolution</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q1.6</td>
+            <td>Cybersecurity underinvestment tolerance</td>
+            <td style="text-align:center;font-weight:700;">2.0</td>
+            <td style="text-align:center;font-weight:700;color:#dc2626;">3</td>
+            <td style="font-size:12px;color:#2563eb;font-weight:600;">Motion #1</td>
+          </tr>
+          <tr>
+            <td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q1.4</td>
+            <td>Known vulnerabilities with compensating controls</td>
+            <td style="text-align:center;font-weight:700;">2.0</td>
+            <td style="text-align:center;font-weight:700;color:#dc2626;">2</td>
+            <td style="font-size:12px;color:#2563eb;font-weight:600;">Motion #1</td>
+          </tr>
+          <tr>
+            <td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q1.5</td>
+            <td>End-of-life / unsupported systems</td>
+            <td style="text-align:center;font-weight:700;">1.6</td>
+            <td style="text-align:center;font-weight:700;color:#dc2626;">2</td>
+            <td style="font-size:12px;color:#2563eb;font-weight:600;">Motion #1</td>
+          </tr>
+          <tr>
+            <td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q3.1</td>
+            <td>Vendor concentration risk</td>
+            <td style="text-align:center;font-weight:700;">2.0</td>
+            <td style="text-align:center;font-weight:700;color:#dc2626;">2</td>
+            <td style="font-size:12px;color:#2563eb;font-weight:600;">Motion #1</td>
+          </tr>
+          <tr>
+            <td style="font-family:'SF Mono',monospace;font-size:12px;color:#64748b;">Q3.4</td>
+            <td>Fourth-party risk visibility</td>
+            <td style="text-align:center;font-weight:700;">2.0</td>
+            <td style="text-align:center;font-weight:700;color:#dc2626;">2</td>
+            <td style="font-size:12px;color:#2563eb;font-weight:600;">Motion #1</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p><strong>Additional structural issues resolved via motions:</strong> AI governance policy (Motion #2), risk acceptance authority (Motion #3), financial loss threshold (Motion #4), Board competency (Motion #5), and three lines of defense (Motion #6).</p>
+    </div>
+  </div>
+
+  <!-- 8. BOARD MOTIONS ADOPTED -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">Section 8</div>
+      <h2>Board Motions Adopted</h2>
+    </div>
+    <div class="section-body">
+      <p style="margin-bottom:20px;">The following motions were adopted at the Board Working Session. These constitute the Board's formal risk appetite positions and supersede individual questionnaire responses in areas of divergence.</p>
+
+      <div class="motion-box">
+        <div class="motion-num">Motion #1 — Cybersecurity Investment</div>
+        <div class="motion-resolved"><strong>RESOLVED,</strong> that the Board of Directors of Heritage Community Bank adopts a risk appetite for cybersecurity investment at or above peer benchmarks as established by the FFIEC and relevant regulatory guidance. Management shall present a cybersecurity budget proposal aligned with this position within 90 days.</div>
+        <div class="motion-effect"><strong>Effect:</strong> The Board rejects minimum-compliance spending. Adopted appetite score for Q1.6: <strong style="color:#dc2626;">1 (Very Low)</strong> — no tolerance for underinvestment.</div>
+      </div>
+
+      <div class="motion-box">
+        <div class="motion-num">Motion #2 — AI Governance Framework</div>
+        <div class="motion-resolved"><strong>RESOLVED,</strong> that the Board adopts a phased approach to AI governance: (a) immediate prohibition on all AI processing of confidential data pending Board-approved framework; (b) management shall develop and present an AI governance framework within 12 months; (c) the framework must address data handling, vendor evaluation, human oversight, and regulatory compliance before any AI system is approved.</div>
+        <div class="motion-effect"><strong>Effect:</strong> Current position is prohibition. Adopted appetite for AI with confidential data: <strong style="color:#dc2626;">1 (Prohibited)</strong> until framework is approved.</div>
+      </div>
+
+      <div class="motion-box">
+        <div class="motion-num">Motion #3 — Risk Acceptance Authority</div>
+        <div class="motion-resolved"><strong>RESOLVED,</strong> that the Board adopts tiered risk acceptance authority: (a) CISO/CIO for routine operational exceptions (90-day maximum, documented compensating controls); (b) Risk Committee for material exceptions involving regulatory, reputational, or customer data risk; (c) full Board for strategic risk decisions and exceptions exceeding the financial loss materiality threshold.</div>
+        <div class="motion-effect"><strong>Effect:</strong> Clear authority levels established. Management cannot accept material risk without Committee or Board oversight.</div>
+      </div>
+
+      <div class="motion-box">
+        <div class="motion-num">Motion #4 — Financial Loss Materiality Threshold</div>
+        <div class="motion-resolved"><strong>RESOLVED,</strong> that the Board adopts a financial loss materiality threshold of <strong>$750,000</strong> from a single cyber event within any 12-month period. Any incident meeting or exceeding this threshold requires immediate Board notification, independent review, and formal Board response. This threshold shall be reviewed annually.</div>
+        <div class="motion-effect"><strong>Effect:</strong> $750,000 adopted (approximately 1.5% of Tier 1 capital). This threshold serves as a materiality gate in the assessment's risk scoring.</div>
+      </div>
+
+      <div class="motion-box">
+        <div class="motion-num">Motion #5 — Board Cyber and AI Competency</div>
+        <div class="motion-resolved"><strong>RESOLVED,</strong> that the Board commits to mandatory annual cybersecurity and AI literacy training for all directors, beginning within 60 days. The Board Chair shall engage external resources within 30 days. The Governance Committee shall evaluate whether Board composition should include technology/cybersecurity expertise.</div>
+        <div class="motion-effect"><strong>Effect:</strong> Addresses the competency gap identified in the questionnaire. Ensures all directors can participate in technology risk oversight.</div>
+      </div>
+
+      <div class="motion-box">
+        <div class="motion-num">Motion #6 — Three Lines of Defense Review</div>
+        <div class="motion-resolved"><strong>RESOLVED,</strong> that management conduct a structural review of the three lines of defense within 90 days, examining: (a) compliance function reporting independence; (b) internal audit scope and independence for IT/cybersecurity; (c) first-line risk ownership within IT operations. Findings to be presented to the Risk Committee.</div>
+        <div class="motion-effect"><strong>Effect:</strong> Proactive action on a likely examination finding. Demonstrates Board commitment to governance improvement.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. ASSESSMENT SEVERITY CALIBRATION -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">Section 9</div>
+      <h2>Assessment Severity Calibration</h2>
+    </div>
+    <div class="section-body">
+      <p>The Board's risk appetite baseline directly governs how assessment findings are scored:</p>
+
+      <table style="margin: 16px 0;">
+        <thead>
+          <tr><th>Board Appetite Score</th><th>Control Gap Severity</th><th>Rationale</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:700;color:#dc2626;">1.0 (Zero Tolerance)</td>
+            <td style="font-weight:700;color:#dc2626;">Critical or High</td>
+            <td>Board has no appetite — any gap is unacceptable</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:#f97316;">1.1 – 1.5 (Very Low)</td>
+            <td style="font-weight:700;color:#f97316;">High</td>
+            <td>Board expects near-complete control — gaps are significant</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:#eab308;">1.6 – 2.0 (Low)</td>
+            <td style="font-weight:700;color:#eab308;">High or Medium</td>
+            <td>Board accepts minimal risk — material gaps are notable</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:#84cc16;">2.1 – 2.5 (Low-Moderate)</td>
+            <td style="font-weight:700;">Medium</td>
+            <td>Board accepts some risk with compensating controls</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:#22c55e;">2.6+ (Moderate+)</td>
+            <td style="font-weight:700;">Medium or Low</td>
+            <td>Board has accepted risk — gap must be substantial</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-critical">
+        <strong>Calibration Effect:</strong> At 1.39 overall appetite, Heritage Community Bank's severity curve is shifted one full tier above a "moderate appetite" institution. A gap rated Medium elsewhere is High here. A gap rated Low elsewhere is Medium here.
+      </div>
+
+      <p style="margin-top:16px;"><strong>Non-Negotiable Positions:</strong> The following Board positions are absolute — findings in these areas cannot be moderated regardless of compensating controls:</p>
+      <ol>
+        <li><strong>Customer PII protection</strong> (Q4.1, mean 1.0)</li>
+        <li><strong>Unencrypted sensitive data</strong> (Q4.3, mean 1.0)</li>
+        <li><strong>Shadow AI</strong> (Q6.5, mean 1.0)</li>
+        <li><strong>Regulatory compliance</strong> (Q8.1, mean 1.0)</li>
+        <li><strong>Ransomware recovery</strong> (Q2.4, mean 1.0)</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- 10. GOVERNANCE FRAMEWORK DECISIONS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">Section 10</div>
+      <h2>Governance Framework Decisions</h2>
+    </div>
+    <div class="section-body">
+      <table>
+        <thead>
+          <tr><th>Topic</th><th>Board Position</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Risk reporting format</td><td>Dashboard with trends and movement indicators</td><td style="color:#059669;font-weight:600;">Adopted (3/5)</td></tr>
+          <tr><td>Briefing frequency</td><td>Quarterly, aligned with Board meetings</td><td style="color:#059669;font-weight:600;">Adopted (4/5)</td></tr>
+          <tr><td>Human review of AI output</td><td>Full human review required</td><td style="color:#059669;font-weight:600;">Adopted (5/5)</td></tr>
+          <tr><td>Board approval of AI agents</td><td>Board approves each agent before deployment</td><td style="color:#059669;font-weight:600;">Adopted (3/4)</td></tr>
+          <tr><td>AI change management</td><td>Full change management required</td><td style="color:#059669;font-weight:600;">Adopted (4/4)</td></tr>
+          <tr><td>AI use disclosure</td><td>Mandatory on all AI-assisted work</td><td style="color:#059669;font-weight:600;">Adopted (4/4)</td></tr>
+          <tr><td>External AI tool policy</td><td>Strict prohibition, no exceptions</td><td style="color:#059669;font-weight:600;">Adopted (4/5)</td></tr>
+          <tr><td>Bank data for vendor AI training</td><td>Prohibited</td><td style="color:#059669;font-weight:600;">Adopted (4/5)</td></tr>
+          <tr><td>Emerging tech approach</td><td>Reactive — wait for regulatory guidance</td><td style="color:#059669;font-weight:600;">Adopted (3/5)</td></tr>
+          <tr><td>Incident reporting (non-escalated)</td><td>Quarterly summary in Board packet</td><td style="color:#059669;font-weight:600;">Adopted (3/5)</td></tr>
+          <tr><td>Risk capacity vs. appetite</td><td>Not formally distinguished</td><td style="color:#f97316;font-weight:600;">Advisory</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 11. RECOMMENDATIONS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">Section 11</div>
+      <h2>Recommendations</h2>
+    </div>
+    <div class="section-body">
+      <div style="margin-bottom:20px;">
+        <div style="font-size:13px;font-weight:700;color:#dc2626;font-family:'Segoe UI',system-ui,sans-serif;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Immediate (within 30 days)</div>
+        <ol>
+          <li>Document adopted motions in Board minutes and distribute to all directors</li>
+          <li>Update the Bank's Risk Appetite Statement with 1.39 overall appetite, domain indices, and $750K threshold</li>
+          <li>Issue formal AI prohibition notice to all employees pending framework development</li>
+          <li>Engage a cybersecurity training provider for Board education</li>
+        </ol>
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <div style="font-size:13px;font-weight:700;color:#f97316;font-family:'Segoe UI',system-ui,sans-serif;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Near-Term (within 90 days)</div>
+        <ol start="5">
+          <li>Present cybersecurity budget proposal aligned with peer benchmarks (Motion #1)</li>
+          <li>Complete three lines of defense structural review (Motion #6)</li>
+          <li>Establish tiered risk acceptance authority in written policy (Motion #3)</li>
+        </ol>
+      </div>
+
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#2563eb;font-family:'Segoe UI',system-ui,sans-serif;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Ongoing</div>
+        <ol start="8">
+          <li>Annual reassessment — administer questionnaire annually and on material risk profile changes</li>
+          <li>AI governance framework development — 12-month timeline per Motion #2</li>
+          <li>Board competency monitoring — annual self-assessment against OCC guidance</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12. CERTIFICATION -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">Section 12</div>
+      <h2>Certification</h2>
+    </div>
+    <div class="section-body">
+      <p style="margin-bottom:20px;">This report accurately reflects the aggregated results of the Board Risk Appetite Questionnaire (DEL-004) and the formal motions adopted at the Board Working Session.</p>
+
+      <div style="margin-bottom:32px;">
+        <div style="font-size:13px;font-weight:700;color:#64748b;font-family:'Segoe UI',system-ui,sans-serif;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Prepared By</div>
+        <table>
+          <thead><tr><th>Role</th><th>Name</th><th>Organization</th><th>Date</th></tr></thead>
+          <tbody>
+            <tr><td>Lead Assessor</td><td>Tristan Jones</td><td>Jones & Associates</td><td style="border-bottom:1px solid #334155;min-width:120px;"></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#64748b;font-family:'Segoe UI',system-ui,sans-serif;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Board Certification</div>
+        <p style="margin-bottom:16px;">We, the undersigned members of the Board of Directors of Heritage Community Bank, certify that:</p>
+        <ol style="margin-bottom:20px;">
+          <li>We have reviewed this Board Risk Appetite Report</li>
+          <li>The adopted motions accurately reflect the Board's positions as discussed and voted upon</li>
+          <li>We authorize the use of the risk appetite baseline documented herein for severity calibration in the Threat-Informed Cyber Risk Assessment</li>
+        </ol>
+
+        <table class="sig-table">
+          <thead><tr><th>Director</th><th>Title</th><th>Signature</th><th>Date</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Richard Alderman</td>
+              <td>Board Chair</td>
+              <td><span class="sig-line">&nbsp;</span></td>
+              <td><span class="sig-line" style="width:100px;">&nbsp;</span></td>
+            </tr>
+            <tr>
+              <td>Catherine Whitfield</td>
+              <td>CEO / President</td>
+              <td><span class="sig-line">&nbsp;</span></td>
+              <td><span class="sig-line" style="width:100px;">&nbsp;</span></td>
+            </tr>
+            <tr>
+              <td>James Okafor</td>
+              <td>Director</td>
+              <td><span class="sig-line">&nbsp;</span></td>
+              <td><span class="sig-line" style="width:100px;">&nbsp;</span></td>
+            </tr>
+            <tr>
+              <td>Patricia Navarro</td>
+              <td>Director</td>
+              <td><span class="sig-line">&nbsp;</span></td>
+              <td><span class="sig-line" style="width:100px;">&nbsp;</span></td>
+            </tr>
+            <tr>
+              <td>William Trent</td>
+              <td>Director</td>
+              <td><span class="sig-line">&nbsp;</span></td>
+              <td><span class="sig-line" style="width:100px;">&nbsp;</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROVENANCE -->
+  <div style="text-align:center;padding:16px;font-size:12px;color:#94a3b8;font-family:'Segoe UI',system-ui,sans-serif;">
+    Provenance: Created by ACF-TW-001 [Opus] | Review pending: ACF-QA-001 [Sonnet] | Human signoff pending: T. Jones
+  </div>
+
+</div>
+
+<div class="footer">
+  <span class="confidential">CONFIDENTIAL — BOARD AND ASSESSMENT USE ONLY</span><br>
+  Jones &amp; Associates | Heritage Community Bank<br>
+  Board Risk Appetite Report | DEL-005 | Version 1.0 | July 2026
+</div>
+
+</body>
+</html>

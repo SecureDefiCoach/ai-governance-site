@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEL-001 | Engagement Charter — Heritage Community Bank</title>
+<style>
+  @page { margin: 1in; size: letter; }
+  @media print { .no-print { display: none; } body { font-size: 11pt; } }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', 'Times New Roman', serif; background: #f5f5f0; color: #1a1a1a; line-height: 1.6; }
+  .page { max-width: 850px; margin: 40px auto; background: #fff; box-shadow: 0 1px 8px rgba(0,0,0,0.08); }
+  .letterhead {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 32px 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .letterhead .firm { font-size: 22px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+  .letterhead .tagline { font-size: 12px; color: #94a3b8; margin-top: 4px; letter-spacing: 0.5px; }
+  .letterhead .doc-meta { text-align: right; font-size: 12px; color: #94a3b8; line-height: 1.8; }
+  .letterhead .doc-meta .doc-id { color: #fff; font-weight: 600; font-size: 13px; }
+
+  .title-block {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #fff;
+    padding: 40px 56px;
+    text-align: center;
+  }
+  .title-block h1 { font-size: 26px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .title-block .subtitle { font-size: 15px; color: #94a3b8; }
+  .title-block .client { font-size: 18px; color: #e2e8f0; margin-top: 12px; font-weight: 600; }
+
+  .content { padding: 40px 56px; }
+  h2 { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #1a1a2e; border-bottom: 2px solid #1a1a2e; padding-bottom: 6px; margin-top: 36px; margin-bottom: 16px; }
+  h2:first-child { margin-top: 0; }
+  h3 { font-size: 14px; font-weight: 700; color: #334155; margin-top: 24px; margin-bottom: 10px; }
+  p { margin-bottom: 14px; font-size: 14px; }
+  .indent { padding-left: 24px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 13px; }
+  th { text-align: left; padding: 10px 14px; background: #f1f5f9; border: 1px solid #e2e8f0; font-weight: 700; color: #1a1a2e; font-size: 12px; text-transform: uppercase; letter-spacing: 0.3px; }
+  td { padding: 10px 14px; border: 1px solid #e2e8f0; vertical-align: top; }
+  tr:nth-child(even) { background: #fafbfc; }
+
+  .quote-block {
+    background: #f8fafc;
+    border-left: 4px solid #1a1a2e;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-style: italic;
+    font-size: 13px;
+    color: #334155;
+    line-height: 1.7;
+  }
+
+  .stage-list { list-style: none; padding: 0; }
+  .stage-list li { padding: 10px 0 10px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
+  .stage-list li:last-child { border-bottom: none; }
+  .stage-num { display: inline-block; width: 36px; height: 36px; line-height: 36px; text-align: center; background: #1a1a2e; color: #fff; border-radius: 50%; font-size: 13px; font-weight: 700; margin-right: 12px; vertical-align: middle; }
+  .stage-title { font-weight: 700; color: #1a1a2e; }
+  .stage-desc { display: block; padding-left: 48px; font-size: 13px; color: #64748b; margin-top: 4px; }
+
+  ul.check { list-style: none; padding: 0; }
+  ul.check li { padding: 6px 0 6px 28px; position: relative; font-size: 14px; }
+  ul.check li::before { content: '✓'; position: absolute; left: 4px; color: #059669; font-weight: 700; }
+  ul.exclude li::before { content: '✕'; color: #dc2626; }
+
+  .sig-block { margin-top: 40px; border-top: 2px solid #1a1a2e; padding-top: 24px; }
+  .sig-row { display: flex; gap: 40px; margin-bottom: 24px; }
+  .sig-entry { flex: 1; }
+  .sig-entry .sig-line { border-bottom: 1px solid #1a1a2e; height: 40px; margin-bottom: 4px; font-style: italic; padding-top: 16px; font-size: 14px; }
+  .sig-entry .sig-name { font-weight: 700; font-size: 14px; }
+  .sig-entry .sig-title { font-size: 12px; color: #64748b; }
+  .sig-entry .sig-date { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+  .footer {
+    background: #1a1a2e;
+    color: #94a3b8;
+    padding: 16px 56px;
+    font-size: 11px;
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+  .footer .conf { color: #ef4444; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+  .provenance {
+    margin-top: 36px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .provenance-header {
+    background: #f1f5f9;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #475569;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .provenance-body { padding: 16px 20px; }
+  .prov-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
+  .prov-row:last-child { border-bottom: none; }
+  .prov-role { width: 140px; font-weight: 700; color: #334155; flex-shrink: 0; }
+  .prov-agent { color: #475569; flex: 1; }
+  .prov-id { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: #64748b; }
+  .prov-date { width: 100px; text-align: right; font-size: 12px; color: #64748b; flex-shrink: 0; }
+  .prov-status { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+  .prov-approved { background: #d1fae5; color: #065f46; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="letterhead">
+  <div>
+    <div class="firm">Jones & Associates</div>
+    <div class="tagline">Cybersecurity Risk Advisory</div>
+  </div>
+  <div class="doc-meta">
+    <div class="doc-id">HCB-EC-001</div>
+    <div>Version 1.0</div>
+    <div>July 2026</div>
+    <div>Status: Approved</div>
+  </div>
+</div>
+
+<div class="title-block">
+  <h1>Engagement Charter</h1>
+  <div class="subtitle">Threat-Informed Cyber Risk Assessment</div>
+  <div class="client">Heritage Community Bank</div>
+</div>
+
+<div class="content">
+
+<h2>1. Engagement Overview</h2>
+<p>Jones & Associates ("the Firm") has been engaged by Heritage Community Bank ("the Bank") to perform a Threat-Informed Cyber Risk Assessment. This engagement was initiated in response to three Matters Requiring Attention (MRAs) issued by the Federal Deposit Insurance Corporation ("FDIC") in a confidential supervisory communication dated March 28, 2026, following the Bank's information technology examination conducted January 12 – February 7, 2026.</p>
+
+<p>The FDIC assigned a Composite IT Rating of 3 (Less Than Satisfactory) and cited the following MRAs:</p>
+
+<table>
+  <tr><th style="width:160px">MRA</th><th>Finding</th></tr>
+  <tr><td>MRA 2026-IT-001</td><td>Risk assessment methodology lacks threat intelligence integration — controls assessed against a static checklist without reference to adversary tactics, techniques, or procedures</td></tr>
+  <tr><td>MRA 2026-IT-002</td><td>Board-level risk appetite for cybersecurity and emerging technology not formally articulated at the domain-specific granularity required to calibrate risk-taking decisions</td></tr>
+  <tr><td>MRA 2026-IT-003</td><td>No independent cybersecurity assessment conducted within 36 months — most recent IT audit limited to financial statement general IT controls</td></tr>
+</table>
+
+<p>The FDIC has directed the Board to demonstrate meaningful progress toward remediation within 90 days (risk assessment and appetite) and 120 days (independent assessment), with quarterly progress reporting thereafter.</p>
+
+<p>The Board of Directors approved funding for a cybersecurity modernization initiative following the MRA letter, providing executive sponsorship for this engagement. The Firm has executed a Non-Disclosure Agreement for Confidential Supervisory Information (dated June 15, 2026) permitting access to the MRA letter for engagement scoping and execution.</p>
+
+<h2>2. Client Profile</h2>
+<table>
+  <tr><th style="width:220px">Attribute</th><th>Detail</th></tr>
+  <tr><td>Institution</td><td>Heritage Community Bank</td></tr>
+  <tr><td>Charter</td><td>State-chartered, FDIC-insured</td></tr>
+  <tr><td>Primary Regulator</td><td>State Banking Department</td></tr>
+  <tr><td>Federal Regulator</td><td>FDIC</td></tr>
+  <tr><td>Total Assets</td><td>$1.2 billion</td></tr>
+  <tr><td>Total Deposits</td><td>$980 million</td></tr>
+  <tr><td>Branches</td><td>8 (1 main office + 7 branch locations)</td></tr>
+  <tr><td>Employees</td><td>320</td></tr>
+  <tr><td>Business Lines</td><td>Commercial RE lending, residential mortgage, consumer lending, small business banking, wealth management</td></tr>
+  <tr><td>Core Banking</td><td>Jack Henry (Symitar)</td></tr>
+  <tr><td>Digital Channels</td><td>Online banking (consumer + business), mobile banking, remote deposit capture</td></tr>
+  <tr><td>Payment Systems</td><td>FedLine Advantage (wire/ACH), 12 owned ATMs</td></tr>
+</table>
+
+<h3>Technology Environment</h3>
+<table>
+  <tr><th style="width:220px">Component</th><th>Detail</th></tr>
+  <tr><td>Servers</td><td>~80 (primary data center at main office, secondary at DR site)</td></tr>
+  <tr><td>Recovery Site</td><td>Contracted DR site (warm standby)</td></tr>
+  <tr><td>Workstations</td><td>~350 (desktops + laptops), privileged workstations for IT/security staff</td></tr>
+  <tr><td>Network</td><td>Multi-site WAN, segmented LAN, perimeter firewall, managed switches, MPLS between branches</td></tr>
+  <tr><td>Cloud</td><td>Microsoft 365 (email, Office apps), Azure AD (identity)</td></tr>
+  <tr><td>Security</td><td>MFA, SIEM, MDR, EDR, vulnerability scanning (quarterly), PAM (partial — IT admins only), cyber insurance, annual penetration test, phishing simulation program</td></tr>
+  <tr><td>Third Parties</td><td>Core processor, managed firewall vendor, IT support/MSP, vulnerability scanner, online/mobile banking vendor, ATM processor, DR site provider, backup provider, cyber insurance carrier, external auditor, MDR provider, SIEM vendor</td></tr>
+</table>
+
+<h2>3. Engagement Trigger</h2>
+<p>During the most recent regulatory examination, examiners issued the following MRA:</p>
+<div class="quote-block">
+"The Bank's enterprise risk assessment relies on a checklist-based approach that does not adequately incorporate threat intelligence, map controls to specific threat scenarios relevant to the institution's risk profile, or align to a recognized threat framework. Management should enhance the risk assessment methodology to adopt a threat-informed approach consistent with the institution's size, complexity, and risk profile."
+</div>
+<table>
+  <tr><td><strong>Classification</strong></td><td>Matter Requiring Attention (MRA)</td></tr>
+  <tr><td><strong>Exam Date</strong></td><td>Q1 2026</td></tr>
+  <tr><td><strong>Response Due</strong></td><td>Within 90 days of examination report</td></tr>
+  <tr><td><strong>Board Action</strong></td><td>Approved modernization initiative funding (Q2 2026)</td></tr>
+</table>
+
+<h2>4. Scope</h2>
+<h3>4.1 In Scope</h3>
+<ul class="check">
+  <li>Enterprise-wide threat-informed risk assessment covering all business lines, technology systems, and operational processes</li>
+  <li>MITRE ATT&CK technique profiling based on the Bank's threat landscape</li>
+  <li>CRI Profile v2.2 diagnostic statement evaluation across all applicable SCF control library domains</li>
+  <li>Control mapping and coverage analysis against selected threat techniques</li>
+  <li>Gap identification with risk-rated findings</li>
+  <li>Remediation roadmap with prioritized recommendations</li>
+  <li>Executive reporting and Board presentation</li>
+</ul>
+
+<h3>4.2 Out of Scope</h3>
+<ul class="check exclude">
+  <li>Penetration testing or active vulnerability exploitation</li>
+  <li>Regulatory examination response drafting</li>
+  <li>Control implementation or remediation execution</li>
+  <li>Legal or compliance opinion</li>
+  <li>Business continuity plan testing or execution</li>
+  <li>Vendor contract negotiation or renegotiation</li>
+</ul>
+
+<h2>5. Methodology</h2>
+<p>The assessment follows a 15-stage engagement lifecycle aligned to the CRI Profile framework, MITRE ATT&CK, and NIST CSF 2.0:</p>
+<ul class="stage-list">
+  <li><span class="stage-num">1</span><span class="stage-title">Engagement Planning</span><span class="stage-desc">Define scope, timelines, stakeholders, communication cadence, and data handling requirements.</span></li>
+  <li><span class="stage-num">2</span><span class="stage-title">Business Context</span><span class="stage-desc">Understand the Bank's business model, strategic priorities, regulatory environment, and risk appetite.</span></li>
+  <li><span class="stage-num">3</span><span class="stage-title">Threat Modeling</span><span class="stage-desc">Identify threat actors, attack vectors, and scenarios relevant to the Bank's profile.</span></li>
+  <li><span class="stage-num">4</span><span class="stage-title">Threat Intelligence</span><span class="stage-desc">Gather current threat intelligence from public and industry sources (FS-ISAC, CISA, FBI IC3, FinCEN).</span></li>
+  <li><span class="stage-num">5</span><span class="stage-title">MITRE ATT&CK Selection</span><span class="stage-desc">Select applicable techniques based on the threat model and map to the Bank's technology environment.</span></li>
+  <li><span class="stage-num">6</span><span class="stage-title">CRI Profile Mapping</span><span class="stage-desc">Map selected threat techniques to CRI Profile v2.2 diagnostic statements.</span></li>
+  <li><span class="stage-num">7</span><span class="stage-title">Evidence Request</span><span class="stage-desc">Issue the information request list with evidence requirements and submission deadlines.</span></li>
+  <li><span class="stage-num">8</span><span class="stage-title">Evidence Validation</span><span class="stage-desc">Validate quality, completeness, currency, and relevance of submitted evidence.</span></li>
+  <li><span class="stage-num">9</span><span class="stage-title">Coverage Analysis</span><span class="stage-desc">Assess control coverage per CRI diagnostic statement. Score as Covered, Partial, or No Coverage.</span></li>
+  <li><span class="stage-num">10</span><span class="stage-title">Gap Analysis</span><span class="stage-desc">Identify gaps where controls do not adequately mitigate selected threat techniques.</span></li>
+  <li><span class="stage-num">11</span><span class="stage-title">Risk Prioritization</span><span class="stage-desc">Score and prioritize findings based on likelihood, impact, and residual risk.</span></li>
+  <li><span class="stage-num">12</span><span class="stage-title">Threat Library Assembly</span><span class="stage-desc">Compile the institution-specific Threat Library — the central deliverable of the engagement.</span></li>
+  <li><span class="stage-num">13</span><span class="stage-title">Executive Reporting</span><span class="stage-desc">Produce the engagement binder including executive summary, findings, and dashboards.</span></li>
+  <li><span class="stage-num">14</span><span class="stage-title">Remediation Roadmap</span><span class="stage-desc">Develop a prioritized, phased remediation plan with estimated effort and quick wins.</span></li>
+  <li><span class="stage-num">15</span><span class="stage-title">Lessons Learned</span><span class="stage-desc">Document methodology improvements and recommendations for future assessment cycles.</span></li>
+</ul>
+
+<h2>6. Frameworks and Standards</h2>
+<h3>Primary</h3>
+<table>
+  <tr><th>Framework</th><th>Version</th></tr>
+  <tr><td>CRI Profile (Cyber Risk Institute)</td><td>v2.2</td></tr>
+  <tr><td>MITRE ATT&CK for Enterprise</td><td>v15+</td></tr>
+  <tr><td>NIST Cybersecurity Framework</td><td>2.0</td></tr>
+</table>
+<h3>Supporting</h3>
+<table>
+  <tr><th>Standard</th><th>Application</th></tr>
+  <tr><td>FFIEC IT Examination Handbooks</td><td>Regulatory context</td></tr>
+  <tr><td>NIST SP 800-53 Rev. 5</td><td>Control family reference</td></tr>
+  <tr><td>NIST SP 800-30 Rev. 1</td><td>Risk assessment methodology</td></tr>
+  <tr><td>NIST SP 800-88 Rev. 1</td><td>Media sanitization at engagement close</td></tr>
+</table>
+
+<h2>7. Deliverables</h2>
+<table>
+  <tr><th>ID</th><th>Deliverable</th><th>Format</th><th>Stage</th></tr>
+  <tr><td>DEL-001</td><td>Engagement Charter</td><td>PDF</td><td>1</td></tr>
+  <tr><td>DEL-002</td><td>Engagement Letter</td><td>PDF</td><td>1</td></tr>
+  <tr><td>DEL-003</td><td>Scope Document</td><td>PDF</td><td>1</td></tr>
+  <tr><td>DEL-004</td><td>Board Risk Appetite Questionnaire</td><td>PDF</td><td>1</td></tr>
+  <tr><td>DEL-005</td><td>Board Risk Appetite Report</td><td>PDF</td><td>1</td></tr>
+  <tr><td>DEL-006</td><td>Information Request List</td><td>Excel</td><td>2</td></tr>
+  <tr><td>DEL-007</td><td>Evidence Tracker</td><td>Excel</td><td>3</td></tr>
+  <tr><td>DEL-008</td><td>MITRE ATT&CK Workbook</td><td>Excel</td><td>4</td></tr>
+  <tr><td>DEL-009</td><td>CRI Profile Workbook</td><td>Excel</td><td>5</td></tr>
+  <tr><td>DEL-010</td><td>Coverage Assessment Dashboard</td><td>Excel</td><td>6</td></tr>
+  <tr><td>DEL-011</td><td>Risk Register</td><td>Excel</td><td>7</td></tr>
+  <tr><td>DEL-012</td><td>Threat Profile</td><td>PDF</td><td>8</td></tr>
+  <tr><td>DEL-013</td><td>Threat Library</td><td>Dashboard</td><td>9</td></tr>
+  <tr><td>DEL-014</td><td>Executive Dashboard</td><td>Dashboard</td><td>10</td></tr>
+  <tr><td>DEL-015</td><td>Board Presentation</td><td>PPTX</td><td>10</td></tr>
+  <tr><td>DEL-016</td><td>Technical Appendix</td><td>PDF</td><td>10</td></tr>
+  <tr><td>DEL-017</td><td>Management Response Template</td><td>Word</td><td>11</td></tr>
+  <tr><td>DEL-018</td><td>Final Report</td><td>PDF</td><td>10</td></tr>
+  <tr><td>DEL-019</td><td>Lessons Learned</td><td>PDF</td><td>12</td></tr>
+</table>
+
+<h2>8. Stakeholders</h2>
+<table>
+  <tr><th>Role</th><th>Name / Title</th><th>Responsibility</th></tr>
+  <tr><td>Executive Sponsor</td><td>Board of Directors</td><td>Oversight, funding approval</td></tr>
+  <tr><td>Engagement Owner</td><td>Karen Whitfield, Chief Risk Officer</td><td>Day-to-day coordination</td></tr>
+  <tr><td>IT Liaison</td><td>VP of Information Technology</td><td>Technical evidence, access</td></tr>
+  <tr><td>Security Liaison</td><td>Information Security Manager</td><td>Security evidence, controls</td></tr>
+  <tr><td>Compliance Liaison</td><td>Chief Compliance Officer</td><td>Regulatory context, policies</td></tr>
+  <tr><td>Audit Liaison</td><td>Internal Audit Director</td><td>Prior findings, audit plans</td></tr>
+  <tr><td>Engagement Lead</td><td>Tristan Jones, CISA, AAIA</td><td>Assessment lead (Firm)</td></tr>
+  <tr><td>Assessment Team</td><td>AI Assessment Agents</td><td>Analysis, coverage, reporting</td></tr>
+</table>
+
+<h2>9. Assessment Team</h2>
+<table>
+  <tr><th>Persona</th><th>Role</th></tr>
+  <tr><td>Engagement Manager</td><td>Scope, timelines, stakeholder communications, status reporting</td></tr>
+  <tr><td>Threat Intelligence Analyst</td><td>Adversary profiling, ATT&CK technique selection, threat landscape analysis</td></tr>
+  <tr><td>Control Assessor</td><td>CRI diagnostic statement evaluation, coverage scoring, evidence-to-control mapping</td></tr>
+  <tr><td>Evidence Manager</td><td>PBC tracking, evidence quality validation, gap identification, completeness checks</td></tr>
+  <tr><td>Technical Writer</td><td>Reports, executive summaries, board presentations, engagement binder</td></tr>
+  <tr><td>Quality Reviewer</td><td>Challenges conclusions, checks traceability, flags unsupported assertions</td></tr>
+</table>
+
+<h2>10. Data Handling and Security</h2>
+<ul class="check">
+  <li>All Bank data stored in a dedicated AWS VPC</li>
+  <li>Access to data logged via AWS CloudTrail</li>
+  <li>No data leaves the VPC without explicit authorization</li>
+  <li>AI agent access is auditable — every query, read, and analysis action is logged</li>
+  <li>Evidence files stored in encrypted S3 buckets within the VPC</li>
+  <li>At engagement close: data destruction per NIST SP 800-88, CloudTrail deletion logs preserved, formal attestation issued</li>
+  <li>For production clients: access logs forwarded to the client in real-time</li>
+</ul>
+
+<h2>11. Assumptions</h2>
+<ol style="padding-left: 24px; font-size: 14px; line-height: 2;">
+  <li>The Bank will designate liaisons with authority to provide evidence and answer questions within agreed timelines</li>
+  <li>Evidence will be provided in electronic format (PDF, Excel, Word, or screenshot) within 5 business days of request</li>
+  <li>The Bank's existing risk assessment (checklist-based) will be provided as a baseline for comparison</li>
+  <li>The Firm will have read-only access to relevant systems for evidence validation where applicable</li>
+  <li>The assessment is advisory — the Firm does not implement controls or make binding risk acceptance decisions</li>
+  <li>Findings are point-in-time based on evidence reviewed during the engagement period</li>
+</ol>
+
+<h2>12. Success Criteria</h2>
+<ol style="padding-left: 24px; font-size: 14px; line-height: 2;">
+  <li>A threat profile specific to the Bank's size, services, and geography has been developed and validated</li>
+  <li>MITRE ATT&CK techniques relevant to the threat profile have been selected and mapped to CRI Profile diagnostic statements</li>
+  <li>Coverage analysis has been completed across all applicable SCF control library domains with scoring at the response guidance level</li>
+  <li>Gaps have been identified, risk-rated, and traced to specific MITRE mitigations</li>
+  <li>A prioritized remediation roadmap has been delivered</li>
+  <li>The Board has received an executive briefing on findings</li>
+  <li>The engagement binder (17 deliverables) has been delivered</li>
+  <li>All Bank data has been destroyed per the data handling protocol, with attestation provided</li>
+  <li>The methodology is documented and repeatable for future assessment cycles</li>
+</ol>
+
+<h2>13. Timeline</h2>
+<table>
+  <tr><th>Session</th><th>Focus</th><th>Est. Duration</th></tr>
+  <tr><td>1</td><td>Bank profile &amp; governance</td><td>1 session</td></tr>
+  <tr><td>2</td><td>Technical environment</td><td>1 session</td></tr>
+  <tr><td>3</td><td>PBC artifact generation</td><td>1-2 sessions</td></tr>
+  <tr><td>4</td><td>Baseline risk assessment</td><td>1 session</td></tr>
+  <tr><td>5</td><td>Threat intelligence &amp; MITRE</td><td>1 session</td></tr>
+  <tr><td>6</td><td>CRI coverage assessment</td><td>1-2 sessions</td></tr>
+  <tr><td>7</td><td>Flaw injection &amp; gap analysis</td><td>1 session</td></tr>
+  <tr><td>8</td><td>Remediation planning</td><td>1 session</td></tr>
+  <tr><td>9</td><td>Executive reporting &amp; board deck</td><td>1 session</td></tr>
+  <tr><td>10</td><td>Portfolio polish &amp; demo scripting</td><td>1 session</td></tr>
+</table>
+<p>Total estimated duration: 10-12 sessions over 4-6 weeks</p>
+
+<div class="provenance">
+  <div class="provenance-header">Document Provenance</div>
+  <div class="provenance-body">
+    <div class="prov-row"><div class="prov-role">Created by</div><div class="prov-agent">Technical Writer Agent <span class="prov-id">ACF-TW-001 · Opus</span></div><div class="prov-date">07/01/2026</div></div>
+    <div class="prov-row"><div class="prov-role">Reviewed by</div><div class="prov-agent">Quality Assurance Agent <span class="prov-id">ACF-QA-001 · Sonnet</span></div><div class="prov-date">07/01/2026</div></div>
+    <div class="prov-row"><div class="prov-role">Human Signoff</div><div class="prov-agent">Tristan Jones, CISA, AAIA — Engagement Lead <span class="prov-status prov-approved">Approved</span></div><div class="prov-date">07/01/2026</div></div>
+  </div>
+</div>
+
+<h2>14. Approvals</h2>
+<div class="sig-block">
+  <div class="sig-row">
+    <div class="sig-entry">
+      <div class="sig-line">/s/ Tristan Jones</div>
+      <div class="sig-name">Tristan Jones, CISA, AAIA</div>
+      <div class="sig-title">Engagement Lead — Jones &amp; Associates</div>
+      <div class="sig-date">July 1, 2026</div>
+    </div>
+    <div class="sig-entry">
+      <div class="sig-line">/s/ Robert Callahan</div>
+      <div class="sig-name">Robert Callahan</div>
+      <div class="sig-title">Chair, Board of Directors — Heritage Community Bank</div>
+      <div class="sig-date">July 1, 2026</div>
+    </div>
+  </div>
+  <div class="sig-row">
+    <div class="sig-entry">
+      <div class="sig-line">/s/ Karen Whitfield</div>
+      <div class="sig-name">Karen Whitfield</div>
+      <div class="sig-title">Chief Risk Officer — Heritage Community Bank</div>
+      <div class="sig-date">July 1, 2026</div>
+    </div>
+    <div class="sig-entry"></div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <span class="conf">Confidential</span><br>
+  Jones &amp; Associates | Heritage Community Bank | Document ID: HCB-EC-001 | Version 1.0
+</div>
+
+</div>
+</body>
+</html>

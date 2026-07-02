@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEL-003 | Scope Document — Heritage Community Bank</title>
+<style>
+  @page { margin: 1in; size: letter; }
+  @media print { .no-print { display: none; } body { font-size: 11pt; } }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', 'Times New Roman', serif; background: #f5f5f0; color: #1a1a1a; line-height: 1.6; }
+  .page { max-width: 850px; margin: 40px auto; background: #fff; box-shadow: 0 1px 8px rgba(0,0,0,0.08); }
+  .letterhead {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 32px 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .letterhead .firm { font-size: 22px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+  .letterhead .tagline { font-size: 12px; color: #94a3b8; margin-top: 4px; letter-spacing: 0.5px; }
+  .letterhead .doc-meta { text-align: right; font-size: 12px; color: #94a3b8; line-height: 1.8; }
+  .letterhead .doc-meta .doc-id { color: #fff; font-weight: 600; font-size: 13px; }
+
+  .title-block {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #fff;
+    padding: 40px 56px;
+    text-align: center;
+  }
+  .title-block h1 { font-size: 26px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .title-block .subtitle { font-size: 15px; color: #94a3b8; }
+  .title-block .client { font-size: 18px; color: #e2e8f0; margin-top: 12px; font-weight: 600; }
+  .title-block .refs { font-size: 12px; color: #64748b; margin-top: 12px; }
+
+  .content { padding: 40px 56px; }
+  h2 { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #1a1a2e; border-bottom: 2px solid #1a1a2e; padding-bottom: 6px; margin-top: 36px; margin-bottom: 16px; }
+  h2:first-child { margin-top: 0; }
+  h3 { font-size: 14px; font-weight: 700; color: #334155; margin-top: 24px; margin-bottom: 10px; }
+  p { margin-bottom: 14px; font-size: 14px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 13px; }
+  th { text-align: left; padding: 10px 14px; background: #f1f5f9; border: 1px solid #e2e8f0; font-weight: 700; color: #1a1a2e; font-size: 12px; text-transform: uppercase; letter-spacing: 0.3px; }
+  td { padding: 10px 14px; border: 1px solid #e2e8f0; vertical-align: top; }
+  tr:nth-child(even) { background: #fafbfc; }
+
+  .badge-yes { display: inline-block; background: #d1fae5; color: #065f46; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+  .badge-no { display: inline-block; background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+  .badge-high { display: inline-block; background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+  .badge-med { display: inline-block; background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+  .badge-low { display: inline-block; background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+
+  ol.letter { list-style-type: lower-alpha; padding-left: 28px; font-size: 14px; }
+  ol.letter li { margin-bottom: 10px; line-height: 1.6; }
+
+  ul.check { list-style: none; padding: 0; }
+  ul.check li { padding: 6px 0 6px 28px; position: relative; font-size: 14px; }
+  ul.check li::before { content: '—'; position: absolute; left: 4px; color: #64748b; font-weight: 700; }
+
+  .score-table td:nth-child(1) { font-weight: 700; }
+  .coverage-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px 20px; margin: 16px 0; }
+  .coverage-box .cov-item { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
+  .coverage-box .cov-item:last-child { border-bottom: none; }
+
+  .sig-block { margin-top: 40px; border-top: 2px solid #1a1a2e; padding-top: 24px; }
+  .sig-row { display: flex; gap: 40px; margin-bottom: 24px; }
+  .sig-entry { flex: 1; }
+  .sig-entry .sig-line { border-bottom: 1px solid #1a1a2e; height: 40px; margin-bottom: 4px; font-style: italic; padding-top: 16px; font-size: 14px; }
+  .sig-entry .sig-name { font-weight: 700; font-size: 14px; }
+  .sig-entry .sig-title { font-size: 12px; color: #64748b; }
+  .sig-entry .sig-date { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+  .footer {
+    background: #1a1a2e;
+    color: #94a3b8;
+    padding: 16px 56px;
+    font-size: 11px;
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+  .footer .conf { color: #ef4444; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+  .provenance {
+    margin-top: 36px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .provenance-header {
+    background: #f1f5f9;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #475569;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .provenance-body { padding: 16px 20px; }
+  .prov-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
+  .prov-row:last-child { border-bottom: none; }
+  .prov-role { width: 140px; font-weight: 700; color: #334155; flex-shrink: 0; }
+  .prov-agent { color: #475569; flex: 1; }
+  .prov-id { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: #64748b; }
+  .prov-date { width: 100px; text-align: right; font-size: 12px; color: #64748b; flex-shrink: 0; }
+  .prov-status { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+  .prov-approved { background: #d1fae5; color: #065f46; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="letterhead">
+  <div>
+    <div class="firm">Jones & Associates</div>
+    <div class="tagline">Cybersecurity Risk Advisory</div>
+  </div>
+  <div class="doc-meta">
+    <div class="doc-id">HCB-SD-003</div>
+    <div>Version 1.0</div>
+    <div>July 2026</div>
+    <div>Status: Final</div>
+  </div>
+</div>
+
+<div class="title-block">
+  <h1>Scope Document</h1>
+  <div class="subtitle">Threat-Informed Cyber Risk Assessment</div>
+  <div class="client">Heritage Community Bank</div>
+  <div class="refs">Ref: HCB-EC-001 (Charter) | HCB-EL-002 (Engagement Letter)</div>
+</div>
+
+<div class="content">
+
+<h2>1. Purpose</h2>
+<p>This document defines the boundaries, constraints, and assessment parameters for the Threat-Informed Cyber Risk Assessment of Heritage Community Bank. It operationalizes the scope described in the Engagement Letter (HCB-EL-002) into specific assessment targets, exclusions, and success measures.</p>
+
+<h3>1.1 Regulatory Basis</h3>
+
+<p>This assessment directly responds to three FDIC Matters Requiring Attention issued March 28, 2026. The scope is designed so that each MRA is addressed by specific deliverables:</p>
+
+<table>
+  <tr><th style="width:160px">MRA</th><th>Finding</th><th>Deliverables</th></tr>
+  <tr><td>MRA 2026-IT-001</td><td>Risk assessment lacks threat intelligence integration</td><td>DEL-008 — 013 (Assessment)</td></tr>
+  <tr><td>MRA 2026-IT-002</td><td>Board risk appetite not formally articulated</td><td>DEL-004, 005 (Governance)</td></tr>
+  <tr><td>MRA 2026-IT-003</td><td>No independent cybersecurity assessment (36 months)</td><td>DEL-006 — 019 (Full engagement)</td></tr>
+</table>
+
+<p>The FDIC has directed the Bank to demonstrate meaningful progress within 90 days (risk assessment methodology + Board risk appetite) and 120 days (independent assessment completion), with quarterly progress reporting thereafter. Engagement timelines are calibrated to these regulatory deadlines.</p>
+
+<h2>2. Assessment Targets</h2>
+
+<h3>2.1 Business Lines</h3>
+<table>
+  <tr><th>Line of Business</th><th>In Scope</th><th>Notes</th></tr>
+  <tr><td>Commercial RE Lending</td><td><span class="badge-yes">Yes</span></td><td>Primary revenue driver</td></tr>
+  <tr><td>Residential Mortgage</td><td><span class="badge-yes">Yes</span></td><td>Consumer-facing</td></tr>
+  <tr><td>Consumer Lending</td><td><span class="badge-yes">Yes</span></td><td>Consumer-facing</td></tr>
+  <tr><td>Small Business Banking</td><td><span class="badge-yes">Yes</span></td><td>Growing segment</td></tr>
+  <tr><td>Wealth Management</td><td><span class="badge-yes">Yes</span></td><td>Fiduciary obligations</td></tr>
+  <tr><td>Treasury/Cash Management</td><td><span class="badge-yes">Yes</span></td><td>Wire/ACH exposure</td></tr>
+  <tr><td>Trust Services</td><td><span class="badge-no">No</span></td><td>Outsourced, separate exam</td></tr>
+</table>
+
+<h3>2.2 Technology Systems</h3>
+<table>
+  <tr><th>System / Platform</th><th>In Scope</th><th>Owner</th></tr>
+  <tr><td>Jack Henry (Symitar) Core</td><td><span class="badge-yes">Yes</span></td><td>VP Information Technology</td></tr>
+  <tr><td>FedLine Advantage</td><td><span class="badge-yes">Yes</span></td><td>VP Information Technology</td></tr>
+  <tr><td>Online Banking (Consumer)</td><td><span class="badge-yes">Yes</span></td><td>Digital Banking Manager</td></tr>
+  <tr><td>Online Banking (Business)</td><td><span class="badge-yes">Yes</span></td><td>Digital Banking Manager</td></tr>
+  <tr><td>Mobile Banking</td><td><span class="badge-yes">Yes</span></td><td>Digital Banking Manager</td></tr>
+  <tr><td>Remote Deposit Capture</td><td><span class="badge-yes">Yes</span></td><td>Digital Banking Manager</td></tr>
+  <tr><td>ATM Network (12 units)</td><td><span class="badge-yes">Yes</span></td><td>VP Information Technology</td></tr>
+  <tr><td>Microsoft 365</td><td><span class="badge-yes">Yes</span></td><td>VP Information Technology</td></tr>
+  <tr><td>Azure Active Directory</td><td><span class="badge-yes">Yes</span></td><td>VP Information Technology</td></tr>
+  <tr><td>SIEM Platform</td><td><span class="badge-yes">Yes</span></td><td>Information Security Mgr</td></tr>
+  <tr><td>EDR (CrowdStrike/SentinelOne)</td><td><span class="badge-yes">Yes</span></td><td>Information Security Mgr</td></tr>
+  <tr><td>MDR Service</td><td><span class="badge-yes">Yes</span></td><td>Information Security Mgr</td></tr>
+  <tr><td>PAM Tool (partial deploy)</td><td><span class="badge-yes">Yes</span></td><td>Information Security Mgr</td></tr>
+  <tr><td>Vulnerability Scanner</td><td><span class="badge-yes">Yes</span></td><td>Information Security Mgr</td></tr>
+  <tr><td>Perimeter Firewall</td><td><span class="badge-yes">Yes</span></td><td>Managed Firewall Vendor</td></tr>
+  <tr><td>WAN / Branch Connectivity</td><td><span class="badge-yes">Yes</span></td><td>VP Information Technology</td></tr>
+  <tr><td>DR Site</td><td><span class="badge-yes">Yes</span></td><td>DR Site Provider</td></tr>
+  <tr><td>Backup Systems</td><td><span class="badge-yes">Yes</span></td><td>VP Information Technology</td></tr>
+  <tr><td>Privileged Workstations</td><td><span class="badge-yes">Yes</span></td><td>Information Security Mgr</td></tr>
+  <tr><td>End-User Workstations (~350)</td><td><span class="badge-yes">Yes</span></td><td>VP Information Technology</td></tr>
+  <tr><td>Servers (~80)</td><td><span class="badge-yes">Yes</span></td><td>VP Information Technology</td></tr>
+  <tr><td>Phone System / VoIP</td><td><span class="badge-no">No</span></td><td>Separate assessment</td></tr>
+  <tr><td>Physical Security / CCTV</td><td><span class="badge-no">No</span></td><td>Facilities management</td></tr>
+</table>
+
+<h3>2.3 Operational Processes</h3>
+<table>
+  <tr><th>Process</th><th>In Scope</th><th>Notes</th></tr>
+  <tr><td>User Access Management</td><td><span class="badge-yes">Yes</span></td><td>Provisioning, deprovisioning</td></tr>
+  <tr><td>Privileged Access Management</td><td><span class="badge-yes">Yes</span></td><td>PAM partial — key finding area</td></tr>
+  <tr><td>Change Management</td><td><span class="badge-yes">Yes</span></td><td>Core, infrastructure, apps</td></tr>
+  <tr><td>Incident Response</td><td><span class="badge-yes">Yes</span></td><td>Detection through recovery</td></tr>
+  <tr><td>Vulnerability Management</td><td><span class="badge-yes">Yes</span></td><td>Scanning, patching, exceptions</td></tr>
+  <tr><td>Third-Party Risk Management</td><td><span class="badge-yes">Yes</span></td><td>Vendor oversight, SOC reports</td></tr>
+  <tr><td>Data Protection</td><td><span class="badge-yes">Yes</span></td><td>Classification, DLP, encryption</td></tr>
+  <tr><td>Business Continuity / DR</td><td><span class="badge-yes">Yes</span></td><td>Plans, testing, recovery</td></tr>
+  <tr><td>Security Awareness</td><td><span class="badge-yes">Yes</span></td><td>Training, phishing simulations</td></tr>
+  <tr><td>Board / Mgmt Reporting</td><td><span class="badge-yes">Yes</span></td><td>Cyber metrics, risk reporting</td></tr>
+  <tr><td>Audit &amp; Compliance</td><td><span class="badge-yes">Yes</span></td><td>Internal audit, exam history</td></tr>
+  <tr><td>Asset Management</td><td><span class="badge-yes">Yes</span></td><td>HW/SW inventory, lifecycle</td></tr>
+  <tr><td>Network Security</td><td><span class="badge-yes">Yes</span></td><td>Segmentation, monitoring</td></tr>
+  <tr><td>Endpoint Protection</td><td><span class="badge-yes">Yes</span></td><td>EDR, patching, hardening</td></tr>
+</table>
+
+<h3>2.4 Locations</h3>
+<table>
+  <tr><th>Location</th><th>In Scope</th><th>Notes</th></tr>
+  <tr><td>Main Office / Data Center</td><td><span class="badge-yes">Yes</span></td><td>Primary site, all servers</td></tr>
+  <tr><td>Branch 1-7</td><td><span class="badge-yes">Yes</span></td><td>WAN-connected, shared infra</td></tr>
+  <tr><td>DR Site</td><td><span class="badge-yes">Yes</span></td><td>Contracted warm standby</td></tr>
+  <tr><td>Remote Workers</td><td><span class="badge-yes">Yes</span></td><td>VPN + MFA access</td></tr>
+</table>
+
+<h2>3. Exclusions</h2>
+<ol class="letter">
+  <li>Penetration testing or active vulnerability exploitation</li>
+  <li>Regulatory examination response drafting</li>
+  <li>Control implementation or remediation execution</li>
+  <li>Legal or compliance opinion</li>
+  <li>Business continuity plan testing or execution</li>
+  <li>Vendor contract negotiation or renegotiation</li>
+  <li>Trust services (outsourced, examined separately)</li>
+  <li>Phone/VoIP systems</li>
+  <li>Physical security / CCTV systems</li>
+  <li>Personal devices (BYOD) — unless used for privileged access</li>
+</ol>
+
+<h2>4. Framework Alignment</h2>
+<h3>4.1 Primary Frameworks</h3>
+<table>
+  <tr><th>Framework</th><th>Version</th><th>Application</th></tr>
+  <tr><td>CRI Profile</td><td>v2.2</td><td>Control assessment across all applicable SCF control library domains</td></tr>
+  <tr><td>MITRE ATT&CK for Enterprise</td><td>v15+</td><td>Threat technique selection and control mapping</td></tr>
+  <tr><td>NIST Cybersecurity Framework</td><td>2.0</td><td>Function-level alignment</td></tr>
+</table>
+<h3>4.2 Supporting Standards</h3>
+<table>
+  <tr><th>Standard</th><th>Application</th></tr>
+  <tr><td>FFIEC IT Examination Handbooks</td><td>Regulatory context, exam expectations</td></tr>
+  <tr><td>NIST SP 800-53 Rev. 5</td><td>Control family reference</td></tr>
+  <tr><td>NIST SP 800-30 Rev. 1</td><td>Risk assessment methodology</td></tr>
+  <tr><td>NIST SP 800-88 Rev. 1</td><td>Data destruction at engagement close</td></tr>
+</table>
+
+<h2>5. Threat Scope</h2>
+<h3>5.1 Threat Actor Categories</h3>
+<table>
+  <tr><th>Actor Category</th><th>Relevance</th><th>Notes</th></tr>
+  <tr><td>Financially Motivated Cybercriminals</td><td><span class="badge-high">HIGH</span></td><td>Primary threat — ransomware, BEC, ACH fraud</td></tr>
+  <tr><td>Nation-State Actors</td><td><span class="badge-med">MEDIUM</span></td><td>Financial sector targeting — espionage, destructive attacks</td></tr>
+  <tr><td>Insider Threats</td><td><span class="badge-med">MEDIUM</span></td><td>320 employees, privileged access, fraud risk</td></tr>
+  <tr><td>Hacktivists</td><td><span class="badge-low">LOW</span></td><td>Minimal profile/visibility</td></tr>
+  <tr><td>Third-Party / Supply Chain</td><td><span class="badge-high">HIGH</span></td><td>Heavy vendor dependency — core processor, MSP, MDR, cloud</td></tr>
+</table>
+
+<h3>5.2 Attack Surface</h3>
+<ul class="check">
+  <li>Internet-facing services (online/mobile banking, email, VPN)</li>
+  <li>Third-party connections (core processor, MSP, managed firewall)</li>
+  <li>End-user endpoints (phishing, malware, credential theft)</li>
+  <li>Privileged access paths (admin accounts, service accounts)</li>
+  <li>Physical access to data center and branch infrastructure</li>
+  <li>Remote worker access (VPN + MFA)</li>
+  <li>Wire/ACH transfer systems (FedLine Advantage)</li>
+</ul>
+
+<h3>5.3 MITRE ATT&CK Technique Selection Criteria</h3>
+<ol class="letter">
+  <li>Relevance to the identified threat actors</li>
+  <li>Applicability to the Bank's technology environment</li>
+  <li>Historical use against financial sector targets (per FS-ISAC, CISA, FBI IC3 advisories)</li>
+  <li>Coverage of the full attack lifecycle (Initial Access through Impact)</li>
+</ol>
+<p>Estimated technique count: 40-60 techniques and sub-techniques</p>
+
+<h2>6. Assessment Approach</h2>
+<h3>6.1 Coverage Scoring</h3>
+<div class="coverage-box">
+  <div class="cov-item"><span><strong>Covered</strong></span><span>Control exists, is documented, and evidence demonstrates effective operation</span></div>
+  <div class="cov-item"><span><strong>Partial</strong></span><span>Control exists but has gaps in design, implementation, or evidence</span></div>
+  <div class="cov-item"><span><strong>No Coverage</strong></span><span>No control exists, or no evidence provided to demonstrate the control</span></div>
+</div>
+<p>Coverage percentages will be reported in 25% bands (0% / 25% / 50% / 75% / 100%).</p>
+
+<h3>6.2 Gap Traceability</h3>
+<p>Every identified gap must trace to:</p>
+<ol class="letter">
+  <li>The specific CRI diagnostic statement that is not met</li>
+  <li>The MITRE ATT&CK technique(s) the control should mitigate</li>
+  <li>The specific MITRE mitigation the gap fails to address</li>
+  <li>The evidence (or absence of evidence) supporting the finding</li>
+</ol>
+<p><strong>Gaps based on best-practice opinion without mitigation traceability will not be included in findings.</strong></p>
+
+<h3>6.3 Risk Scoring</h3>
+<table class="score-table">
+  <tr><th>Rating</th><th>Score Range</th></tr>
+  <tr><td style="color: #991b1b">Critical</td><td>20-25</td></tr>
+  <tr><td style="color: #dc2626">High</td><td>15-19</td></tr>
+  <tr><td style="color: #d97706">Medium</td><td>10-14</td></tr>
+  <tr><td style="color: #2563eb">Low</td><td>5-9</td></tr>
+  <tr><td style="color: #64748b">Informational</td><td>1-4</td></tr>
+</table>
+<p>Likelihood (1-5) based on threat intelligence. Impact (1-5) based on CIA impact to operations, customers, and regulatory standing. Risk Score = Likelihood x Impact.</p>
+
+<h2>7. Evidence Requirements</h2>
+<h3>7.1 Evidence Categories</h3>
+<table>
+  <tr><th>Category</th><th>Examples</th></tr>
+  <tr><td>Governance</td><td>Board packets, committee charters, steering committee minutes, quarterly cyber metrics reports</td></tr>
+  <tr><td>HR / Security Awareness</td><td>Onboarding/termination checklists, annual awareness training records, phishing simulation results</td></tr>
+  <tr><td>Identity &amp; Access</td><td>AD export, privileged account inventory, service account inventory, MFA enrollment statistics</td></tr>
+  <tr><td>Vulnerability Management</td><td>Scan reports, patch exception register, unsupported systems list</td></tr>
+  <tr><td>Security Operations</td><td>SIEM dashboard exports, EDR detection logs, incident tickets, phishing simulation reports</td></tr>
+  <tr><td>Third-Party Risk</td><td>SOC reports (Type II), SIG questionnaires, vendor risk assessments, contract inventory</td></tr>
+  <tr><td>Architecture</td><td>Data flow diagrams, trust boundaries, identity architecture, network segmentation diagrams</td></tr>
+</table>
+
+<h3>7.2 Evidence Quality Standards</h3>
+<ul class="check">
+  <li>Current (within 12 months unless otherwise justified)</li>
+  <li>Complete (covers the full scope of the control)</li>
+  <li>Authentic (from the Bank's systems, not recreated)</li>
+  <li>Relevant (directly supports the diagnostic statement)</li>
+</ul>
+<p>Stale, incomplete, or contradictory evidence will be flagged for follow-up before conclusions are drawn.</p>
+
+<h2>8. Constraints and Assumptions</h2>
+<h3>Constraints</h3>
+<ol class="letter">
+  <li>Assessment is evidence-based — no system access beyond read-only where granted</li>
+  <li>Findings are point-in-time as of the assessment period</li>
+  <li>The Firm does not make risk acceptance decisions</li>
+  <li>All Bank data destroyed at engagement close per NIST 800-88</li>
+</ol>
+<h3>Assumptions</h3>
+<ol class="letter">
+  <li>Bank liaisons respond to evidence requests within 5 business days</li>
+  <li>The Bank's existing checklist-based risk assessment will be provided as baseline</li>
+  <li>Stakeholders are available for interviews as scheduled</li>
+  <li>The Bank's technology environment does not change materially during the assessment period</li>
+</ol>
+
+<div class="provenance">
+  <div class="provenance-header">Document Provenance</div>
+  <div class="provenance-body">
+    <div class="prov-row"><div class="prov-role">Created by</div><div class="prov-agent">Technical Writer Agent <span class="prov-id">ACF-TW-001 · Opus</span></div><div class="prov-date">07/01/2026</div></div>
+    <div class="prov-row"><div class="prov-role">Reviewed by</div><div class="prov-agent">Quality Assurance Agent <span class="prov-id">ACF-QA-001 · Sonnet</span></div><div class="prov-date">07/01/2026</div></div>
+    <div class="prov-row"><div class="prov-role">Human Signoff</div><div class="prov-agent">Tristan Jones, CISA, AAIA — Engagement Lead <span class="prov-status prov-approved">Approved</span></div><div class="prov-date">07/01/2026</div></div>
+  </div>
+</div>
+
+<h2>9. Approval</h2>
+<div class="sig-block">
+  <div class="sig-row">
+    <div class="sig-entry">
+      <div class="sig-line">/s/ Tristan Jones</div>
+      <div class="sig-name">Tristan Jones, CISA, AAIA</div>
+      <div class="sig-title">Engagement Lead — Jones &amp; Associates</div>
+      <div class="sig-date">July 1, 2026</div>
+    </div>
+    <div class="sig-entry">
+      <div class="sig-line">/s/ Karen Whitfield</div>
+      <div class="sig-name">Karen Whitfield</div>
+      <div class="sig-title">Chief Risk Officer — Heritage Community Bank</div>
+      <div class="sig-date">July 1, 2026</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <span class="conf">Confidential</span><br>
+  Jones &amp; Associates | Heritage Community Bank | Document ID: HCB-SD-003 | Version 1.0
+</div>
+
+</div>
+</body>
+</html>

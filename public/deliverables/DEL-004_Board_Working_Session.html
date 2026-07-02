@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heritage Community Bank | Board Risk Appetite Working Session</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0f172a; color: #1a1a2e; overflow: hidden; }
+
+  .slide {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    padding: 60px 80px;
+    position: relative;
+    overflow-y: auto;
+  }
+  .slide.active { display: flex; flex-direction: column; }
+  .slide.dark { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f1f5f9; }
+  .slide.light { background: #ffffff; color: #1a1a2e; }
+  .slide.warm { background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%); color: #1a1a2e; }
+  .slide.alert { background: linear-gradient(135deg, #fef2f2 0%, #fff1f2 100%); color: #1a1a2e; }
+  .slide.green { background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%); color: #1a1a2e; }
+  .slide.blue { background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%); color: #1a1a2e; }
+
+  .slide-number {
+    position: fixed;
+    bottom: 20px;
+    right: 80px;
+    font-size: 14px;
+    color: #64748b;
+    z-index: 100;
+  }
+  .slide-footer {
+    position: fixed;
+    bottom: 20px;
+    left: 80px;
+    font-size: 11px;
+    color: #64748b;
+    z-index: 100;
+  }
+  .nav-hint {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    color: #94a3b8;
+    z-index: 100;
+  }
+
+  .firm-tag { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #94a3b8; margin-bottom: 16px; }
+  .slide-title { font-size: 42px; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+  .slide-subtitle { font-size: 20px; font-weight: 400; opacity: 0.7; margin-bottom: 32px; }
+  .slide-section { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+
+  h2 { font-size: 36px; font-weight: 700; margin-bottom: 24px; line-height: 1.2; }
+  h3 { font-size: 24px; font-weight: 600; margin-bottom: 16px; }
+
+  .stat-row { display: flex; gap: 24px; margin: 24px 0; }
+  .stat-card {
+    flex: 1;
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+  }
+  .light .stat-card { background: #f8fafc; border: 1px solid #e2e8f0; }
+  .warm .stat-card, .alert .stat-card, .green .stat-card, .blue .stat-card { background: rgba(255,255,255,0.7); border: 1px solid rgba(0,0,0,0.08); }
+  .stat-value { font-size: 48px; font-weight: 800; line-height: 1; }
+  .stat-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-top: 8px; }
+  .stat-sub { font-size: 14px; color: #94a3b8; margin-top: 4px; }
+
+  .gauge { display: flex; gap: 24px; margin: 24px 0; }
+  .gauge-item { flex: 1; text-align: center; }
+  .gauge-bar { height: 12px; background: #e2e8f0; border-radius: 6px; overflow: hidden; margin: 8px 0; }
+  .gauge-fill { height: 100%; border-radius: 6px; }
+  .gauge-label { font-size: 13px; color: #64748b; }
+  .gauge-value { font-size: 28px; font-weight: 700; }
+
+  .agenda-item { display: flex; align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px; }
+  .agenda-time { font-size: 14px; color: #94a3b8; min-width: 100px; font-family: 'SF Mono', monospace; }
+  .agenda-dur { font-size: 12px; color: #64748b; margin-left: auto; }
+
+  .bullet { font-size: 20px; line-height: 1.8; margin-bottom: 8px; padding-left: 24px; position: relative; }
+  .bullet::before { content: "—"; position: absolute; left: 0; color: #64748b; }
+  .bullet.small { font-size: 16px; line-height: 1.6; }
+
+  .decision-box {
+    background: rgba(255,255,255,0.8);
+    border: 2px solid #1a1a2e;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 16px 0;
+  }
+  .decision-box h3 { font-size: 18px; margin-bottom: 12px; }
+
+  .option-row { display: flex; gap: 16px; margin: 16px 0; }
+  .option-card {
+    flex: 1;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .option-card:hover { border-color: #1a1a2e; background: #f8fafc; }
+  .option-card.recommended { border-color: #059669; background: #ecfdf5; }
+  .option-label { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .option-desc { font-size: 12px; color: #64748b; }
+
+  .spread-bar { display: flex; height: 32px; border-radius: 8px; overflow: hidden; margin: 8px 0; }
+  .spread-seg { display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #fff; }
+
+  .obs-card {
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+  }
+  .obs-card.critical { background: #fef2f2; border-left: 4px solid #dc2626; }
+  .obs-card.high { background: #fff7ed; border-left: 4px solid #f97316; }
+  .obs-card.medium { background: #fefce8; border-left: 4px solid #eab308; }
+  .obs-card.info { background: #eff6ff; border-left: 4px solid #3b82f6; }
+
+  .sev-badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #fff;
+    margin-right: 8px;
+  }
+
+  .two-col { display: flex; gap: 32px; }
+  .two-col > div { flex: 1; }
+
+  .action-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    align-items: flex-start;
+  }
+  .action-num {
+    background: #1a1a2e;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .timeline { border-left: 3px solid #e2e8f0; margin-left: 20px; padding-left: 24px; }
+  .timeline-item { margin-bottom: 20px; position: relative; }
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -32px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background: #1a1a2e;
+    border-radius: 50%;
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: TITLE -->
+<div class="slide dark active" id="s1">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+    <div class="firm-tag">Jones & Associates</div>
+    <div class="slide-title">Board Risk Appetite<br>Working Session</div>
+    <div class="slide-subtitle">Heritage Community Bank</div>
+    <div style="margin-top:32px;font-size:16px;color:#94a3b8;">
+      July 2026 &nbsp;|&nbsp; 2 Hours &nbsp;|&nbsp; Confidential
+    </div>
+    <div style="margin-top:16px;font-size:14px;color:#f59e0b;font-weight:600;">
+      Purpose: Review questionnaire results and resolve divergence areas
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 2: AGENDA -->
+<div class="slide dark" id="s2">
+  <div class="slide-section" style="color:#94a3b8;">Agenda</div>
+  <h2>Working Session Outline</h2>
+  <div style="flex:1;">
+    <div class="agenda-item"><span class="agenda-time">9:00 AM</span> Welcome & Session Purpose <span class="agenda-dur">10 min</span></div>
+    <div class="agenda-item"><span class="agenda-time">9:10 AM</span> Response Summary & Board Appetite Indices <span class="agenda-dur">15 min</span></div>
+    <div class="agenda-item"><span class="agenda-time">9:25 AM</span> Where the Board Agrees — Consensus Areas <span class="agenda-dur">10 min</span></div>
+    <div class="agenda-item"><span class="agenda-time">9:35 AM</span> Where the Board Diverges — 6 Decision Items <span class="agenda-dur">40 min</span></div>
+    <div class="agenda-item" style="padding-left:40px;font-size:15px;color:#94a3b8;border:none;">
+      1. Cybersecurity Spending &nbsp; 2. AI Governance &nbsp; 3. Risk Acceptance Authority<br>
+      4. Financial Loss Threshold &nbsp; 5. Board Competency &nbsp; 6. Three Lines of Defense
+    </div>
+    <div class="agenda-item"><span class="agenda-time">10:15 AM</span> Break <span class="agenda-dur">10 min</span></div>
+    <div class="agenda-item"><span class="agenda-time">10:25 AM</span> Board Motions & Resolutions <span class="agenda-dur">20 min</span></div>
+    <div class="agenda-item"><span class="agenda-time">10:45 AM</span> Assessment Implications & Next Steps <span class="agenda-dur">10 min</span></div>
+    <div class="agenda-item" style="border:none;"><span class="agenda-time">10:55 AM</span> Close <span class="agenda-dur">5 min</span></div>
+  </div>
+</div>
+
+<!-- SLIDE 3: THANK YOU / PURPOSE -->
+<div class="slide light" id="s3">
+  <div class="slide-section" style="color:#94a3b8;">9:00 AM — Welcome</div>
+  <h2>Thank You for Your Participation</h2>
+  <div style="flex:1;">
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-value" style="color:#059669;">5 / 5</div>
+        <div class="stat-label">Directors Responded</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:#1a1a2e;">54</div>
+        <div class="stat-label">Questions in Questionnaire</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:#1a1a2e;">100%</div>
+        <div class="stat-label">Core Completion Rate</div>
+      </div>
+    </div>
+    <div style="margin-top:32px;">
+      <h3>Why We Are Here Today</h3>
+      <div class="bullet">Your responses tell us what level of risk the Board expects the Bank to manage</div>
+      <div class="bullet">Today we share the aggregated results — no individual attribution</div>
+      <div class="bullet">Where the Board agrees, we have our assessment baseline</div>
+      <div class="bullet">Where the Board diverges, we need to reach alignment today</div>
+      <div class="bullet" style="font-weight:600;">Unresolved divergence areas cannot be used in our risk severity scoring</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: OVERALL RESULTS -->
+<div class="slide light" id="s4">
+  <div class="slide-section" style="color:#94a3b8;">9:10 AM — Response Summary</div>
+  <h2>Board Risk Appetite — Overall</h2>
+  <div style="flex:1;">
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-value" style="color:#dc2626;">1.39</div>
+        <div class="stat-label">Overall Mean Appetite</div>
+        <div class="stat-sub">out of 5.0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:#059669;">25</div>
+        <div class="stat-label">Consensus Areas</div>
+        <div class="stat-sub">spread ≤ 1 point</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:#dc2626;">5</div>
+        <div class="stat-label">Divergence Areas</div>
+        <div class="stat-sub">spread ≥ 2 points</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:#f97316;">6</div>
+        <div class="stat-label">Board Action Items</div>
+        <div class="stat-sub">decisions required</div>
+      </div>
+    </div>
+    <div style="margin-top:24px;padding:20px 24px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;">
+      <h3 style="font-size:18px;">Interpretation</h3>
+      <p style="font-size:16px;color:#475569;margin-top:8px;">
+        The Board is <strong>decisively conservative</strong>. A mean appetite of 1.39 places Heritage Community Bank in the lowest risk tolerance category across all domains. This is consistent with a community bank operating under an active MRA. The assessment will use this as the severity baseline — control gaps that might be moderate-risk elsewhere are high-risk here.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: APPETITE INDICES -->
+<div class="slide light" id="s5">
+  <div class="slide-section" style="color:#94a3b8;">Board Appetite Indices</div>
+  <h2>Three Appetite Dimensions</h2>
+  <div style="flex:1;">
+    <div class="gauge">
+      <div class="gauge-item">
+        <div class="gauge-value" style="color:#dc2626;">1.45</div>
+        <div class="gauge-bar"><div class="gauge-fill" style="width:29%;background:#dc2626;"></div></div>
+        <div class="gauge-label"><strong>Cyber Appetite</strong><br>Sections 1, 4, 8</div>
+      </div>
+      <div class="gauge-item">
+        <div class="gauge-value" style="color:#dc2626;">1.12</div>
+        <div class="gauge-bar"><div class="gauge-fill" style="width:22%;background:#dc2626;"></div></div>
+        <div class="gauge-label"><strong>AI Appetite</strong><br>Sections 5, 6, 7</div>
+      </div>
+      <div class="gauge-item">
+        <div class="gauge-value" style="color:#dc2626;">1.40</div>
+        <div class="gauge-bar"><div class="gauge-fill" style="width:28%;background:#dc2626;"></div></div>
+        <div class="gauge-label"><strong>Operational Resilience</strong><br>Sections 2, 3</div>
+      </div>
+    </div>
+    <div style="margin-top:32px;">
+      <div class="bullet">AI appetite (1.12) is the lowest — near-unanimous caution toward AI adoption</div>
+      <div class="bullet">Cyber and operational resilience are comparable (~1.4) — low but with some nuance</div>
+      <div class="bullet">These indices set the foundation for how we score risk severity in the assessment</div>
+    </div>
+    <div style="margin-top:24px;padding:16px 20px;background:#fef2f2;border-radius:8px;border:1px solid #fecaca;font-size:15px;">
+      <strong>What this means:</strong> When we find a control gap, a Board with 1.4 appetite sees it as more severe than a Board with 3.0 appetite. Your conservatism raises the bar for the Bank's control environment.
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: CONSENSUS AREAS -->
+<div class="slide green" id="s6">
+  <div class="slide-section" style="color:#059669;">9:25 AM — Consensus Areas</div>
+  <h2 style="color:#065f46;">Where the Board Agrees</h2>
+  <div style="flex:1;">
+    <p style="font-size:18px;color:#475569;margin-bottom:20px;">25 questions with all directors within 1 point of each other. These are your firm positions.</p>
+    <div class="two-col">
+      <div>
+        <h3 style="font-size:16px;color:#059669;">Unanimous Low Appetite (mean 1.0)</h3>
+        <div class="bullet small">Customer PII protection</div>
+        <div class="bullet small">Breach detection and response</div>
+        <div class="bullet small">Unencrypted sensitive data</div>
+        <div class="bullet small">Regulatory risk — cybersecurity</div>
+        <div class="bullet small">Reputational risk — cyber incident</div>
+        <div class="bullet small">AI-generated customer communications</div>
+        <div class="bullet small">Black-box AI models</div>
+        <div class="bullet small">Shadow AI / unapproved use</div>
+        <div class="bullet small">AI vendor data retention</div>
+      </div>
+      <div>
+        <h3 style="font-size:16px;color:#059669;">Strong Consensus (mean 1.0-1.5)</h3>
+        <div class="bullet small">Ransomware recovery capability</div>
+        <div class="bullet small">Untested DR procedures</div>
+        <div class="bullet small">Vendors lacking SOC 2 Type II</div>
+        <div class="bullet small">Data stored outside the US</div>
+        <div class="bullet small">AI model risk</div>
+        <div class="bullet small">AI supply chain risk</div>
+        <div class="bullet small">Regulatory risk — AI use</div>
+        <div class="bullet small">Compliance demonstration capability</div>
+      </div>
+    </div>
+    <div style="margin-top:20px;padding:16px 20px;background:rgba(255,255,255,0.8);border-radius:8px;font-size:15px;border:1px solid #bbf7d0;">
+      <strong>No discussion needed.</strong> These positions are your assessment baseline. Any control gap in these areas is automatically a priority finding.
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: DIVERGENCE OVERVIEW -->
+<div class="slide alert" id="s7">
+  <div class="slide-section" style="color:#dc2626;">9:35 AM — Divergence Areas</div>
+  <h2 style="color:#991b1b;">Where the Board Must Decide</h2>
+  <div style="flex:1;">
+    <p style="font-size:18px;color:#475569;margin-bottom:24px;">6 items where directors scored 2+ points apart. We cannot use these in the assessment until the Board reaches alignment.</p>
+
+    <div class="action-item"><div class="action-num">1</div><div><strong>Cybersecurity Spending Tolerance</strong> — Spread: 3 points (1 to 4)<br><span style="color:#dc2626;font-size:13px;">CRITICAL — Largest divergence. Directly affects MRA remediation budget.</span></div></div>
+    <div class="action-item"><div class="action-num">2</div><div><strong>AI Governance Position</strong> — Structural split: Prohibit vs. Controlled Adoption<br><span style="color:#dc2626;font-size:13px;">CRITICAL — Board cannot set AI policy without agreement.</span></div></div>
+    <div class="action-item"><div class="action-num">3</div><div><strong>Risk Acceptance Authority</strong> — Three different models proposed<br><span style="color:#f97316;font-size:13px;">HIGH — Examiners will ask who can accept risk on behalf of the Bank.</span></div></div>
+    <div class="action-item"><div class="action-num">4</div><div><strong>Financial Loss Threshold</strong> — Range: $500K to $1.5M<br><span style="color:#f97316;font-size:13px;">HIGH — Must be documented in the risk appetite statement.</span></div></div>
+    <div class="action-item"><div class="action-num">5</div><div><strong>Board Cyber Competency</strong> — Self-assessment varies widely<br><span style="color:#f97316;font-size:13px;">HIGH — OCC expects boards to assess and address competency gaps.</span></div></div>
+    <div class="action-item"><div class="action-num">6</div><div><strong>Three Lines of Defense</strong> — No director rated them as effective<br><span style="color:#f97316;font-size:13px;">HIGH — Likely examination finding. Structural improvements needed.</span></div></div>
+  </div>
+</div>
+
+<!-- SLIDE 8: DECISION 1 - SPENDING -->
+<div class="slide warm" id="s8">
+  <div class="slide-section" style="color:#92400e;">Decision 1 of 6</div>
+  <h2>Cybersecurity Spending Tolerance</h2>
+  <div style="flex:1;">
+    <div style="margin-bottom:20px;">
+      <p style="font-size:16px;color:#475569;margin-bottom:12px;"><strong>Question:</strong> What is the Board's tolerance for cybersecurity underinvestment relative to the Bank's risk profile?</p>
+      <div class="spread-bar">
+        <div class="spread-seg" style="flex:2;background:#dc2626;">1 (×2)</div>
+        <div class="spread-seg" style="flex:2;background:#f97316;">2 (×2)</div>
+        <div class="spread-seg" style="flex:0;"></div>
+        <div class="spread-seg" style="flex:1;background:#84cc16;">4 (×1)</div>
+      </div>
+      <p style="font-size:13px;color:#64748b;margin-top:4px;">Spread: 3 points — Largest divergence in the questionnaire</p>
+    </div>
+    <div style="font-size:15px;color:#475569;margin-bottom:16px;padding:12px 16px;background:rgba(255,255,255,0.7);border-radius:8px;">
+      <strong>Why this matters:</strong> The MRA specifically cited underinvestment. The Board's position on spending tolerance directly determines whether the FY2027 cybersecurity budget request is approved, deferred, or reduced.
+    </div>
+    <div class="decision-box">
+      <h3>Proposed Resolution — Board Vote Required</h3>
+      <div class="option-row">
+        <div class="option-card recommended">
+          <div class="option-label">Option A (Recommended)</div>
+          <div class="option-desc">Near-zero tolerance for underinvestment. Cybersecurity budget at or above peer benchmarks. Approve CISO's FY2027 budget request.</div>
+        </div>
+        <div class="option-card">
+          <div class="option-label">Option B</div>
+          <div class="option-desc">Low tolerance. Fund MRA remediation items fully but defer non-MRA security investments to FY2028.</div>
+        </div>
+        <div class="option-card">
+          <div class="option-label">Option C</div>
+          <div class="option-desc">Moderate tolerance. Fund at management's recommended level with quarterly review against peer benchmarks.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: DECISION 2 - AI GOVERNANCE -->
+<div class="slide warm" id="s9">
+  <div class="slide-section" style="color:#92400e;">Decision 2 of 6</div>
+  <h2>AI Governance Position</h2>
+  <div style="flex:1;">
+    <div style="margin-bottom:20px;">
+      <p style="font-size:16px;color:#475569;margin-bottom:12px;"><strong>Question:</strong> Should AI tools be allowed to process confidential Bank or customer data?</p>
+      <div style="display:flex;gap:8px;margin:12px 0;">
+        <div style="flex:3;background:#dc2626;color:#fff;padding:12px;border-radius:8px;text-align:center;font-size:14px;font-weight:600;">No — under no circumstances (3)</div>
+        <div style="flex:1;background:#059669;color:#fff;padding:12px;border-radius:8px;text-align:center;font-size:14px;font-weight:600;">Yes — Board controls (1)</div>
+        <div style="flex:1;background:#94a3b8;color:#fff;padding:12px;border-radius:8px;text-align:center;font-size:14px;font-weight:600;">Undecided (1)</div>
+      </div>
+    </div>
+    <div style="font-size:15px;color:#475569;margin-bottom:16px;padding:12px 16px;background:rgba(255,255,255,0.7);border-radius:8px;">
+      <strong>Why this matters:</strong> Your vendors are already embedding AI into products the Bank uses. A blanket prohibition may not be enforceable. A controlled adoption framework provides governance without driving AI underground.
+    </div>
+    <div class="decision-box">
+      <h3>Proposed Resolution — Board Vote Required</h3>
+      <div class="option-row">
+        <div class="option-card">
+          <div class="option-label">Option A — Prohibit</div>
+          <div class="option-desc">No AI processes Bank data. Audit vendor contracts for existing AI. Accept that some vendor AI features may need to be disabled.</div>
+        </div>
+        <div class="option-card recommended">
+          <div class="option-label">Option B (Recommended)</div>
+          <div class="option-desc">Prohibit today, but direct management to develop an AI Governance Framework for Board approval within 90 days. Framework gates all future AI decisions.</div>
+        </div>
+        <div class="option-card">
+          <div class="option-label">Option C — Controlled</div>
+          <div class="option-desc">Allow with Board-approved controls. Each AI use case requires a risk assessment, vendor review, and Board vote before deployment.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 10: DECISION 3 - RISK ACCEPTANCE -->
+<div class="slide warm" id="s10">
+  <div class="slide-section" style="color:#92400e;">Decision 3 of 6</div>
+  <h2>Risk Acceptance Authority</h2>
+  <div style="flex:1;">
+    <div style="margin-bottom:20px;">
+      <p style="font-size:16px;color:#475569;margin-bottom:12px;"><strong>Question:</strong> Who should have authority to accept cyber or AI risk on behalf of the Bank?</p>
+      <div style="display:flex;gap:8px;margin:12px 0;">
+        <div style="flex:3;background:#1a1a2e;color:#fff;padding:12px;border-radius:8px;text-align:center;font-size:13px;font-weight:600;">Tiered: CISO → Risk Cmt → Board (3)</div>
+        <div style="flex:1;background:#f97316;color:#fff;padding:12px;border-radius:8px;text-align:center;font-size:13px;font-weight:600;">All via Risk Cmt (1)</div>
+        <div style="flex:1;background:#eab308;color:#000;padding:12px;border-radius:8px;text-align:center;font-size:13px;font-weight:600;">Management only (1)</div>
+      </div>
+    </div>
+    <div style="font-size:15px;color:#475569;margin-bottom:16px;padding:12px 16px;background:rgba(255,255,255,0.7);border-radius:8px;">
+      <strong>Why this matters:</strong> Examiners will ask: "Who approved this risk exception?" Without defined authority levels, the Bank cannot demonstrate functioning risk governance.
+    </div>
+    <div class="decision-box">
+      <h3>Proposed Resolution — Board Vote Required</h3>
+      <div class="option-row">
+        <div class="option-card recommended">
+          <div class="option-label">Option A (Recommended)</div>
+          <div class="option-desc"><strong>Tiered authority</strong> mirroring lending limits:<br>
+            Routine (≤$50K impact): CISO/CIO<br>
+            Material ($50K-$250K): Risk Committee<br>
+            Strategic (>$250K or policy): Full Board</div>
+        </div>
+        <div class="option-card">
+          <div class="option-label">Option B</div>
+          <div class="option-desc">All risk acceptance through Risk Committee. Ensures oversight but may create bottlenecks on routine operational exceptions.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11: DECISION 4 - FINANCIAL THRESHOLD -->
+<div class="slide warm" id="s11">
+  <div class="slide-section" style="color:#92400e;">Decision 4 of 6</div>
+  <h2>Financial Loss Threshold</h2>
+  <div style="flex:1;">
+    <div style="margin-bottom:20px;">
+      <p style="font-size:16px;color:#475569;margin-bottom:12px;"><strong>Question:</strong> Maximum acceptable financial loss from a single cyber event before the Board considers it a threat to safety and soundness?</p>
+    </div>
+    <div class="stat-row">
+      <div class="stat-card" style="border-left:4px solid #dc2626;">
+        <div style="font-size:14px;color:#64748b;">Director A</div>
+        <div style="font-size:24px;font-weight:700;">$500K</div>
+        <div style="font-size:12px;color:#64748b;">or regulatory notification trigger</div>
+      </div>
+      <div class="stat-card" style="border-left:4px solid #f97316;">
+        <div style="font-size:14px;color:#64748b;">Director B</div>
+        <div style="font-size:24px;font-weight:700;">$750K</div>
+        <div style="font-size:12px;color:#64748b;">~1.5% of Tier 1 capital</div>
+      </div>
+      <div class="stat-card" style="border-left:4px solid #f97316;">
+        <div style="font-size:14px;color:#64748b;">Director C</div>
+        <div style="font-size:24px;font-weight:700;">$750K</div>
+        <div style="font-size:12px;color:#64748b;">based on capital cushion</div>
+      </div>
+      <div class="stat-card" style="border-left:4px solid #eab308;">
+        <div style="font-size:14px;color:#64748b;">Director D</div>
+        <div style="font-size:24px;font-weight:700;">$1.0M</div>
+        <div style="font-size:12px;color:#64748b;">gut feel based on size</div>
+      </div>
+      <div class="stat-card" style="border-left:4px solid #eab308;">
+        <div style="font-size:14px;color:#64748b;">Director E</div>
+        <div style="font-size:24px;font-weight:700;">$1.5M</div>
+        <div style="font-size:12px;color:#64748b;">~2% of Tier 1 capital</div>
+      </div>
+    </div>
+    <div class="decision-box">
+      <h3>Proposed Resolution</h3>
+      <p style="font-size:15px;color:#475569;">Adopt <strong>$750,000</strong> (median response, ~1.5% of Tier 1 capital) as the Board-approved materiality threshold. This should be documented in the Risk Appetite Statement and reviewed annually.</p>
+      <p style="font-size:13px;color:#64748b;margin-top:8px;">Additionally, any event triggering regulatory notification is automatically material regardless of dollar amount.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 12: DECISION 5 - BOARD COMPETENCY -->
+<div class="slide warm" id="s12">
+  <div class="slide-section" style="color:#92400e;">Decision 5 of 6</div>
+  <h2>Board Cyber Competency</h2>
+  <div style="flex:1;">
+    <div style="margin-bottom:20px;">
+      <p style="font-size:16px;color:#475569;margin-bottom:12px;"><strong>Question:</strong> How would you rate the Board's collective cyber and technology risk competency?</p>
+      <div style="display:flex;gap:8px;margin:12px 0;">
+        <div style="flex:1;background:#dc2626;color:#fff;padding:14px;border-radius:8px;text-align:center;font-size:13px;font-weight:600;">Significant gap — rely on mgmt (1)</div>
+        <div style="flex:3;background:#f97316;color:#fff;padding:14px;border-radius:8px;text-align:center;font-size:13px;font-weight:600;">Partially — gaps in AI, cloud (3)</div>
+        <div style="flex:1;background:#eab308;color:#000;padding:14px;border-radius:8px;text-align:center;font-size:13px;font-weight:600;">Relies on mgmt (1)</div>
+      </div>
+    </div>
+    <div style="font-size:15px;color:#475569;margin-bottom:16px;padding:12px 16px;background:rgba(255,255,255,0.7);border-radius:8px;">
+      <strong>The Board is self-aware.</strong> Multiple directors noted the gap and asked for education. One director left 13 questions unanswered because they did not feel qualified to answer. OCC guidance expects boards to assess and address cyber competency.
+    </div>
+    <div class="decision-box">
+      <h3>Proposed Actions — Board Vote Required</h3>
+      <div class="option-row">
+        <div class="option-card recommended" style="text-align:left;">
+          <div class="option-label">A. Board Education</div>
+          <div class="option-desc">Annual cyber/AI literacy training for all directors. Jones & Associates can provide the first session.</div>
+        </div>
+        <div class="option-card" style="text-align:left;">
+          <div class="option-label">B. Recruit Expertise</div>
+          <div class="option-desc">Add a director with technology or cybersecurity background. Fills the gap structurally.</div>
+        </div>
+        <div class="option-card" style="text-align:left;">
+          <div class="option-label">C. Advisory Committee</div>
+          <div class="option-desc">Appoint a Technology Advisory Committee of external experts who report to the Board quarterly.</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:#64748b;margin-top:8px;">These options are not mutually exclusive. We recommend A immediately, B within 12 months.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 13: DECISION 6 - THREE LINES -->
+<div class="slide warm" id="s13">
+  <div class="slide-section" style="color:#92400e;">Decision 6 of 6</div>
+  <h2>Three Lines of Defense</h2>
+  <div style="flex:1;">
+    <div style="margin-bottom:20px;">
+      <p style="font-size:16px;color:#475569;margin-bottom:12px;"><strong>Question:</strong> Does the Board's current cyber risk oversight align with a three lines of defense structure?</p>
+      <div style="display:flex;gap:8px;margin:12px 0;">
+        <div style="flex:0;background:#059669;"></div>
+        <div style="flex:3;background:#f97316;color:#fff;padding:14px;border-radius:8px;text-align:center;font-size:13px;font-weight:600;">Partially — overlap / resource gaps (3)</div>
+        <div style="flex:1;background:#dc2626;color:#fff;padding:14px;border-radius:8px;text-align:center;font-size:13px;font-weight:600;">No — not delineated (1)</div>
+        <div style="flex:1;background:#94a3b8;color:#fff;padding:14px;border-radius:8px;text-align:center;font-size:13px;font-weight:600;">Unsure (1)</div>
+      </div>
+      <p style="font-size:14px;color:#dc2626;font-weight:600;margin-top:8px;">Zero directors selected "Yes — all three lines are independent and effective."</p>
+    </div>
+    <div class="two-col" style="margin-bottom:16px;">
+      <div style="background:rgba(255,255,255,0.7);border-radius:8px;padding:16px;">
+        <h3 style="font-size:15px;color:#dc2626;">Gaps Identified by Directors</h3>
+        <div class="bullet small">Compliance officer reports to CEO — independence gap</div>
+        <div class="bullet small">Internal audit outsourced with limited IT scope</div>
+        <div class="bullet small">IT operations does not formally own first-line risk</div>
+        <div class="bullet small">No regular three-line reporting to the Board</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.7);border-radius:8px;padding:16px;">
+        <h3 style="font-size:15px;color:#059669;">Recommended Structure</h3>
+        <div class="bullet small"><strong>1st Line:</strong> IT Operations owns and manages cyber risk</div>
+        <div class="bullet small"><strong>2nd Line:</strong> Risk/Compliance provides independent oversight</div>
+        <div class="bullet small"><strong>3rd Line:</strong> Internal audit independently validates controls</div>
+        <div class="bullet small">Board receives reporting from all three lines</div>
+      </div>
+    </div>
+    <div style="padding:12px 16px;background:#fef2f2;border-radius:8px;border:1px solid #fecaca;font-size:14px;">
+      <strong>Assessment note:</strong> This is a likely examination finding. The assessment will evaluate the independence and effectiveness of each line and recommend structural improvements in the final report.
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 14: BREAK -->
+<div class="slide dark" id="s14">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+    <div style="font-size:64px;font-weight:800;color:#f59e0b;">10:15 AM</div>
+    <div style="font-size:24px;color:#94a3b8;margin-top:16px;">10-Minute Break</div>
+    <div style="font-size:16px;color:#64748b;margin-top:32px;">When we return: Board Motions & Resolutions</div>
+  </div>
+</div>
+
+<!-- SLIDE 15: MOTIONS -->
+<div class="slide blue" id="s15">
+  <div class="slide-section" style="color:#1d4ed8;">10:25 AM — Board Motions</div>
+  <h2 style="color:#1e3a5f;">Proposed Board Resolutions</h2>
+  <div style="flex:1;">
+    <p style="font-size:16px;color:#475569;margin-bottom:20px;">Based on today's discussion, Jones & Associates recommends the Board adopt the following resolutions. Each requires a formal vote and will be documented in the Board minutes.</p>
+
+    <div class="action-item"><div class="action-num">1</div><div><strong>RESOLVED</strong> — The Board adopts a near-zero tolerance for cybersecurity underinvestment and approves funding the CISO's FY2027 cybersecurity budget at or above peer benchmarks. <span style="color:#64748b;font-size:13px;">(per option selected on Decision 1)</span></div></div>
+
+    <div class="action-item"><div class="action-num">2</div><div><strong>RESOLVED</strong> — The Board directs management to develop an AI Governance Framework within 90 days for Board approval. Until that framework is approved, no AI tools shall process confidential Bank or customer data. <span style="color:#64748b;font-size:13px;">(per option selected on Decision 2)</span></div></div>
+
+    <div class="action-item"><div class="action-num">3</div><div><strong>RESOLVED</strong> — The Board adopts a tiered risk acceptance authority structure. CISO/CIO for routine exceptions (≤$50K), Risk Committee for material exceptions ($50K-$250K), Full Board for strategic risk decisions (>$250K or policy). <span style="color:#64748b;font-size:13px;">(per option selected on Decision 3)</span></div></div>
+
+    <div class="action-item"><div class="action-num">4</div><div><strong>RESOLVED</strong> — The Board sets $750,000 as the materiality threshold for a single cyber event. Any event triggering regulatory notification is automatically material. This threshold shall be documented in the Risk Appetite Statement. <span style="color:#64748b;font-size:13px;">(Decision 4)</span></div></div>
+
+    <div class="action-item"><div class="action-num">5</div><div><strong>RESOLVED</strong> — The Board directs the Compensation Committee to include cybersecurity competency in the Board skills matrix and to identify candidates with technology or cybersecurity background for future appointment. Annual Board cyber literacy training begins in Q4 2026. <span style="color:#64748b;font-size:13px;">(Decision 5)</span></div></div>
+
+    <div class="action-item"><div class="action-num">6</div><div><strong>RESOLVED</strong> — The Board directs management to evaluate and strengthen the three lines of defense for cyber risk, including compliance reporting independence, internal audit IT scope, and first-line risk ownership. Report back within 60 days. <span style="color:#64748b;font-size:13px;">(Decision 6)</span></div></div>
+  </div>
+</div>
+
+<!-- SLIDE 16: ASSESSMENT IMPLICATIONS -->
+<div class="slide light" id="s16">
+  <div class="slide-section" style="color:#94a3b8;">10:45 AM — Assessment Implications</div>
+  <h2>What Happens Next</h2>
+  <div style="flex:1;">
+    <div class="two-col">
+      <div>
+        <h3 style="font-size:18px;">How Today Shapes the Assessment</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <strong>Today's resolutions</strong> become the formal risk appetite baseline<br>
+            <span style="color:#64748b;font-size:13px;">Documented in Board minutes and Risk Appetite Statement</span>
+          </div>
+          <div class="timeline-item">
+            <strong>Evidence collection continues</strong> — Waves 1-7<br>
+            <span style="color:#64748b;font-size:13px;">July 8 through August 19</span>
+          </div>
+          <div class="timeline-item">
+            <strong>Assessment begins</strong> — target August 25<br>
+            <span style="color:#64748b;font-size:13px;">Control gaps scored against YOUR stated appetite</span>
+          </div>
+          <div class="timeline-item">
+            <strong>Final report</strong> shows appetite vs. posture<br>
+            <span style="color:#64748b;font-size:13px;">Board presentation includes today's appetite baseline</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:18px;">Severity Calibration</h3>
+        <div style="background:#f8fafc;border-radius:8px;padding:16px;margin-bottom:16px;">
+          <p style="font-size:14px;color:#475569;margin-bottom:12px;">With Board appetite at <strong>1.39/5.0</strong>, we will use this calibration:</p>
+          <div style="display:flex;gap:8px;margin-bottom:6px;">
+            <span style="background:#dc2626;color:#fff;padding:4px 12px;border-radius:4px;font-size:13px;font-weight:600;width:80px;text-align:center;">Critical</span>
+            <span style="font-size:14px;">Consensus-low-appetite area + major gap</span>
+          </div>
+          <div style="display:flex;gap:8px;margin-bottom:6px;">
+            <span style="background:#f97316;color:#fff;padding:4px 12px;border-radius:4px;font-size:13px;font-weight:600;width:80px;text-align:center;">High</span>
+            <span style="font-size:14px;">Low appetite + moderate gap</span>
+          </div>
+          <div style="display:flex;gap:8px;margin-bottom:6px;">
+            <span style="background:#eab308;color:#000;padding:4px 12px;border-radius:4px;font-size:13px;font-weight:600;width:80px;text-align:center;">Medium</span>
+            <span style="font-size:14px;">Moderate appetite + minor gap</span>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <span style="background:#22c55e;color:#fff;padding:4px 12px;border-radius:4px;font-size:13px;font-weight:600;width:80px;text-align:center;">Low</span>
+            <span style="font-size:14px;">Appetite aligned with posture</span>
+          </div>
+        </div>
+        <div style="font-size:14px;color:#475569;padding:12px 16px;background:#fef3c7;border-radius:8px;">
+          <strong>Your conservatism raises the bar.</strong> What might be "medium" at a 3.0-appetite bank becomes "high" at a 1.4-appetite bank.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 17: CLOSE -->
+<div class="slide dark" id="s17">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+    <div class="firm-tag">Jones & Associates</div>
+    <div style="font-size:36px;font-weight:700;margin-bottom:16px;">Thank You</div>
+    <div style="font-size:18px;color:#94a3b8;margin-bottom:32px;">Your engagement in this process strengthens the assessment</div>
+    <div style="display:flex;gap:32px;margin-top:16px;">
+      <div style="text-align:center;">
+        <div style="font-size:14px;color:#64748b;">Next Check-In</div>
+        <div style="font-size:20px;font-weight:600;">July 15, 2026</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:14px;color:#64748b;">Wave 1 Evidence Due</div>
+        <div style="font-size:20px;font-weight:600;">July 8, 2026</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:14px;color:#64748b;">Assessment Begins</div>
+        <div style="font-size:20px;font-weight:600;">August 25, 2026</div>
+      </div>
+    </div>
+    <div style="margin-top:48px;font-size:13px;color:#64748b;">
+      Document ID: HCB-BWS-004 &nbsp;|&nbsp; Confidential &nbsp;|&nbsp; July 2026
+    </div>
+  </div>
+</div>
+
+<div class="slide-number" id="slideNum">1 / 17</div>
+<div class="slide-footer">CONFIDENTIAL — Jones & Associates | Heritage Community Bank</div>
+<div class="nav-hint">← → Arrow keys or click to navigate</div>
+
+<script>
+let current = 0;
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+
+function show(n) {
+  slides.forEach(s => s.classList.remove('active'));
+  current = Math.max(0, Math.min(n, total - 1));
+  slides[current].classList.add('active');
+  document.getElementById('slideNum').textContent = (current + 1) + ' / ' + total;
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); show(current + 1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1); }
+  if (e.key === 'Home') show(0);
+  if (e.key === 'End') show(total - 1);
+});
+
+document.addEventListener('click', e => {
+  if (e.clientX > window.innerWidth / 2) show(current + 1);
+  else show(current - 1);
+});
+
+show(0);
+</script>
+</body>
+</html>

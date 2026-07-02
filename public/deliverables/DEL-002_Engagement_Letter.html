@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEL-002 | Engagement Letter — Heritage Community Bank</title>
+<style>
+  @page { margin: 1in; size: letter; }
+  @media print { .no-print { display: none; } body { font-size: 11pt; } }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', 'Times New Roman', serif; background: #f5f5f0; color: #1a1a1a; line-height: 1.7; }
+  .page { max-width: 850px; margin: 40px auto; background: #fff; box-shadow: 0 1px 8px rgba(0,0,0,0.08); }
+  .letterhead {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 32px 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .letterhead .firm { font-size: 22px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+  .letterhead .tagline { font-size: 12px; color: #94a3b8; margin-top: 4px; letter-spacing: 0.5px; }
+  .letterhead .doc-meta { text-align: right; font-size: 12px; color: #94a3b8; line-height: 1.8; }
+  .letterhead .doc-meta .doc-id { color: #fff; font-weight: 600; font-size: 13px; }
+
+  .content { padding: 48px 56px; }
+  .date { font-size: 14px; margin-bottom: 24px; }
+  .addressee { font-size: 14px; margin-bottom: 24px; line-height: 1.8; }
+  .re-line { font-size: 14px; font-weight: 700; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .salutation { font-size: 14px; margin-bottom: 20px; }
+
+  h2 { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #1a1a2e; border-bottom: 2px solid #1a1a2e; padding-bottom: 6px; margin-top: 32px; margin-bottom: 16px; }
+  p { margin-bottom: 14px; font-size: 14px; }
+  .indent { padding-left: 24px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 13px; }
+  th { text-align: left; padding: 10px 14px; background: #f1f5f9; border: 1px solid #e2e8f0; font-weight: 700; color: #1a1a2e; font-size: 12px; text-transform: uppercase; letter-spacing: 0.3px; }
+  td { padding: 10px 14px; border: 1px solid #e2e8f0; vertical-align: top; }
+  tr:nth-child(even) { background: #fafbfc; }
+
+  ol.letter { list-style-type: lower-alpha; padding-left: 28px; font-size: 14px; }
+  ol.letter li { margin-bottom: 12px; line-height: 1.6; }
+  ol.num { list-style-type: decimal; padding-left: 28px; font-size: 14px; }
+  ol.num li { margin-bottom: 8px; line-height: 1.5; }
+
+  ul.check { list-style: none; padding: 0; }
+  ul.check li { padding: 6px 0 6px 28px; position: relative; font-size: 14px; }
+  ul.check li::before { content: '—'; position: absolute; left: 4px; color: #64748b; font-weight: 700; }
+
+  .sig-block { margin-top: 48px; }
+  .sig-section { margin-bottom: 40px; }
+  .sig-section .firm-name { font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 20px; }
+  .sig-line { font-style: italic; font-size: 14px; border-bottom: 1px solid #1a1a2e; display: inline-block; min-width: 300px; padding-bottom: 2px; margin-bottom: 4px; }
+  .sig-date { display: inline-block; margin-left: 40px; font-size: 13px; color: #64748b; }
+  .sig-name { font-weight: 700; font-size: 14px; margin-top: 4px; }
+  .sig-title { font-size: 13px; color: #64748b; }
+
+  .footer {
+    background: #1a1a2e;
+    color: #94a3b8;
+    padding: 16px 56px;
+    font-size: 11px;
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+  .footer .conf { color: #ef4444; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+  .provenance {
+    margin-top: 36px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .provenance-header {
+    background: #f1f5f9;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #475569;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .provenance-body { padding: 16px 20px; }
+  .prov-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
+  .prov-row:last-child { border-bottom: none; }
+  .prov-role { width: 140px; font-weight: 700; color: #334155; flex-shrink: 0; }
+  .prov-agent { color: #475569; flex: 1; }
+  .prov-id { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: #64748b; }
+  .prov-date { width: 100px; text-align: right; font-size: 12px; color: #64748b; flex-shrink: 0; }
+  .prov-status { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+  .prov-approved { background: #d1fae5; color: #065f46; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="letterhead">
+  <div>
+    <div class="firm">Jones & Associates</div>
+    <div class="tagline">Cybersecurity Risk Advisory</div>
+  </div>
+  <div class="doc-meta">
+    <div class="doc-id">HCB-EL-002</div>
+    <div>Version 1.0</div>
+    <div>July 2026</div>
+  </div>
+</div>
+
+<div class="content">
+
+<div class="date">July 1, 2026</div>
+
+<div class="addressee">
+  Ms. Karen Whitfield<br>
+  Chief Risk Officer<br>
+  Heritage Community Bank<br>
+  2847 Commerce Boulevard<br>
+  Heritage Falls, PA 19426
+</div>
+
+<div class="salutation">Dear Ms. Whitfield:</div>
+
+<div class="re-line">RE: Engagement Letter — Threat-Informed Cyber Risk Assessment</div>
+
+<p>Thank you for selecting Jones &amp; Associates ("the Firm") to perform a Threat-Informed Cyber Risk Assessment for Heritage Community Bank ("the Bank"). This letter confirms the terms and scope of our engagement.</p>
+
+<h2>1. Purpose</h2>
+<p>The purpose of this engagement is to assess the Bank's cybersecurity posture using a threat-informed methodology that maps controls to specific threat scenarios relevant to the institution's risk profile.</p>
+
+<p>This engagement was initiated in response to three Matters Requiring Attention (MRAs) issued by the FDIC in a confidential supervisory communication dated March 28, 2026, following the Bank's IT examination (January 12 – February 7, 2026). The MRAs cited:</p>
+
+<table>
+  <tr><th style="width:160px">MRA</th><th>Finding</th></tr>
+  <tr><td>MRA 2026-IT-001</td><td>Risk assessment lacks threat intelligence integration</td></tr>
+  <tr><td>MRA 2026-IT-002</td><td>Board risk appetite not formally articulated</td></tr>
+  <tr><td>MRA 2026-IT-003</td><td>No independent cybersecurity assessment (36 months)</td></tr>
+</table>
+
+<p>The Firm has executed a Non-Disclosure Agreement for Confidential Supervisory Information permitting access to the MRA letter for engagement scoping and execution. The Firm's deliverables will reference MRA identifiers to demonstrate traceability but will not reproduce the full text of the supervisory communication.</p>
+
+<h2>2. Scope of Services</h2>
+<p>The Firm will perform the following services:</p>
+<ol class="letter">
+  <li>Develop a threat profile specific to the Bank's size ($1.2 billion in assets), services, geography, and regulatory environment</li>
+  <li>Select and map MITRE ATT&CK techniques relevant to the Bank's threat landscape</li>
+  <li>Evaluate the Bank's controls against CRI Profile v2.2 diagnostic statements across all applicable SCF control library domains</li>
+  <li>Assess control coverage and identify gaps where controls do not adequately mitigate selected threat techniques</li>
+  <li>Produce a risk-rated findings register with each gap traced to the specific MITRE mitigation it fails to address</li>
+  <li>Deliver a prioritized remediation roadmap with phased recommendations</li>
+  <li>Present findings to the Board of Directors</li>
+</ol>
+<p>The assessment covers all business lines, technology systems, and operational processes within the Bank's enterprise. The detailed scope is documented in the Engagement Charter (HCB-EC-001), which is incorporated by reference.</p>
+
+<h2>3. Out of Scope</h2>
+<ul class="check">
+  <li>Penetration testing or active vulnerability exploitation</li>
+  <li>Regulatory examination response drafting</li>
+  <li>Control implementation or remediation execution</li>
+  <li>Legal or compliance opinion</li>
+  <li>Business continuity plan testing</li>
+  <li>Vendor contract negotiation</li>
+</ul>
+
+<h2>4. Engagement Lifecycle</h2>
+<p>The assessment follows a 15-stage engagement lifecycle aligned to the CRI Profile framework, MITRE ATT&CK for Enterprise, and NIST Cybersecurity Framework 2.0:</p>
+<ol class="num">
+  <li>Engagement Planning</li>
+  <li>Business Context</li>
+  <li>Threat Modeling</li>
+  <li>Threat Intelligence</li>
+  <li>MITRE ATT&CK Selection</li>
+  <li>CRI Profile Mapping</li>
+  <li>Evidence Request</li>
+  <li>Evidence Validation</li>
+  <li>Coverage Analysis</li>
+  <li>Gap Analysis</li>
+  <li>Risk Prioritization</li>
+  <li>Threat Library Assembly</li>
+  <li>Executive Reporting</li>
+  <li>Remediation Roadmap</li>
+  <li>Lessons Learned</li>
+</ol>
+
+<h2>5. Deliverables</h2>
+<table>
+  <tr><th>ID</th><th>Deliverable</th><th>Format</th></tr>
+  <tr><td>DEL-001</td><td>Engagement Charter</td><td>PDF</td></tr>
+  <tr><td>DEL-002</td><td>Engagement Letter</td><td>PDF</td></tr>
+  <tr><td>DEL-003</td><td>Scope Document</td><td>PDF</td></tr>
+  <tr><td>DEL-004</td><td>Board Risk Appetite Questionnaire</td><td>PDF</td></tr>
+  <tr><td>DEL-005</td><td>Board Risk Appetite Report</td><td>PDF</td></tr>
+  <tr><td>DEL-006</td><td>Information Request List</td><td>Excel</td></tr>
+  <tr><td>DEL-007</td><td>Evidence Tracker</td><td>Excel</td></tr>
+  <tr><td>DEL-008</td><td>MITRE ATT&CK Workbook</td><td>Excel</td></tr>
+  <tr><td>DEL-009</td><td>CRI Profile Workbook</td><td>Excel</td></tr>
+  <tr><td>DEL-010</td><td>Coverage Assessment Dashboard</td><td>Excel</td></tr>
+  <tr><td>DEL-011</td><td>Risk Register</td><td>Excel</td></tr>
+  <tr><td>DEL-012</td><td>Threat Profile</td><td>PDF</td></tr>
+  <tr><td>DEL-013</td><td>Threat Library</td><td>Dashboard</td></tr>
+  <tr><td>DEL-014</td><td>Executive Dashboard</td><td>Dashboard</td></tr>
+  <tr><td>DEL-015</td><td>Board Presentation</td><td>PPTX</td></tr>
+  <tr><td>DEL-016</td><td>Technical Appendix</td><td>PDF</td></tr>
+  <tr><td>DEL-017</td><td>Management Response Template</td><td>Word</td></tr>
+  <tr><td>DEL-018</td><td>Final Report</td><td>PDF</td></tr>
+  <tr><td>DEL-019</td><td>Lessons Learned</td><td>PDF</td></tr>
+</table>
+
+<h2>6. Engagement Team</h2>
+<table>
+  <tr><th>Role</th><th>Assigned</th><th>ID</th></tr>
+  <tr><td>Engagement Lead</td><td>Tristan Jones, CISA, AAIA</td><td>—</td></tr>
+  <tr><td>Capability Orchestrator</td><td>AI Agent</td><td>ACF-ORCH-001</td></tr>
+  <tr><td>Threat Intelligence Specialist</td><td>AI Agent</td><td>ACF-TI-001</td></tr>
+  <tr><td>Control Assessor</td><td>AI Agent</td><td>ACF-CA-001</td></tr>
+  <tr><td>Evidence Collection &amp; Validation</td><td>AI Agent</td><td>ACF-EV-001</td></tr>
+  <tr><td>Technical Writer</td><td>AI Agent</td><td>ACF-TW-001</td></tr>
+  <tr><td>Quality Assurance</td><td>AI Agent</td><td>ACF-QA-001</td></tr>
+</table>
+<p>All AI agents are governed capability packages operating under direct supervision of the Engagement Lead. Each agent has a defined capability scope, confidence threshold, and escalation policy. Agent activity is logged, auditable, and subject to human review before any finding is finalized.</p>
+
+<h2>7. Client Responsibilities</h2>
+<p>The Bank agrees to:</p>
+<ol class="letter">
+  <li>Designate liaisons with authority to provide evidence and answer questions within agreed timelines</li>
+  <li>Provide evidence in electronic format (PDF, Excel, Word, or screenshot) within 5 business days of request</li>
+  <li>Provide the Bank's existing risk assessment (checklist-based) as a baseline for comparison</li>
+  <li>Grant read-only access to relevant systems for evidence validation where applicable</li>
+  <li>Make stakeholders available for interviews as needed</li>
+</ol>
+
+<h2>8. Data Handling and Confidentiality</h2>
+<ul class="check">
+  <li>All Bank data will be stored in a dedicated, encrypted environment with access logging</li>
+  <li>No data will leave the secure environment without explicit authorization from the Bank</li>
+  <li>AI agent access is fully auditable — every query, read, and analysis action is logged and available for Bank review</li>
+  <li>At engagement close, all Bank data will be destroyed per NIST SP 800-88 Rev. 1, with formal destruction attestation provided</li>
+  <li>The Firm will maintain confidentiality of all Bank information obtained during this engagement</li>
+</ul>
+
+<h2>9. Timeline</h2>
+<p>The engagement is estimated at 4-6 weeks, structured into 10-12 focused sessions. A detailed project schedule will be provided within 5 business days of engagement commencement.</p>
+
+<h2>10. Limitations</h2>
+<p>This engagement is advisory in nature. The Firm does not implement controls, make binding risk acceptance decisions, or provide legal opinion. Findings are point-in-time based on evidence reviewed during the engagement period. The assessment does not guarantee the identification of all risks or vulnerabilities.</p>
+
+<h2>11. AI Governance and Human Oversight</h2>
+<ol class="letter">
+  <li><strong>Human Approval Gates</strong> — No finding, risk rating, or recommendation is finalized without review and approval by the Engagement Lead. AI agents produce draft analysis; humans make conclusions.</li>
+  <li><strong>Confidence Thresholds</strong> — Each AI agent has a defined operational confidence score. When confidence falls below threshold, work is escalated to the Engagement Lead.</li>
+  <li><strong>Evidence Traceability</strong> — Every conclusion traces back to source evidence through a documented chain: source document, analysis performed, rationale applied, conclusion reached.</li>
+  <li><strong>Audit Logging</strong> — All agent activity is logged with timestamps, inputs, outputs, and decision rationale.</li>
+  <li><strong>Model Provenance</strong> — Specific AI models and capability package versions used are recorded for reproducibility.</li>
+  <li><strong>Version-Controlled Capability Packages</strong> — Each agent operates from a versioned, tested capability package with defined inputs, outputs, and quality gates.</li>
+  <li><strong>Segregation of Duties</strong> — The Quality Assurance agent operates independently of analysis agents to challenge conclusions and verify traceability.</li>
+</ol>
+
+<div class="provenance">
+  <div class="provenance-header">Document Provenance</div>
+  <div class="provenance-body">
+    <div class="prov-row"><div class="prov-role">Created by</div><div class="prov-agent">Technical Writer Agent <span class="prov-id">ACF-TW-001 · Opus</span></div><div class="prov-date">07/01/2026</div></div>
+    <div class="prov-row"><div class="prov-role">Reviewed by</div><div class="prov-agent">Quality Assurance Agent <span class="prov-id">ACF-QA-001 · Sonnet</span></div><div class="prov-date">07/01/2026</div></div>
+    <div class="prov-row"><div class="prov-role">Human Signoff</div><div class="prov-agent">Tristan Jones, CISA, AAIA — Engagement Lead <span class="prov-status prov-approved">Approved</span></div><div class="prov-date">07/01/2026</div></div>
+  </div>
+</div>
+
+<h2>12. Acceptance</h2>
+<p>By signing below, both parties acknowledge and agree to the terms of this engagement as described in this letter and the referenced Engagement Charter (HCB-EC-001).</p>
+
+<div class="sig-block">
+  <div class="sig-section">
+    <div class="firm-name">Jones &amp; Associates</div>
+    <div><span class="sig-line">/s/ Tristan Jones</span><span class="sig-date">Date: July 1, 2026</span></div>
+    <div class="sig-name">Tristan Jones, CISA, AAIA</div>
+    <div class="sig-title">Engagement Lead</div>
+  </div>
+  <div class="sig-section">
+    <div class="firm-name">Heritage Community Bank</div>
+    <div><span class="sig-line">/s/ Karen Whitfield</span><span class="sig-date">Date: July 1, 2026</span></div>
+    <div class="sig-name">Karen Whitfield</div>
+    <div class="sig-title">Chief Risk Officer</div>
+  </div>
+  <div class="sig-section">
+    <div><span class="sig-line">/s/ Robert Callahan</span><span class="sig-date">Date: July 1, 2026</span></div>
+    <div class="sig-name">Robert Callahan</div>
+    <div class="sig-title">Chair, Board of Directors</div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <span class="conf">Confidential</span><br>
+  Jones &amp; Associates | Heritage Community Bank | Document ID: HCB-EL-002 | Version 1.0
+</div>
+
+</div>
+</body>
+</html>

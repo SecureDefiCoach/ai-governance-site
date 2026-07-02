@@ -79,6 +79,38 @@ const capabilities = [
   { name: "Data Analytics & Executive Dashboards", status: "Experimental", executor: "Local / Cloud" },
 ];
 
+const engagement = {
+  client: "Heritage Community Bank",
+  type: "Threat-Informed Cyber Risk Assessment",
+  trigger: "3 FDIC MRAs — Q1 2026 IT examination (Composite Rating 3)",
+  profile: "$1.2B assets | 8 branches | 320 employees | State-chartered, FDIC-insured",
+  frameworks: ["SCF 2026.1 (1,468 controls)", "CRI Profile v2.2", "MITRE ATT&CK v16", "NIST CSF 2.0"],
+  riskDomains: ["Access Control (R-AC-1 to R-AC-4)", "Asset Management (R-AM-1 to R-AM-3)", "Governance (R-GV-1 to R-GV-8)"],
+  dataEnvironment: {
+    name: "Heritage_Risk_Assessment_Data",
+    platform: "AWS VPC (us-east-1)",
+    encryption: "AES-256 at rest, TLS in transit",
+    access: "Two-door model: bank uploads, firm reads. Data never leaves.",
+    logging: "CloudTrail + S3 access logs forwarded to bank SIEM",
+    destruction: "NIST SP 800-88 at engagement close with attestation",
+  },
+  deliverables: [
+    { id: "DEL-001", name: "Engagement Charter", status: "Complete", href: "/deliverables/DEL-001_Engagement_Charter.html", description: "Scope, methodology, stakeholders, AI governance, regulatory basis (3 MRAs)" },
+    { id: "DEL-002", name: "Engagement Letter", status: "Complete", href: "/deliverables/DEL-002_Engagement_Letter.html", description: "Professional services agreement with data handling, AI oversight, NDA for CSI" },
+    { id: "DEL-003", name: "Scope Document", status: "Complete", href: "/deliverables/DEL-003_Scope_Document.html", description: "Assessment targets, exclusions, MRA-to-deliverable mapping, risk scoring" },
+    { id: "DEL-004", name: "Board Risk Appetite Questionnaire", status: "Complete", href: "/deliverables/DEL-004_Board_Risk_Appetite_Questionnaire.html", description: "8-domain risk appetite instrument — 5 directors, 30 questions (MRA 2026-IT-002)" },
+    { id: "DEL-005", name: "Board Risk Appetite Report", status: "Complete", href: "/deliverables/DEL-005_Board_Risk_Appetite_Report.html", description: "Baseline 1.39/5.0, 25 consensus areas, 6 Board motions, severity calibration" },
+    { id: "DEL-006", name: "Information Request List", status: "Complete", href: "/deliverables/DEL-006_Information_Request_List.html", description: "52 items across 9 categories, 7-wave schedule, POC assignments" },
+  ],
+  upcoming: [
+    "DEL-007 Evidence Tracker", "DEL-008 MITRE ATT&CK Workbook", "DEL-009 CRI Profile Workbook",
+    "DEL-010 Coverage Dashboard", "DEL-011 Risk Register", "DEL-012 Threat Profile",
+    "DEL-013 Threat Library", "DEL-014 Executive Dashboard", "DEL-015 Board Presentation",
+    "DEL-016 Technical Appendix", "DEL-017 Management Response", "DEL-018 Final Report",
+    "DEL-019 Lessons Learned"
+  ],
+};
+
 const observabilityStack = [
   { tool: "Splunk", role: "Centralized log ingestion, search, and alerting for all inference activity" },
   { tool: "JSONL Pipeline", role: "Structured event logging with sanitization — only operational telemetry is stored" },
@@ -257,6 +289,150 @@ export default function Lab() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        <Separator />
+
+        {/* Active Engagement */}
+        <section>
+          <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+            <div className="flex items-center gap-3 mb-1">
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+                Active Engagement
+              </h2>
+              <Badge variant="default" className="text-xs">Live</Badge>
+            </div>
+            <p className="mt-4 max-w-3xl text-muted-foreground">
+              A complete consulting engagement built end-to-end — from signed
+              agreements through data environment provisioning to evidence
+              collection. Every deliverable demonstrates the capability
+              framework in action. The engagement is the product.
+            </p>
+
+            {/* Client Card */}
+            <Card className="mt-10">
+              <CardHeader className="pb-4">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <CardTitle className="text-xl">{engagement.client}</CardTitle>
+                    <p className="text-sm text-muted-foreground mt-1">{engagement.type}</p>
+                  </div>
+                  <Badge variant="outline" className="text-xs">Demo Engagement</Badge>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Profile</p>
+                    <p className="text-sm">{engagement.profile}</p>
+                    <p className="text-sm text-muted-foreground mt-1">{engagement.trigger}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">Frameworks</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {engagement.frameworks.map((f) => (
+                        <Badge key={f} variant="secondary" className="text-xs">{f}</Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <Separator />
+
+                {/* Data Environment */}
+                <div>
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">Secure Data Environment</p>
+                  <div className="rounded-lg border bg-muted/30 p-4 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <svg className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                      </svg>
+                      <span className="text-sm font-medium">{engagement.dataEnvironment.name}</span>
+                      <Badge variant="outline" className="text-xs ml-auto">{engagement.dataEnvironment.platform}</Badge>
+                    </div>
+                    <div className="grid gap-1.5 text-xs text-muted-foreground pl-6">
+                      <p>{engagement.dataEnvironment.encryption}</p>
+                      <p>{engagement.dataEnvironment.access}</p>
+                      <p>{engagement.dataEnvironment.logging}</p>
+                      <p>{engagement.dataEnvironment.destruction}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <Separator />
+
+                {/* Risk Domains */}
+                <div>
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">Assessment Risk Domains</p>
+                  <div className="flex flex-wrap gap-2">
+                    {engagement.riskDomains.map((d) => (
+                      <Badge key={d} variant="secondary" className="text-xs">{d}</Badge>
+                    ))}
+                  </div>
+                </div>
+
+                <Separator />
+
+                {/* Deliverables */}
+                <div>
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">
+                    Engagement Deliverables
+                  </p>
+                  <div className="space-y-2">
+                    {engagement.deliverables.map((d) => {
+                      const inner = (
+                        <>
+                          <div className="flex items-center gap-3">
+                            <span className="text-xs font-mono text-muted-foreground w-16">{d.id}</span>
+                            <div>
+                              <p className="text-sm font-medium">{d.name}</p>
+                              <p className="text-xs text-muted-foreground mt-0.5">{d.description}</p>
+                            </div>
+                          </div>
+                          <Badge
+                            variant={d.status === "Complete" ? "default" : "outline"}
+                            className="text-xs ml-4 shrink-0"
+                          >
+                            {d.status}
+                          </Badge>
+                        </>
+                      );
+                      return d.href ? (
+                        <a
+                          key={d.id}
+                          href={d.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-between rounded-lg border bg-background p-3 transition-colors hover:border-primary/40 hover:bg-primary/5 cursor-pointer"
+                        >
+                          {inner}
+                        </a>
+                      ) : (
+                        <div
+                          key={d.id}
+                          className="flex items-center justify-between rounded-lg border bg-background p-3"
+                        >
+                          {inner}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Upcoming */}
+                <div>
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">
+                    Remaining Deliverables
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {engagement.upcoming.map((name) => (
+                      <Badge key={name} variant="outline" className="text-xs text-muted-foreground">{name}</Badge>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </section>
 

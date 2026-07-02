@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEL-006 | Information Request List — Heritage Community Bank</title>
+<style>
+  @page { margin: 0.75in; size: letter; }
+  @media print { .no-print { display: none; } body { font-size: 10pt; } }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', 'Times New Roman', serif; background: #f5f5f0; color: #1a1a1a; line-height: 1.6; }
+  .page { max-width: 900px; margin: 40px auto; background: #fff; box-shadow: 0 1px 8px rgba(0,0,0,0.08); }
+  .letterhead {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 32px 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .letterhead .firm { font-size: 22px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+  .letterhead .tagline { font-size: 12px; color: #94a3b8; margin-top: 4px; letter-spacing: 0.5px; }
+  .letterhead .doc-meta { text-align: right; font-size: 12px; color: #94a3b8; line-height: 1.8; }
+  .letterhead .doc-meta .doc-id { color: #fff; font-weight: 600; font-size: 13px; }
+
+  .title-block {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #fff;
+    padding: 40px 56px;
+    text-align: center;
+  }
+  .title-block h1 { font-size: 26px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .title-block .subtitle { font-size: 15px; color: #94a3b8; }
+  .title-block .client { font-size: 18px; color: #e2e8f0; margin-top: 12px; font-weight: 600; }
+  .title-block .refs { font-size: 12px; color: #64748b; margin-top: 12px; }
+
+  .content { padding: 40px 56px; }
+  h2 { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #1a1a2e; border-bottom: 2px solid #1a1a2e; padding-bottom: 6px; margin-top: 36px; margin-bottom: 16px; }
+  h2:first-child { margin-top: 0; }
+  p { margin-bottom: 14px; font-size: 14px; }
+
+  .instructions-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 16px 0 24px;
+  }
+  .instructions-box ul { list-style: none; padding: 0; }
+  .instructions-box li { padding: 6px 0 6px 20px; position: relative; font-size: 14px; }
+  .instructions-box li::before { content: '\25B8'; position: absolute; left: 0; color: #1a1a2e; }
+
+  .cat-header {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 32px;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .request-item {
+    border: 1px solid #e2e8f0;
+    border-top: none;
+    padding: 16px 20px;
+  }
+  .request-item:last-child { border-radius: 0 0 4px 4px; }
+  .request-item:nth-child(even) { background: #fafbfc; }
+  .request-id { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; font-weight: 700; color: #1a1a2e; display: inline-block; width: 70px; }
+  .request-title { font-weight: 700; font-size: 14px; color: #1a1a2e; }
+  .request-desc { font-size: 13px; color: #475569; margin-top: 6px; padding-left: 70px; }
+  .request-fields { display: flex; gap: 32px; margin-top: 10px; padding-left: 70px; }
+  .request-field { font-size: 12px; color: #64748b; }
+  .request-field strong { color: #334155; }
+  .field-line { border-bottom: 1px solid #cbd5e1; display: inline-block; min-width: 160px; }
+
+  .status-legend {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin: 16px 0;
+  }
+  .status-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+  .status-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-ns { background: #cbd5e1; }
+  .dot-req { background: #f59e0b; }
+  .dot-rec { background: #3b82f6; }
+  .dot-rev { background: #6366f1; }
+  .dot-ver { background: #10b981; }
+  .dot-res { background: #ef4444; }
+  .dot-fu { background: #f97316; }
+  .dot-na { background: #94a3b8; }
+
+  .verification-box {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 20px 0;
+  }
+  .verification-box h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; color: #92400e; margin-bottom: 8px; }
+  .verification-box ul { list-style: none; padding: 0; }
+  .verification-box li { padding: 4px 0 4px 20px; position: relative; font-size: 13px; color: #78350f; }
+  .verification-box li::before { content: '?'; position: absolute; left: 2px; font-weight: 700; color: #92400e; }
+
+  .kickoff-box {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 20px 0;
+  }
+  .kickoff-box h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; color: #166534; margin-bottom: 8px; }
+  .kickoff-box ol { padding-left: 20px; font-size: 13px; color: #15803d; }
+  .kickoff-box li { padding: 4px 0; }
+
+  .sig-block { margin-top: 40px; border-top: 2px solid #1a1a2e; padding-top: 24px; }
+  .sig-entry .sig-line { border-bottom: 1px solid #1a1a2e; height: 40px; margin-bottom: 4px; font-style: italic; padding-top: 16px; font-size: 14px; display: inline-block; min-width: 300px; }
+  .sig-entry .sig-name { font-weight: 700; font-size: 14px; }
+  .sig-entry .sig-title { font-size: 12px; color: #64748b; }
+  .sig-entry .sig-date { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+  .footer {
+    background: #1a1a2e;
+    color: #94a3b8;
+    padding: 16px 56px;
+    font-size: 11px;
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+  .footer .conf { color: #ef4444; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+  .provenance {
+    margin-top: 36px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .provenance-header {
+    background: #f1f5f9;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #475569;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .provenance-body { padding: 16px 20px; }
+  .prov-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
+  .prov-row:last-child { border-bottom: none; }
+  .prov-role { width: 140px; font-weight: 700; color: #334155; flex-shrink: 0; }
+  .prov-agent { color: #475569; flex: 1; }
+  .prov-id { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: #64748b; }
+  .prov-date { width: 100px; text-align: right; font-size: 12px; color: #64748b; flex-shrink: 0; }
+  .prov-status { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+  .prov-approved { background: #d1fae5; color: #065f46; }
+  .prov-draft { background: #fef3c7; color: #92400e; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="letterhead">
+  <div>
+    <div class="firm">Jones & Associates</div>
+    <div class="tagline">Cybersecurity Risk Advisory</div>
+  </div>
+  <div class="doc-meta">
+    <div class="doc-id">HCB-IRL-008</div>
+    <div>Version 1.0</div>
+    <div>July 2026</div>
+    <div>Status: Draft</div>
+  </div>
+</div>
+
+<div class="title-block">
+  <h1>Information Request List</h1>
+  <div class="subtitle">Threat-Informed Cyber Risk Assessment</div>
+  <div class="client">Heritage Community Bank</div>
+  <div class="refs">Ref: HCB-EC-001 (Charter) | HCB-SD-003 (Scope)</div>
+</div>
+
+<div class="content">
+
+<h2>1. Purpose</h2>
+<p>This document lists the information Jones &amp; Associates requires from Heritage Community Bank to perform the Threat-Informed Cyber Risk Assessment defined in the Engagement Charter (HCB-EC-001).</p>
+<p>This engagement responds to three FDIC Matters Requiring Attention (MRA 2026-IT-001, MRA 2026-IT-002, MRA 2026-IT-003) issued March 28, 2026. The request list is structured so that governance and risk appetite items (Waves 1–3) support the 90-day regulatory deadline, while the full evidence base (Waves 4–7) supports the 120-day independent assessment deadline.</p>
+<p>Each item will be reviewed during the kickoff meeting, assigned a Bank point of contact, and tracked through its lifecycle. <strong>No assessment work will begin on any category until the items in that category have been received and verified by the Firm.</strong></p>
+
+<h2>2. Submission Instructions</h2>
+<div class="instructions-box">
+  <ul>
+    <li>All items should be uploaded to the secure data environment (Heritage_Risk_Assessment_Data VPC) via the Bank upload portal</li>
+    <li>Accepted formats: PDF, Excel, Word, CSV, or screenshot</li>
+    <li>Each upload should reference the Request ID (e.g., IR-001) in the filename</li>
+    <li>Target response time: 5 business days per item unless otherwise agreed during the kickoff meeting</li>
+    <li>Questions about any request should be directed to the Engagement Lead</li>
+  </ul>
+</div>
+
+<h2>3. Information Requests</h2>
+<p>47 items across 9 categories:</p>
+
+<div class="cat-header">Category A: Governance (IR-001 through IR-010)</div>
+<div class="request-item"><span class="request-id">IR-001</span><span class="request-title">Information Security Policy</span><div class="request-desc">Current information security policy document(s). Include approval date and approving authority.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-002</span><span class="request-title">IT Risk Management Policy</span><div class="request-desc">IT risk management policy or framework document. Include risk appetite statement if separate.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-003</span><span class="request-title">Acceptable Use Policy</span><div class="request-desc">Acceptable use policy for technology resources.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-004</span><span class="request-title">Cybersecurity Program Charter</span><div class="request-desc">Charter or mission statement establishing the cybersecurity program, its authority, and resources.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-005</span><span class="request-title">Steering Committee / Board Oversight</span><div class="request-desc">Evidence of cybersecurity steering committee or board oversight: charter, meeting minutes (last 4 quarters), cyber metrics reported to the board.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-006</span><span class="request-title">Cybersecurity Standards and Procedures</span><div class="request-desc">Written standards and procedures that implement the policies above. Include version dates.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-007</span><span class="request-title">Exception Management</span><div class="request-desc">List of authorized exceptions to security standards or policies. Include approver and expiration date.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-008</span><span class="request-title">Prior Exam Findings</span><div class="request-desc">Regulatory examination findings from the last 2 exam cycles. Include MRA/MRIA status and remediation progress.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-009</span><span class="request-title">Internal Audit Reports</span><div class="request-desc">IT and cybersecurity internal audit reports from the last 2 years. Include management responses.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-010</span><span class="request-title">Risk Register</span><div class="request-desc">Current enterprise or IT risk register. Include risk ratings, control mappings, and remediation status.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+
+<div class="cat-header">Category B: People and Organization (IR-011 through IR-015)</div>
+<div class="request-item"><span class="request-id">IR-011</span><span class="request-title">Organization Chart</span><div class="request-desc">Current organization chart showing IT, Information Security, and Risk Management reporting lines through the Board.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-012</span><span class="request-title">IT and Security Staffing</span><div class="request-desc">Roster of IT and Information Security staff with titles, roles, and responsibilities.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-013</span><span class="request-title">Key Role Assignments</span><div class="request-desc">Formal role assignments for CISO, CIO, CRO, and Information Security Manager. Include reporting structure.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-014</span><span class="request-title">Security Awareness Training</span><div class="request-desc">Security awareness training program description, completion rates for the current year, and phishing simulation results (last 4 campaigns).</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-015</span><span class="request-title">Onboarding / Offboarding Checklists</span><div class="request-desc">Standard checklists used for provisioning new employees and deprovisioning terminated employees. Include IT-specific steps.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+
+<div class="cat-header">Category C: Accounts and Access (IR-016 through IR-022)</div>
+<div class="request-item"><span class="request-id">IR-016</span><span class="request-title">Active User Account List</span><div class="request-desc">Export of all active user accounts across key systems (AD, core banking, online banking admin). Include name, department, last login date.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-017</span><span class="request-title">Privileged Account Inventory</span><div class="request-desc">Inventory of all privileged accounts (domain admins, local admins, database admins, service accounts with elevated rights). Include owner and purpose.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-018</span><span class="request-title">Service Account Inventory</span><div class="request-desc">List of all service accounts with owner, purpose, associated system, and last password change date.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-019</span><span class="request-title">Recently Terminated Accounts</span><div class="request-desc">List of employees terminated in the last 12 months with account disable dates and confirmation of access removal.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-020</span><span class="request-title">Access Review Evidence</span><div class="request-desc">Most recent periodic access review. Include scope, date completed, findings, and remediation actions.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-021</span><span class="request-title">MFA Enrollment</span><div class="request-desc">MFA enrollment status across: remote access (VPN), privileged access, online banking admin, email. Include any exceptions.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-022</span><span class="request-title">PAM Configuration</span><div class="request-desc">Privileged Access Management tool configuration and scope. Which accounts are managed? Which are not yet enrolled?</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+
+<div class="cat-header">Category D: Applications and Software (IR-023 through IR-025)</div>
+<div class="request-item"><span class="request-id">IR-023</span><span class="request-title">Application Inventory</span><div class="request-desc">Inventory of business applications with owner, criticality rating, data classification, and hosting location (on-prem, cloud, vendor-hosted).</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-024</span><span class="request-title">Software Inventory</span><div class="request-desc">Licensed and installed software inventory. Include version, vendor, license status, and end-of-life date where applicable.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-025</span><span class="request-title">End-of-Life / Unsupported Software</span><div class="request-desc">List of software or operating systems currently in use that are past vendor end-of-life or end-of-support. Include compensating controls if any.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+
+<div class="cat-header">Category E: Hardware and Assets (IR-026 through IR-028)</div>
+<div class="request-item"><span class="request-id">IR-026</span><span class="request-title">Hardware Asset Inventory</span><div class="request-desc">Inventory of technology hardware: servers, desktops, laptops, network devices, ATMs. Include model, location, owner, and lifecycle status.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-027</span><span class="request-title">Asset Disposal Records</span><div class="request-desc">Records of hardware disposal or destruction from the last 12 months. Include method and chain of custody documentation.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-028</span><span class="request-title">Data Classification Scheme</span><div class="request-desc">Data classification policy or scheme. Include definitions for each classification level and handling requirements.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+
+<div class="cat-header">Category F: Network and Architecture (IR-029 through IR-033)</div>
+<div class="request-item"><span class="request-id">IR-029</span><span class="request-title">Network Diagram — High Level</span><div class="request-desc">High-level network diagram showing major segments, trust boundaries, internet connectivity, branch connectivity, and cloud connections.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-030</span><span class="request-title">Network Diagram — Detailed</span><div class="request-desc">Detailed network diagram showing VLANs, firewall zones, server placement, and IP addressing scheme.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-031</span><span class="request-title">Data Flow Diagram</span><div class="request-desc">Data flow diagram showing where sensitive data (customer PII, financial data, credentials) is stored, transmitted, and processed.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-032</span><span class="request-title">Firewall Rule Set</span><div class="request-desc">Current firewall rule set with business justification for each rule. Include date of last rule review.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-033</span><span class="request-title">Network Segmentation Documentation</span><div class="request-desc">Documentation of network segmentation strategy. How is the cardholder data environment separated? How is the server network separated from user workstations?</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+
+<div class="cat-header">Category G: Security Operations (IR-034 through IR-040)</div>
+<div class="request-item"><span class="request-id">IR-034</span><span class="request-title">Vulnerability Scan Reports</span><div class="request-desc">Most recent internal and external vulnerability scan reports. Include scan dates, scope, and remediation status of critical/high findings.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-035</span><span class="request-title">Patch Management Process</span><div class="request-desc">Patch management policy or procedure. Include patching cadence, SLAs by severity, and exception process.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-036</span><span class="request-title">SIEM Configuration</span><div class="request-desc">SIEM platform description, log sources collected, alerting rules, and retention period. Include sample alert volume (daily average).</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-037</span><span class="request-title">EDR / MDR Coverage</span><div class="request-desc">Endpoint detection and response tool deployment scope. What percentage of endpoints are covered? Include MDR service description and SLA.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-038</span><span class="request-title">Incident Response Plan</span><div class="request-desc">Current incident response plan. Include roles, communication procedures, and escalation matrix. When was it last tested?</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-039</span><span class="request-title">Incident History</span><div class="request-desc">Log of security incidents from the last 24 months. Include classification, response actions, root cause, and lessons learned.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-040</span><span class="request-title">Penetration Test Report</span><div class="request-desc">Most recent penetration test report (external and internal if applicable). Include remediation status of findings.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+
+<div class="cat-header">Category H: Third-Party Management (IR-041 through IR-044)</div>
+<div class="request-item"><span class="request-id">IR-041</span><span class="request-title">Critical Vendor List</span><div class="request-desc">List of critical and high-risk technology vendors. Include service provided, data shared, and risk tier classification.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-042</span><span class="request-title">SOC Reports</span><div class="request-desc">Most recent SOC 2 Type II reports for critical vendors (core processor, cloud provider, MSP, MDR, backup). Flag any vendors without a current report.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-043</span><span class="request-title">Vendor Risk Assessments</span><div class="request-desc">Vendor risk assessment results for critical vendors. Include assessment date and any open findings.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-044</span><span class="request-title">Third-Party Contracts</span><div class="request-desc">Contracts or service agreements for critical technology vendors. Focus on security requirements, data handling, breach notification, and right to audit clauses.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+
+<div class="cat-header">Category I: Business Continuity (IR-045 through IR-047)</div>
+<div class="request-item"><span class="request-id">IR-045</span><span class="request-title">Business Continuity Plan</span><div class="request-desc">Current BCP document. Include recovery time objectives (RTO) and recovery point objectives (RPO) for critical systems.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-046</span><span class="request-title">DR Test Results</span><div class="request-desc">Most recent disaster recovery test results. Include date, scope, pass/fail, and any gaps identified.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+<div class="request-item"><span class="request-id">IR-047</span><span class="request-title">Backup Configuration</span><div class="request-desc">Backup strategy documentation: what is backed up, frequency, retention, offsite/cloud replication, and last successful restore test date.</div><div class="request-fields"><div class="request-field"><strong>Bank POC:</strong> <span class="field-line"></span></div><div class="request-field"><strong>Status:</strong> <span class="field-line"></span></div></div></div>
+
+<h2>4. Status Tracking</h2>
+<div class="status-legend">
+  <div class="status-item"><span class="status-dot dot-ns"></span>Not Started — Request not yet sent</div>
+  <div class="status-item"><span class="status-dot dot-req"></span>Requested — Sent, awaiting response</div>
+  <div class="status-item"><span class="status-dot dot-rec"></span>Received — Bank has uploaded a response</div>
+  <div class="status-item"><span class="status-dot dot-rev"></span>Under Review — Firm reviewing response</div>
+  <div class="status-item"><span class="status-dot dot-ver"></span>Verified — Response accepted</div>
+  <div class="status-item"><span class="status-dot dot-res"></span>Resubmit — Incomplete or incorrect</div>
+  <div class="status-item"><span class="status-dot dot-fu"></span>Follow-up — Kicked back to Bank for more work</div>
+  <div class="status-item"><span class="status-dot dot-na"></span>N/A — Not applicable</div>
+</div>
+
+<div class="verification-box">
+  <h3>Verification Criteria</h3>
+  <ul>
+    <li>Is this what we asked for?</li>
+    <li>Is the data current (within 12 months)?</li>
+    <li>Is it complete (covers full scope)?</li>
+    <li>Is it in a usable format?</li>
+  </ul>
+</div>
+
+<h2>5. Kickoff Meeting Agenda</h2>
+<div class="kickoff-box">
+  <ol>
+    <li>Walk through each request item</li>
+    <li>Assign Bank point of contact for every item</li>
+    <li>Agree on response timeline per category</li>
+    <li>Confirm upload process and file naming convention</li>
+    <li>Identify items that may require follow-up interviews</li>
+    <li>Schedule weekly status check-in</li>
+  </ol>
+</div>
+
+<div class="provenance">
+  <div class="provenance-header">Document Provenance</div>
+  <div class="provenance-body">
+    <div class="prov-row"><div class="prov-role">Created by</div><div class="prov-agent">Evidence Manager Agent <span class="prov-id">ACF-EV-001 · Opus</span></div><div class="prov-date">07/01/2026</div></div>
+    <div class="prov-row"><div class="prov-role">Reviewed by</div><div class="prov-agent">Quality Assurance Agent <span class="prov-id">ACF-QA-001 · Sonnet</span></div><div class="prov-date">07/01/2026</div></div>
+    <div class="prov-row"><div class="prov-role">Human Signoff</div><div class="prov-agent">Tristan Jones, CISA, AAIA — Engagement Lead <span class="prov-status prov-draft">Pending — Kickoff Review</span></div><div class="prov-date">—</div></div>
+  </div>
+</div>
+
+<h2>6. Approval</h2>
+<div class="sig-block">
+  <div class="sig-entry">
+    <div class="sig-line"></div>
+    <div class="sig-name">Tristan Jones, CISA, AAIA</div>
+    <div class="sig-title">Engagement Lead — Jones &amp; Associates</div>
+    <div class="sig-date">Date: _______________</div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <span class="conf">Confidential</span><br>
+  Jones &amp; Associates | Heritage Community Bank | Document ID: HCB-IRL-008 | Version 1.0
+</div>
+
+</div>
+</body>
+</html>
